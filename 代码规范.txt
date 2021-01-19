@@ -1,0 +1,42 @@
+// 一、命名法
+【小驼峰】: 第一个单词首字母小写，第二个单词开始首字母大写。如 firstName, myFirstName
+【大驼峰】: 每个单词首字母都大写。如 FirstName, MyFirstName
+【大写蛇形命名法】: 所有字母都大写，单词间用下划线分隔。如FIRST_NAME, MY_FIRST_NAME
+
+// 二、命名规范
+// 1 变量名
+变量名须与功能相符，如走路步数: stepNumber、 stepCount
+变量名采用 小驼峰 命名法，无需加类型前缀。如 int int_stepCount;×  int stepCount;√ 
+对于private/protected变量使用m_作为前缀(public不加), 后接小驼峰。 如: m_stepCount
+对于private/protected的【static变量】使用s_作为前缀(public不加), 后接小驼峰。 如: s_stepCount
+【常量】采用 大驼峰 形式。 如: const int StepMaxCount = 20000;
+【属性】采用小驼峰形式。 如 stepCount
+
+// 2 类型命名
+【类名】采用 大驼峰 形式，若以单独的文件形式存在，与文件名相同。结构体也一样。
+如:
+public class CharacterController: MonoBehaviour{}, 该文件的名称为CharacterController.cs
+【枚举】枚举及其枚举值，都为大驼峰形式。
+如:
+public enum Color
+{
+    Black = 1,
+    White = 2,
+    ......
+}
+【宏】 大写蛇形命名形式
+如:
+#if UNITY_EDITOR
+    // do something
+#else 
+    // do something
+#endif 
+
+// 3 其他命名
+【函数】 大驼峰 形式
+【接口】 以大写字母I开头(Interface)后接大驼峰
+如:
+public interface IComponent
+{
+}
+【命名空间】 大驼峰 形式
