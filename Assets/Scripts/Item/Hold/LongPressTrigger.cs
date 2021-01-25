@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-
+using System;
 public class LongPressTrigger : UIBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, IPointerClickHandler
 {
     public float duration = 1.0f;
-    public UnityEvent onLongPress = new UnityEvent();
+    public Action onLongPress;
+    public Action<float> onRelease;
     private bool isPointerDown = false;
     private bool longPressTriggered = false;
     private float startTime;
@@ -29,6 +30,7 @@ public class LongPressTrigger : UIBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         isPointerDown = false;
+        onRelease(Time.time - startTime);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
