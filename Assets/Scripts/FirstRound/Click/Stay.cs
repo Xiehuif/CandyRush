@@ -17,7 +17,7 @@ public class Stay : MonoBehaviour
     }
     private void OnClick()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !coroutineOpen)//无协程进行
+        if (DetectClick() && !coroutineOpen)//无协程进行
         {
             StartCoroutine("ToStay");
             coroutineOpen = true;//协程进行中
@@ -34,5 +34,12 @@ public class Stay : MonoBehaviour
         steam.SetActive(false);
         coroutineOpen = false;//无协程进行
         yield break;
+    }
+    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    {
+        if (Input.GetMouseButtonDown(0))
+            return true;
+        else
+            return false;
     }
 }

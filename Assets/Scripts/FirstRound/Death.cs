@@ -16,6 +16,13 @@ public class Death : MonoBehaviour
             IsDeath();
         }
     }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Track")
+        {
+            IsDeath();
+        }
+    }
     private void IsDeath()
     {
         player.transform.position = new Vector3(0, 0, 0);//回归初始位置

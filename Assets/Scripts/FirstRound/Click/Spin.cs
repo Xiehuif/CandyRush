@@ -6,10 +6,12 @@ public class Spin : MonoBehaviour
 {
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
+    public Vector3 center = Vector3.zero;
     private bool coroutineOpen = false;//协程状态
 
     void Start()
     {
+        center = transform.position + center;
         if (!status)//status为false时初始化为放倒
         {
             this.transform.Rotate(0, 0, -90);
@@ -22,7 +24,7 @@ public class Spin : MonoBehaviour
     }
     private void OnClick()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !coroutineOpen)//无协程进行
+        if (DetectClick() && !coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -41,7 +43,8 @@ public class Spin : MonoBehaviour
     {
         for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
         {
-            this.transform.Rotate(0, 0, -90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center,Vector3.forward,-90 * speed * Time.deltaTime);
+            //this.transform.Rotate(0, 0, -90 * speed * Time.deltaTime);
             yield return 0;
         }
         coroutineOpen = false;//无协程进行
@@ -52,11 +55,24 @@ public class Spin : MonoBehaviour
     {
         for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
         {
-            this.transform.Rotate(0, 0, 90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center,Vector3.forward,90 * speed * Time.deltaTime);
             yield return 0;
         }
         coroutineOpen = false;//无协程进行
         yield break;
     }
-
+#if UNITY_EDITOR
+protected void OnDrawGizmosSelected()
+{
+    UnityEditor.Handles.color = Color.red;
+    UnityEditor.Handles.DrawWireDisc(transform.position + center, Vector3.back,0.2f);
+}
+#endif
+    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    {
+        if (Input.GetMouseButtonDown(0))
+            return true;
+        else
+            return false;
+    }
 }
