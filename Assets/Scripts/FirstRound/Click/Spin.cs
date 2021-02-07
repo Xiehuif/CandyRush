@@ -22,7 +22,7 @@ public class Spin : MonoBehaviour
     }
     private void OnClick()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !coroutineOpen)//无协程进行
+        if (DetectClick() && !coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -58,5 +58,11 @@ public class Spin : MonoBehaviour
         coroutineOpen = false;//无协程进行
         yield break;
     }
-
+    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    {
+        if (Input.GetMouseButtonDown(0))
+            return true;
+        else
+            return false;
+    }
 }
