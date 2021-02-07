@@ -21,7 +21,7 @@ public class Move : MonoBehaviour
     }
     private void OnClick()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !coroutineOpen)//无协程进行
+        if (DetectClick() && !coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -64,4 +64,12 @@ protected void OnDrawGizmosSelected()
     UnityEditor.Handles.DrawLine(origin.position, end.position);
 }
 #endif
+
+    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    {
+        if (Input.GetMouseButtonDown(0))
+            return true;
+        else
+            return false;
+    }
 }
