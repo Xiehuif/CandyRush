@@ -57,4 +57,11 @@ public class Move : MonoBehaviour
         coroutineOpen = false;//无协程进行
         yield break;
     }
+#if UNITY_EDITOR
+protected void OnDrawGizmosSelected()
+{
+    UnityEditor.Handles.color = Color.red;
+    UnityEditor.Handles.DrawLine(origin.position, end.position);
+}
+#endif
 }
