@@ -20,16 +20,13 @@ public class DyeSlider : MonoBehaviour
         {
             if(Mathf.Abs(player.localPosition.y - this.transform.localPosition.y) < 20)
             {
-                m_res += Time.deltaTime * Speed;
+                m_res += Time.unscaledDeltaTime * Speed;
                 GetComponent<Slider>().value =(m_res / m_range);
             }
-        }
-    }
-    private void FixedUpdate() 
-    {
+        } 
         if(transform.localPosition.x >=LeftEdge)
         {
-            transform.localPosition += new Vector3((-1) * Speed *Time.fixedDeltaTime,0,0);
+            transform.localPosition += new Vector3((-1) * Speed *Time.unscaledDeltaTime,0,0);
         }
         else
         {
