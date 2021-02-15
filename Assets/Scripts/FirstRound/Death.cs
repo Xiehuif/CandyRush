@@ -23,7 +23,7 @@ public class Death : MonoBehaviour
             IsDeath();
         }
     }
-    private void IsDeath()
+    public void IsDeath()
     {
         player.transform.position = new Vector3(0, 0, 0);//回归初始位置
         player.transform.rotation = new Quaternion(0, 0, 0, 0);//初始旋转角

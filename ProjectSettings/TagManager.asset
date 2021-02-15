@@ -14,7 +14,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Lay
   - 
   - 
   - 
@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: New Layer
+    uniqueID: 3289407417
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
