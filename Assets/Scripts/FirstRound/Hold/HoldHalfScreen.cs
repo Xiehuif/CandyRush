@@ -39,7 +39,7 @@ public class HoldHalfScreen : MonoBehaviour
                 schedule = 0;
             }
         }
-        else if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.E))//企图冷却
+        else if (Input.GetKey(KeyCode.E) && !Input.GetKey(KeyCode.Q))//企图冷却
         {
             if (!heat)//符合条件,开始冷却
             {
