@@ -11,20 +11,22 @@ public class Spin : MonoBehaviour
 
     void Start()
     {
+        InputHandler.Instance.StartListener(this.gameObject,OnClick);
         center = transform.position + center;
         if (!status)//status为false时初始化为放倒
         {
             this.transform.Rotate(0, 0, -90);
         }
     }
-
-    void Update()
+    private void OnDisable()
     {
-        OnClick();
+        if(InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject,OnClick);
     }
+
     private void OnClick()
     {
-        if (DetectClick() && !coroutineOpen)//无协程进行
+        if (!coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -68,11 +70,4 @@ protected void OnDrawGizmosSelected()
     UnityEditor.Handles.DrawWireDisc(transform.position + center, Vector3.back,0.2f);
 }
 #endif
-    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
-    {
-        if (Input.GetMouseButtonDown(0))
-            return true;
-        else
-            return false;
-    }
 }
