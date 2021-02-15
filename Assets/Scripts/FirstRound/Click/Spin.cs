@@ -7,12 +7,14 @@ public class Spin : MonoBehaviour
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
     public Vector3 center = Vector3.zero;
+    private Quaternion oriAngle;
     private bool coroutineOpen = false;//协程状态
 
     void Start()
     {
         InputHandler.Instance.StartListener(this.gameObject,OnClick);
         center = transform.position + center;
+        oriAngle = this.transform.rotation;
         if (!status)//status为false时初始化为放倒
         {
             this.transform.Rotate(0, 0, -90);
@@ -60,6 +62,7 @@ public class Spin : MonoBehaviour
             this.transform.RotateAround(center,Vector3.forward,90 * speed * Time.deltaTime);
             yield return 0;
         }
+        this.transform.rotation = oriAngle;
         coroutineOpen = false;//无协程进行
         yield break;
     }
