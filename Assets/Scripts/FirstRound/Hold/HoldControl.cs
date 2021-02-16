@@ -11,7 +11,7 @@ public class HoldControl : MonoBehaviour
     private float currentTemperature = 0.5f;//初始进度位置
     public bool status = false;//关卡状态
 
-    private float timer = 0;
+    private float timer = 0;//关卡计时器
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
@@ -46,7 +46,6 @@ public class HoldControl : MonoBehaviour
             if (timer > 3)
                 DeathCheck();
         }
-        Debug.Log(timer);
     }
     private void TemperatureControl()//温度游标控制函数,自动左移,长按右移
     {

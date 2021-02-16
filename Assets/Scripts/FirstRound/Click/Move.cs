@@ -12,13 +12,13 @@ public class Move : MonoBehaviour
     private bool coroutineOpen = false;//协程状态
     void Start()
     {
-        InputHandler.Instance.StartListener(this.gameObject,OnClick);
+        InputHandler.Instance.StartListener(this.gameObject, OnClick);
         originPos = origin.position;//记录初始位置
     }
     private void OnDisable()
     {
-        if(InputHandler.IsInitialized)
-            InputHandler.Instance.StopListener(this.gameObject,OnClick);
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, OnClick);
     }
 
     private void OnClick()
@@ -40,8 +40,13 @@ public class Move : MonoBehaviour
 
     private IEnumerator ToEnd()
     {
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
+        for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
         {
+            if (schedule > 1)//末尾去除误差
+            {
+                origin.position = end.position;
+                break;
+            }
             origin.position = originPos + (end.position - originPos) * schedule;
             yield return 0;
         }
@@ -53,6 +58,11 @@ public class Move : MonoBehaviour
     {
         for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
         {
+            if (schedule > 1)//末尾去除误差
+            {
+                origin.position = originPos;
+                break;
+            }
             origin.position = end.position + (originPos - end.position) * schedule;
             yield return 0;
         }
@@ -60,10 +70,10 @@ public class Move : MonoBehaviour
         yield break;
     }
 #if UNITY_EDITOR
-protected void OnDrawGizmosSelected()
-{
-    UnityEditor.Handles.color = Color.red;
-    UnityEditor.Handles.DrawLine(origin.position, end.position);
-}
+    protected void OnDrawGizmosSelected()
+    {
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawLine(origin.position, end.position);
+    }
 #endif
 }
