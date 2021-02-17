@@ -44,7 +44,9 @@ public class HoldControl : MonoBehaviour
             timer += Time.deltaTime;//关卡计时器
             TemperatureControl();
             if (timer > 3)
+            {
                 DeathCheck();
+            }
         }
     }
     private void TemperatureControl()//温度游标控制函数,自动左移,长按右移
@@ -77,6 +79,7 @@ public class HoldControl : MonoBehaviour
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
             status = true;//关卡开启
+            timer = 0;
             temperatureBar.SetActive(true);
             StartCoroutine("ToBegin");
         }
@@ -92,6 +95,7 @@ public class HoldControl : MonoBehaviour
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
+            this.tag = "Untagged";
             temperatureBar.SetActive(false);
             status = false;//关卡关闭
             StartCoroutine("ToEnd");
