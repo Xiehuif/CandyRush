@@ -155,7 +155,7 @@ MonoBehaviour:
   Offset: 80
   DyeSliderPrefab: {fileID: 2759593444185337087, guid: 89f241add4218ae4f847a7044c4e0b4d,
     type: 3}
-  CreateInterVal: 3.5
+  CreateInterVal: 3
   CreateTimes: 10
 --- !u!1 &2656341264786802275
 GameObject:

@@ -16,7 +16,7 @@ public class DyePlayer : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetMouseButton(0))
         {
             m_verSpeed =  ratio;
         }
