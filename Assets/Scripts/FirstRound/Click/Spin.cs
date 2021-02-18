@@ -50,14 +50,12 @@ public class Spin : MonoBehaviour
         {
             if (schedule > 1)//末尾去除误差
             {
-                this.transform.RotateAround(center, Vector3.forward, oriAngle - 90 - this.transform.localEulerAngles.z);
                 break;
             }
-            else
-                this.transform.RotateAround(center, Vector3.forward, -90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center, Vector3.forward, -90 * speed * Time.deltaTime);
             yield return 0;
         }
-
+        this.transform.RotateAround(center, Vector3.forward, oriAngle - 90 - this.transform.localEulerAngles.z);
         coroutineOpen = false;//无协程进行
         yield break;
     }
@@ -68,13 +66,13 @@ public class Spin : MonoBehaviour
         {
             if (schedule > 1)//末尾去除误差
             {
-                this.transform.RotateAround(center, Vector3.forward, oriAngle - this.transform.localEulerAngles.z);
                 break;
             }
-            else
-                this.transform.RotateAround(center, Vector3.forward, 90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center, Vector3.forward, 90 * speed * Time.deltaTime);
             yield return 0;
         }
+        this.transform.RotateAround(center, Vector3.forward, oriAngle - this.transform.localEulerAngles.z);
+
         coroutineOpen = false;//无协程进行
         yield break;
     }

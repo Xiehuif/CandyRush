@@ -25,11 +25,11 @@ public class HoldControl : MonoBehaviour
         //根据加热or冷却模式来初始化安全区的位置
         if (coolDown)
         {
-            safeArea.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * (safeUpperLimit - safeLowerLimit);
+            safeArea.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * (safeUpperLimit + safeLowerLimit) / 2;
         }
         else
         {
-            safeArea.position = cursorUpperLimit.position + (cursorLowerLimit.position - cursorUpperLimit.position) * (safeUpperLimit - safeLowerLimit);
+            safeArea.position = cursorUpperLimit.position + (cursorLowerLimit.position - cursorUpperLimit.position) * (safeUpperLimit + safeLowerLimit) / 2;
         }
         //初始化游标位置(正中)
         cursor.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * currentTemperature;

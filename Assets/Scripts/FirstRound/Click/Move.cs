@@ -7,6 +7,7 @@ public class Move : MonoBehaviour
     public Transform origin;//初相
     public Transform end;//反相
     private Vector3 originPos;//初相位置
+    private Vector3 endPos;//反相位置
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
     private bool coroutineOpen = false;//协程状态
@@ -14,6 +15,7 @@ public class Move : MonoBehaviour
     {
         InputHandler.Instance.StartListener(this.gameObject, OnClick);
         originPos = origin.position;//记录初始位置
+        endPos = end.position;
     }
     private void OnDisable()
     {
@@ -44,12 +46,12 @@ public class Move : MonoBehaviour
         {
             if (schedule > 1)//末尾去除误差
             {
-                origin.position = end.position;
                 break;
             }
-            origin.position = originPos + (end.position - originPos) * schedule;
+            origin.position = originPos + (endPos - originPos) * schedule;
             yield return 0;
         }
+        origin.position = endPos;
         coroutineOpen = false;//无协程进行
         yield break;
     }
@@ -60,12 +62,12 @@ public class Move : MonoBehaviour
         {
             if (schedule > 1)//末尾去除误差
             {
-                origin.position = originPos;
                 break;
             }
-            origin.position = end.position + (originPos - end.position) * schedule;
+            origin.position = endPos + (originPos - endPos) * schedule;
             yield return 0;
         }
+        origin.position = originPos;
         coroutineOpen = false;//无协程进行
         yield break;
     }
