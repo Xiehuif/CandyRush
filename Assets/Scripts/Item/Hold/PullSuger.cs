@@ -16,8 +16,8 @@ public class PullSuger : MonoBehaviour
             {
                 if (m_wholetime < PullDuration)
                 {
-                    transform.rotation *= Quaternion.Euler(0, 0, Time.unscaledDeltaTime * 45f);
-                    m_player.transform.rotation *= Quaternion.Euler(0, 0, Time.unscaledDeltaTime * 45f);
+                    transform.rotation *= Quaternion.Euler(0, 0, Time.unscaledDeltaTime * 180f);
+                    m_player.transform.rotation *= Quaternion.Euler(0, 0, Time.unscaledDeltaTime * 180f);
                     m_wholetime += Time.unscaledDeltaTime;
                 }
                 else
@@ -37,6 +37,7 @@ public class PullSuger : MonoBehaviour
             Time.timeScale = 0;
             m_player = other.gameObject;
             m_player.transform.position = this.transform.position;
+            m_player.transform.rotation = Quaternion.Euler(0,0,0);
             m_player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             BeginToPull = true;
         }
