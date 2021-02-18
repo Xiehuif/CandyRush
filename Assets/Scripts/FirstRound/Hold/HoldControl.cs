@@ -43,7 +43,7 @@ public class HoldControl : MonoBehaviour
         {
             timer += Time.deltaTime;//关卡计时器
             TemperatureControl();
-            if (timer > 3)
+            if (timer > 3)//进入关卡3s后开始死亡检测
             {
                 DeathCheck();
             }
