@@ -1,9 +1,10 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DyeCreator : MonoBehaviour
 {
+    public Action OnEnd;
     public Transform CreatePoint;
     public Transform Player;
     public float LeftEdge,Offset;
@@ -14,23 +15,28 @@ public class DyeCreator : MonoBehaviour
     private Vector2 m_canvasScale;
     void Start()
     {
+        if(Player == null) Debug.LogError("Player Transform IsMising!");
         RectTransform rect = transform.parent.GetComponent<RectTransform>();
         m_canvasScale = new Vector2(rect.localScale.x,rect.localScale.y);
         LeftEdge = (-1) * rect.rect.width;
-        time = 0;
+        time = CreateInterVal;
         m_LastCreatePos = transform.position;
     }
     void Update()
     {
         if(time > CreateInterVal)
         {
-            if(CreateTimes <= 0)
+            CreateTimes--;
+            time = 0;
+            if(CreateTimes<=-3)
             {
                 Debug.Log("Dye End");
+                OnEnd();
                 Destroy(gameObject);
             }
+            else if(CreateTimes <= 0) return;
             GameObject temp = Instantiate(DyeSliderPrefab,CreatePoint);
-            temp.transform.position += new Vector3(0,Random.Range(-1,1f)*Offset,0);
+            temp.transform.position += new Vector3(0,UnityEngine.Random.Range(-1,1f)*Offset,0);
             DyeSlider dyeSlider = temp.GetComponent<DyeSlider>();
             dyeSlider.left *= m_canvasScale.x;
             dyeSlider.right *= m_canvasScale.x;
@@ -38,9 +44,7 @@ public class DyeCreator : MonoBehaviour
             dyeSlider.LeftEdge = LeftEdge;
             dyeSlider.player = Player;
             m_LastCreatePos = temp.transform.position;
-            CreateTimes--;
-            time = 0;
         }
-        else  time += Time.deltaTime;
+        else  time += Time.unscaledDeltaTime;
     }
 }

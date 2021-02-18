@@ -7,21 +7,25 @@ public class Move : MonoBehaviour
     public Transform origin;//初相
     public Transform end;//反相
     private Vector3 originPos;//初相位置
+    private Vector3 endPos;//反相位置
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
     private bool coroutineOpen = false;//协程状态
     void Start()
     {
+        InputHandler.Instance.StartListener(this.gameObject, OnClick);
         originPos = origin.position;//记录初始位置
+        endPos = end.position;
+    }
+    private void OnDisable()
+    {
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, OnClick);
     }
 
-    void Update()
-    {
-        OnClick();
-    }
     private void OnClick()
     {
-        if (DetectClick() && !coroutineOpen)//无协程进行
+        if (!coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -38,11 +42,16 @@ public class Move : MonoBehaviour
 
     private IEnumerator ToEnd()
     {
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
+        for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
         {
-            origin.position = originPos + (end.position - originPos) * schedule;
+            if (schedule > 1)//末尾去除误差
+            {
+                break;
+            }
+            origin.position = originPos + (endPos - originPos) * schedule;
             yield return 0;
         }
+        origin.position = endPos;
         coroutineOpen = false;//无协程进行
         yield break;
     }
@@ -51,25 +60,22 @@ public class Move : MonoBehaviour
     {
         for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
         {
-            origin.position = end.position + (originPos - end.position) * schedule;
+            if (schedule > 1)//末尾去除误差
+            {
+                break;
+            }
+            origin.position = endPos + (originPos - endPos) * schedule;
             yield return 0;
         }
+        origin.position = originPos;
         coroutineOpen = false;//无协程进行
         yield break;
     }
 #if UNITY_EDITOR
-protected void OnDrawGizmosSelected()
-{
-    UnityEditor.Handles.color = Color.red;
-    UnityEditor.Handles.DrawLine(origin.position, end.position);
-}
-#endif
-
-    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    protected void OnDrawGizmosSelected()
     {
-        if (Input.GetMouseButtonDown(0))
-            return true;
-        else
-            return false;
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawLine(origin.position, end.position);
     }
+#endif
 }

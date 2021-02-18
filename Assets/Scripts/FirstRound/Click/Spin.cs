@@ -7,26 +7,29 @@ public class Spin : MonoBehaviour
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
     public Vector3 center = Vector3.zero;
-    private Quaternion oriAngle;
+    private float oriAngle;//初始角度
     private bool coroutineOpen = false;//协程状态
 
     void Start()
     {
+        InputHandler.Instance.StartListener(this.gameObject, OnClick);
         center = transform.position + center;
-        oriAngle = this.transform.rotation;
+        oriAngle = this.transform.localEulerAngles.z;//记录初始角度
         if (!status)//status为false时初始化为放倒
         {
             this.transform.Rotate(0, 0, -90);
         }
+
+    }
+    private void OnDisable()
+    {
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, OnClick);
     }
 
-    void Update()
-    {
-        OnClick();
-    }
     private void OnClick()
     {
-        if (DetectClick() && !coroutineOpen)//无协程进行
+        if (!coroutineOpen)//无协程进行
         {
             if (status)
             {
@@ -43,39 +46,41 @@ public class Spin : MonoBehaviour
 
     private IEnumerator ToEnd()
     {
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
+        for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
         {
-            this.transform.RotateAround(center,Vector3.forward,-90 * speed * Time.deltaTime);
-            //this.transform.Rotate(0, 0, -90 * speed * Time.deltaTime);
+            if (schedule > 1)//末尾去除误差
+            {
+                break;
+            }
+            this.transform.RotateAround(center, Vector3.forward, -90 * speed * Time.deltaTime);
             yield return 0;
         }
+        this.transform.RotateAround(center, Vector3.forward, oriAngle - 90 - this.transform.localEulerAngles.z);
         coroutineOpen = false;//无协程进行
         yield break;
     }
 
     private IEnumerator ToOri()
     {
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
+        for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
         {
-            this.transform.RotateAround(center,Vector3.forward,90 * speed * Time.deltaTime);
+            if (schedule > 1)//末尾去除误差
+            {
+                break;
+            }
+            this.transform.RotateAround(center, Vector3.forward, 90 * speed * Time.deltaTime);
             yield return 0;
         }
-        this.transform.rotation = oriAngle;
+        this.transform.RotateAround(center, Vector3.forward, oriAngle - this.transform.localEulerAngles.z);
+
         coroutineOpen = false;//无协程进行
         yield break;
     }
 #if UNITY_EDITOR
-protected void OnDrawGizmosSelected()
-{
-    UnityEditor.Handles.color = Color.red;
-    UnityEditor.Handles.DrawWireDisc(transform.position + center, Vector3.back,0.2f);
-}
-#endif
-    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
+    protected void OnDrawGizmosSelected()
     {
-        if (Input.GetMouseButtonDown(0))
-            return true;
-        else
-            return false;
+        UnityEditor.Handles.color = Color.red;
+        UnityEditor.Handles.DrawWireDisc(transform.position + center, Vector3.back, 0.2f);
     }
+#endif
 }

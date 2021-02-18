@@ -16,24 +16,22 @@ public class DyePlayer : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetMouseButton(0))
         {
             m_verSpeed =  ratio;
         }
         else m_verSpeed =  Gravity;
         Mathf.Clamp(m_verSpeed,(-1) * MaxSpeed,MaxSpeed);
-    }
-    void FixedUpdate()
-    {
         if(transform.localPosition.y < UpBoundry)
         {
             if(transform.localPosition.y > BottomBoundry)
             {
-                transform.localPosition += new Vector3(0,m_verSpeed * Time.fixedDeltaTime,0);
+                transform.localPosition += new Vector3(0,m_verSpeed * Time.unscaledDeltaTime,0);
             }
             else transform.localPosition = new Vector3(transform.localPosition.x, BottomBoundry,transform.localPosition.z);
             
         }
         else transform.localPosition = new Vector3(transform.localPosition.x, UpBoundry,transform.localPosition.z);
     }
+
 }

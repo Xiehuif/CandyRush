@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 60260384}
   - component: {fileID: 60260383}
+  - component: {fileID: 60260385}
   m_Layer: 0
   m_Name: Boundary
   m_TagString: Track
@@ -253,6 +254,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &60260385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60260382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b790e8df72809e43b7d748d8ae91fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanClick: 1
 --- !u!1001 &67194142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,7 +1071,7 @@ PrefabInstance:
     - target: {fileID: 7238006409075816981, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea,
         type: 3}
       propertyPath: m_Speed
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea, type: 3}
@@ -1130,7 +1144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.007912651}
+  m_Size: {x: 0.165, y: 0.007912651}
   m_EdgeRadius: 0
 --- !u!4 &440835902 stripped
 Transform:
@@ -3093,7 +3107,7 @@ PrefabInstance:
     - target: {fileID: 7238006409075816981, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea,
         type: 3}
       propertyPath: m_Speed
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea, type: 3}
@@ -3564,7 +3578,7 @@ PrefabInstance:
     - target: {fileID: 7238006409075816981, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea,
         type: 3}
       propertyPath: m_Speed
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea, type: 3}
@@ -4350,7 +4364,7 @@ PrefabInstance:
     - target: {fileID: 7238006409075816981, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea,
         type: 3}
       propertyPath: m_Speed
-      value: 3.5
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 433f01ccb2c17ec4bab7bd5cc660a4ea, type: 3}
@@ -4563,7 +4577,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -5068,7 +5082,7 @@ PrefabInstance:
     - target: {fileID: 1718269425361879844, guid: d49644d7f47ff464897ee6bbda7142f2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0.48
       objectReference: {fileID: 0}
     - target: {fileID: 1718269425361879844, guid: d49644d7f47ff464897ee6bbda7142f2,
         type: 3}
@@ -5134,6 +5148,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemperatureControl
       objectReference: {fileID: 0}
+    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: safeLowerLimit
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: safeUpperLimit
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_RootOrder
@@ -5188,6 +5212,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612347590299603169, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8612347591013295160, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e403d089dab7cf74cbd9ed681152798e, type: 3}

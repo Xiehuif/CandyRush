@@ -11,7 +11,7 @@ public class HoldControl : MonoBehaviour
     private float currentTemperature = 0.5f;//初始进度位置
     public bool status = false;//关卡状态
 
-    private float timer = 0;
+    private float timer = 0;//关卡计时器
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
@@ -25,11 +25,11 @@ public class HoldControl : MonoBehaviour
         //根据加热or冷却模式来初始化安全区的位置
         if (coolDown)
         {
-            safeArea.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * (safeUpperLimit - safeLowerLimit);
+            safeArea.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * (safeUpperLimit + safeLowerLimit) / 2;
         }
         else
         {
-            safeArea.position = cursorUpperLimit.position + (cursorLowerLimit.position - cursorUpperLimit.position) * (safeUpperLimit - safeLowerLimit);
+            safeArea.position = cursorUpperLimit.position + (cursorLowerLimit.position - cursorUpperLimit.position) * (safeUpperLimit + safeLowerLimit) / 2;
         }
         //初始化游标位置(正中)
         cursor.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * currentTemperature;
@@ -43,10 +43,11 @@ public class HoldControl : MonoBehaviour
         {
             timer += Time.deltaTime;//关卡计时器
             TemperatureControl();
-            if (timer > 3)
+            if (timer > 3)//进入关卡3s后开始死亡检测
+            {
                 DeathCheck();
+            }
         }
-        Debug.Log(timer);
     }
     private void TemperatureControl()//温度游标控制函数,自动左移,长按右移
     {
@@ -78,6 +79,7 @@ public class HoldControl : MonoBehaviour
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
             status = true;//关卡开启
+            timer = 0;
             temperatureBar.SetActive(true);
             StartCoroutine("ToBegin");
         }
@@ -93,6 +95,7 @@ public class HoldControl : MonoBehaviour
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
+            this.tag = "Untagged";
             temperatureBar.SetActive(false);
             status = false;//关卡关闭
             StartCoroutine("ToEnd");
