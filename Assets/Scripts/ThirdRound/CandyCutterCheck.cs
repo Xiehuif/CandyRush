@@ -35,14 +35,14 @@ public class CandyCutterCheck : MonoBehaviour
         {
             if(stopStartTime + lastTime < Time.realtimeSinceStartup)
             {
-                restorePhysicsSystem();
+                RestorePhysicsSystem();
                 onStop = false;
                 return;
             }
         }
     }
 
-    private void restorePhysicsSystem()
+    private void RestorePhysicsSystem()
     {
         platform.speed = oriSpeed;
     }

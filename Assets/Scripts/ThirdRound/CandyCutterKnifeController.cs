@@ -14,21 +14,24 @@ public class CandyCutterKnifeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InputHandler.Instance.StartListener(this.gameObject, Click);
         coroutineOpen = false;
         oriPosition = this.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        Click();
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, Click);
     }
+    // Update is called once per frame
+
 
     void Click()
     {
         Debug.Log("TryStart");
         Debug.Log(checker.GetComponent<CandyCutterCheck>().onStop);
-        if (DetectClick() && !coroutineOpen && checker.GetComponent<CandyCutterCheck>().onStop)
+        if (!coroutineOpen && checker.GetComponent<CandyCutterCheck>().onStop)
         {
             Debug.Log("start");
             cutTimes += 1;

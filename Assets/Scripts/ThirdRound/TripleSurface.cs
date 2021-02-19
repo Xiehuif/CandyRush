@@ -18,8 +18,14 @@ public class TripleSurface : MonoBehaviour
     void Start()
     {
         Init();
+        InputHandler.Instance.StartListener(this.gameObject, Click);
     }
 
+    private void OnDisable()
+    {
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, Click);
+    }
     void Init()
     {
         changeTimes = 1;
@@ -29,14 +35,10 @@ public class TripleSurface : MonoBehaviour
         z = 0;
     }
     // Update is called once per frame
-    void Update()
-    {
-        Click();
-    }
 
     private void Click()
     {
-        if(!coroutineOpen && DetectClick())
+        if(!coroutineOpen)
         {
             inRotate = 0;
             StartCoroutine("MoveTo");
