@@ -5,15 +5,35 @@ using UnityEngine;
 public class DyeTrigger : MonoBehaviour
 {
     public GameObject DyePrefab;
+    private GameObject m_player;
+    private bool HasEnter = false;
+    private void Update()
+    {
+        if(HasEnter&&Input.GetMouseButton(0))
+            BeginDye(m_player); 
+    }
+    private void BeginDye(GameObject obj) 
+    {
+        HasEnter = false;
+        GameObject dyePrefab = Instantiate(DyePrefab);
+        TimeManager.Instance.Pause();
+        DyeCreator creator = dyePrefab.GetComponentInChildren<DyeCreator>();
+        dyePrefab.transform.GetComponentInChildren<DyeCreator>().OnEnd =
+            () => { TimeManager.Instance.Continue(); };
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            GameObject dyePrefab = Instantiate(DyePrefab);
-            Time.timeScale = 0;
-            DyeCreator creator = dyePrefab.GetComponentInChildren<DyeCreator>();
-            dyePrefab.transform.GetComponentInChildren<DyeCreator>().OnEnd =
-                () => { Time.timeScale = 1; };
+            HasEnter = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            HasEnter = false;
         }
     }
 }
