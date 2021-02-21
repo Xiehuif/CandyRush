@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DeadlyElectric : MonoBehaviour
 {
-    public bool status = true;
+    [ReadOnly]
+    public bool status = true;  //编辑时在脚本选项里调用ChangeStatus来改变
 
     private SpriteRenderer m_spriteRenderer;
 
@@ -26,16 +27,26 @@ public class DeadlyElectric : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            status = !status;
-            ChangeColor();
+            ChangeStatus();
         }
     }
 
     private void ChangeColor()
     {
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+            m_spriteRenderer = GetComponent<SpriteRenderer>();
+#endif
         if (!status)
             m_spriteRenderer.color = new Color(0.46f, 0.57f, 0.8f);
         else
             m_spriteRenderer.color = new Color(0, 0, 1f);
+    }
+
+    [ContextMenu("ChangeStatus")]
+    private void ChangeStatus()
+    {
+        status = !status;
+        ChangeColor();
     }
 }
