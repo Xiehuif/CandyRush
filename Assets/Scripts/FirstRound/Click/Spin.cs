@@ -7,6 +7,8 @@ public class Spin : MonoBehaviour
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
     public Vector3 center = Vector3.zero;
+    [Tooltip("旋转角度")]
+    public float rotateAngle = 90f;
     private float oriAngle;//初始角度
     private bool coroutineOpen = false;//协程状态
 
@@ -17,7 +19,7 @@ public class Spin : MonoBehaviour
         oriAngle = this.transform.localEulerAngles.z;//记录初始角度
         if (!status)//status为false时初始化为放倒
         {
-            this.transform.Rotate(0, 0, -90);
+            this.transform.Rotate(0, 0, -rotateAngle);
         }
 
     }
@@ -52,10 +54,10 @@ public class Spin : MonoBehaviour
             {
                 break;
             }
-            this.transform.RotateAround(center, Vector3.forward, -90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center, Vector3.forward, -rotateAngle * speed * Time.deltaTime);
             yield return 0;
         }
-        this.transform.RotateAround(center, Vector3.forward, oriAngle - 90 - this.transform.localEulerAngles.z);
+        this.transform.RotateAround(center, Vector3.forward, oriAngle - rotateAngle - this.transform.localEulerAngles.z);
         coroutineOpen = false;//无协程进行
         yield break;
     }
@@ -68,7 +70,7 @@ public class Spin : MonoBehaviour
             {
                 break;
             }
-            this.transform.RotateAround(center, Vector3.forward, 90 * speed * Time.deltaTime);
+            this.transform.RotateAround(center, Vector3.forward, rotateAngle * speed * Time.deltaTime);
             yield return 0;
         }
         this.transform.RotateAround(center, Vector3.forward, oriAngle - this.transform.localEulerAngles.z);
