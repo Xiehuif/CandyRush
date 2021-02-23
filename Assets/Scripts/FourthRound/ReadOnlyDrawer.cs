@@ -1,16 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿#if UNITY_EDITOR
+
 using UnityEditor;
+using UnityEngine;
 
 /// <summary>
 /// 在unity inspector只读
 /// </summary>
 public class ReadOnlyAttribute : PropertyAttribute
 {
-
 }
-
 
 [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
 public class ReadOnlyDrawer : PropertyDrawer
@@ -27,3 +25,10 @@ public class ReadOnlyDrawer : PropertyDrawer
         GUI.enabled = true;
     }
 }
+
+#else
+using System;
+public class ReadOnlyAttribute : Attribute
+{
+}
+#endif
