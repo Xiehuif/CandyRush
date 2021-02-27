@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoldSpinTrack : MonoBehaviour
+public class HoldSpinTrackForMilkSecond : MonoBehaviour
 {
     public enum RotateDirection
     {
