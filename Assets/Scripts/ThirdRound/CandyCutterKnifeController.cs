@@ -60,11 +60,5 @@ public class CandyCutterKnifeController : MonoBehaviour
         yield break;
     }
 
-    private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
-    {
-        if (Input.GetMouseButtonDown(0))
-            return true;
-        else
-            return false;
-    }
+    
 }
