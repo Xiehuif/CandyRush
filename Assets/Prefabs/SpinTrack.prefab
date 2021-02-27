@@ -76,6 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  status: 1
+  center: {x: 0, y: 0, z: 0}
+  rotateAngle: 90
 --- !u!1 &1718269425549093764
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +192,7 @@ SurfaceEffector2D:
     m_Bits: 4294967295
   m_Speed: 3
   m_SpeedVariation: 0
-  m_ForceScale: 0.1
+  m_ForceScale: 0.5
   m_UseContactForce: 1
   m_UseFriction: 1
   m_UseBounce: 1

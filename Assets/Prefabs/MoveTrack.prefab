@@ -78,6 +78,7 @@ MonoBehaviour:
   origin: {fileID: 7365508657139111766}
   end: {fileID: 7365508655208888767}
   speed: 1
+  status: 1
 --- !u!1 &7365508657139111765
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +192,7 @@ SurfaceEffector2D:
     m_Bits: 4294967295
   m_Speed: 3
   m_SpeedVariation: 0
-  m_ForceScale: 0.1
+  m_ForceScale: 0.5
   m_UseContactForce: 1
   m_UseFriction: 1
   m_UseBounce: 1
