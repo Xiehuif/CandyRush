@@ -29,6 +29,13 @@ public class PressureProviderController : MonoBehaviour
         coroutineOpen = false;
         oriPosition = this.transform.position;
         endPosition = end.position;
+        InputHandler.Instance.StartListener(this.gameObject, Click);
+    }
+
+    private void OnDisable()
+    {
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StopListener(this.gameObject, Click);
     }
 
 
@@ -41,7 +48,7 @@ public class PressureProviderController : MonoBehaviour
 
     void Click()
     {
-        if(!coroutineOpen && DetectClick() && checker.GetComponent<PackageAreaCheck>().startPackage)
+        if(!coroutineOpen && checker.GetComponent<PackageAreaCheck>().startPackage)
         {
             StartCoroutine("MoveTo");
             coroutineOpen = true;
@@ -49,7 +56,7 @@ public class PressureProviderController : MonoBehaviour
             deathController.SetActive(false);
         }
     }
-
+    /*
     private bool DetectClick()//单击函数,先用鼠标模拟,后期再换成触屏
     {
         if (Input.GetMouseButtonDown(0))
@@ -57,7 +64,7 @@ public class PressureProviderController : MonoBehaviour
         else
             return false;
     }
-
+    */
     private IEnumerator MoveTo()
     {
         for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
