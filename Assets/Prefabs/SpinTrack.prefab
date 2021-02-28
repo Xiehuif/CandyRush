@@ -76,6 +76,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  status: 1
+  center: {x: 0, y: 0, z: 0}
+  rotateAngle: 90
 --- !u!1 &1718269425549093764
 GameObject:
   m_ObjectHideFlags: 0

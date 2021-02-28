@@ -78,6 +78,7 @@ MonoBehaviour:
   origin: {fileID: 7365508657139111766}
   end: {fileID: 7365508655208888767}
   speed: 1
+  status: 1
 --- !u!1 &7365508657139111765
 GameObject:
   m_ObjectHideFlags: 0
