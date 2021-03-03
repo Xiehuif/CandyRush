@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstRound.unity
     guid: 0e3012895b8c74b4c9ce8dc8423f777e
   - enabled: 0
