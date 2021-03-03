@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/ThirdRound.unity
     guid: 63e82efbd17d88a41a1545c63eb4f5b6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MilkSecondRound.unity
     guid: e2ba6ea2c9630084cb1933ba52e7d9bb
   - enabled: 0
