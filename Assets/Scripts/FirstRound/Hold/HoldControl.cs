@@ -12,6 +12,9 @@ public class HoldControl : MonoBehaviour
     public bool status = false;//关卡状态
 
     private float timer = 0;//关卡计时器
+    private float cameraZoomEndPoint = 3.0f;//摄像机放大终点
+    private float timeZoomEnd = 0.3f;//时间流速变缓终点
+
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
@@ -43,7 +46,7 @@ public class HoldControl : MonoBehaviour
         {
             timer += Time.deltaTime;//关卡计时器
             TemperatureControl();
-            if (timer > 3)//进入关卡3s后开始死亡检测
+            if (timer > 1)//进入关卡3s后开始死亡检测
             {
                 DeathCheck();
             }
@@ -79,25 +82,22 @@ public class HoldControl : MonoBehaviour
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
             status = true;//关卡开启
-            timer = 0;
+            timer = 0;//重新开始计时
             temperatureBar.SetActive(true);
+            CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();//获取主摄脚本
+            cameraFollow.target = this.transform;//摄像机对准关卡
             StartCoroutine("ToBegin");
-        }
-    }
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "Player")//检测碰撞物体是否为主角
-        {
-            temperatureBar.transform.position = new Vector3(other.transform.position.x, temperatureBar.transform.position.y, temperatureBar.transform.position.z);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
-            this.tag = "Untagged";
+            this.tag = "Untagged";//tag置空
             temperatureBar.SetActive(false);
             status = false;//关卡关闭
+            CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
+            cameraFollow.target = other.transform;//摄像机归位
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
         }
@@ -108,18 +108,22 @@ public class HoldControl : MonoBehaviour
         //摄像机拉近
         for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
         {
-            Camera.main.orthographicSize = 5f - 1f * schedule;
+            Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
+        Time.timeScale = timeZoomEnd;//修改时间流速
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         yield break;
     }
 
     private IEnumerator ToEnd()
     {
+        Time.timeScale = 1.0F;//修改时间流速
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         //摄像机归位
         for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
         {
-            Camera.main.orthographicSize = 4f + 1f * schedule;
+            Camera.main.orthographicSize = cameraZoomEndPoint + (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
         yield break;
