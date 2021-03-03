@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstRound.unity
     guid: 0e3012895b8c74b4c9ce8dc8423f777e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MilkFirstRound.unity
     guid: 7fcd460b938869c45afcfbeefbf7a46e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SecondRound.unity
     guid: ed93660e32d0ba440aa44308bdd86d46
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ThirdRound.unity
     guid: 63e82efbd17d88a41a1545c63eb4f5b6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MilkSecondRound.unity
     guid: e2ba6ea2c9630084cb1933ba52e7d9bb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MilkThirdRound.unity
     guid: be037a6b51d1669499b3d34c693434b1
   m_configObjects: {}
