@@ -19,7 +19,8 @@ public class DyeTrigger : MonoBehaviour
         TimeManager.Instance.Pause();
         DyeCreator creator = dyePrefab.GetComponentInChildren<DyeCreator>();
         dyePrefab.transform.GetComponentInChildren<DyeCreator>().OnEnd =
-            () => { TimeManager.Instance.Continue(); };
+            () => { TimeManager.Instance.DelayDo(
+                ()=> { TimeManager.Instance.Continue(); },1f); };
     }
     
     private void OnTriggerEnter2D(Collider2D other)

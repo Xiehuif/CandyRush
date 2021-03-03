@@ -14,4 +14,15 @@ public class TimeManager : Singleton<TimeManager>
         InputHandler.Instance.CanClick = true;
         Time.timeScale = 1;
     }
+    protected IEnumerator DelayDoTimeCoroutine(UnityAction action, float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        if (action != null)
+            action.Invoke();
+    }
+
+    public void DelayDo(UnityAction action, float time)
+    {
+        StartCoroutine(DelayDoTimeCoroutine(action, time));
+    }
 }
