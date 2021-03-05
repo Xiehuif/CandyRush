@@ -408,11 +408,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemperatureControl
       objectReference: {fileID: 0}
-    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
-        type: 3}
-      propertyPath: safeLowerLimit
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_RootOrder
@@ -426,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.0731454
+      value: -1.469
       objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
