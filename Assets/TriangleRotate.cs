@@ -1,54 +1,71 @@
-﻿using System.Collections;
+﻿using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class TriangleRotate : MonoBehaviour
 {
-    private bool coroutineOpen;
-    public float speed;
-    private float deltaAngle;
-    private float inRotate;
-    private float z;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    public enum TriangleState
     {
-        coroutineOpen = false;
-        deltaAngle = 120;
-        InputHandler.Instance.StartListener(this.gameObject, Click);
+        Thron,
+        Road,
+        Steam
     }
+
+    public TriangleState startState;  //初始状态，仅仅在inspector内修改
+
+    [SerializeField]
+    private GameObject m_steamPart; //蒸汽部分
+
+    [SerializeField]
+    private GameObject m_thronPart; //刺部分
+
+    [SerializeField]
+    private Transform m_signPart;  //指示标记部分
+
+    private TriangleState m_curState;   //当前状态
+
+    private static readonly List<int> s_rotateAngles = new List<int>() { 120, 0, -120 };    //不同状态下指示部分应该旋转的角度
+
+    private void Start()
+    {
+        if (InputHandler.IsInitialized)
+            InputHandler.Instance.StartListener(gameObject, OnClick);
+        m_curState = startState;
+        ChangeActiveByState();
+    }
+
     private void OnDisable()
     {
         if (InputHandler.IsInitialized)
-            InputHandler.Instance.StopListener(this.gameObject, Click);
+            InputHandler.Instance.StopListener(gameObject, OnClick);
     }
 
-    void Click()
+    private void OnClick()
     {
-        if (!coroutineOpen)
-        {
-            z = this.transform.rotation.eulerAngles.z;
-            inRotate = 0;
-            StartCoroutine("Rotate");
-            coroutineOpen = true;
-            
-        }
+        m_curState =(TriangleState)((int)(m_curState + 1) % 3);
+        ChangeActiveByState();
     }
-    private IEnumerator Rotate()
+
+    private void ChangeActiveByState()
     {
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
+        switch(m_curState)
         {
-            this.transform.Rotate(0, 0, (schedule - inRotate) * deltaAngle);
-            inRotate = schedule;
-            yield return 0;
+            case TriangleState.Road:
+                m_thronPart.SetActive(false);
+                m_steamPart.SetActive(false);
+                break;
+            case TriangleState.Steam:
+                m_steamPart.SetActive(true);
+                m_thronPart.SetActive(false);
+                break;
+            case TriangleState.Thron:
+                m_steamPart.SetActive(false);
+                m_thronPart.SetActive(true);
+                break;
+            default:
+                Debug.Log("curState not valid!");
+                break;
         }
-        z += deltaAngle;
-        this.transform.rotation = Quaternion.Euler(0, 0, z);
-        coroutineOpen = false;//无协程进行
-        yield break;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        m_signPart.rotation = Quaternion.Euler(0, 0, s_rotateAngles[(int)m_curState]);
     }
 }
