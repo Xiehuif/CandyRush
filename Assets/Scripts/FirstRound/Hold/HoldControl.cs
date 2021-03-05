@@ -12,7 +12,7 @@ public class HoldControl : MonoBehaviour
     public bool status = false;//关卡状态
 
     private float timer = 0;//关卡计时器
-    private float cameraZoomEndPoint = 3.0f;//摄像机放大终点
+    private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
     private float timeZoomEnd = 0.3f;//时间流速变缓终点
 
 
@@ -74,7 +74,11 @@ public class HoldControl : MonoBehaviour
         if ((coolDown && currentTemperature > safeLowerLimit && currentTemperature < safeUpperLimit) || (!coolDown && currentTemperature < 1 - safeLowerLimit && currentTemperature > 1 - safeUpperLimit))
             return;
         else
+        {
             this.tag = "Track";//gameOver
+            Time.timeScale = 1.0F;//修改时间流速
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
 
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -85,8 +89,9 @@ public class HoldControl : MonoBehaviour
             timer = 0;//重新开始计时
             temperatureBar.SetActive(true);
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();//获取主摄脚本
-            cameraFollow.target = this.transform;//摄像机对准关卡
             StartCoroutine("ToBegin");
+            cameraFollow.smooth = 0.01f;//相机速度变慢
+            cameraFollow.target = this.transform;//摄像机对准关卡
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -98,6 +103,9 @@ public class HoldControl : MonoBehaviour
             status = false;//关卡关闭
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
             cameraFollow.target = other.transform;//摄像机归位
+            cameraFollow.smooth = 0.1f;//相机速度回调
+            Time.timeScale = 1.0F;//修改时间流速
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
         }
@@ -118,8 +126,6 @@ public class HoldControl : MonoBehaviour
 
     private IEnumerator ToEnd()
     {
-        Time.timeScale = 1.0F;//修改时间流速
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         //摄像机归位
         for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
         {
