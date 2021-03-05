@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Death : MonoBehaviour
 {
+    public GameObject[] ItemsToReset;
     public GameObject player;
     void Start()
     {
@@ -25,6 +26,11 @@ public class Death : MonoBehaviour
     }
     public void IsDeath()
     {
+        AppearanceManager.Instance.ReturnToOri();
+        foreach(GameObject item in  ItemsToReset)
+        {
+            item.SetActive(true);
+        }
         player.transform.position = new Vector3(0, 0, 0);//回归初始位置
         player.transform.rotation = new Quaternion(0, 0, 0, 0);//初始旋转角
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;//质心速度清零
