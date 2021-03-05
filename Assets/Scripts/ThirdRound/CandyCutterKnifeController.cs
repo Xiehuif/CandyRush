@@ -4,61 +4,17 @@ using UnityEngine;
 
 public class CandyCutterKnifeController : MonoBehaviour
 {
-    private bool coroutineOpen;
-    private Vector3 oriPosition;
-    public float downLength;
-
-    public float speed;
-    public int cutTimes;
-    public GameObject checker;
-    // Start is called before the first frame update
-    void Start()
+    public CandyCutterCheck check;
+    private Vector3 ori;
+    private void Start()
     {
-        InputHandler.Instance.StartListener(this.gameObject, Click);
-        coroutineOpen = false;
-        oriPosition = this.transform.position;
+        ori = this.transform.position;
     }
-
-    private void OnDisable()
+    private void Update()
     {
-        if (InputHandler.IsInitialized)
-            InputHandler.Instance.StopListener(this.gameObject, Click);
-    }
-    // Update is called once per frame
-
-
-    void Click()
-    {
-        Debug.Log("TryStart");
-        Debug.Log(checker.GetComponent<CandyCutterCheck>().onStop);
-        if (!coroutineOpen && checker.GetComponent<CandyCutterCheck>().onStop)
+        if (check.inCutting)
         {
-            Debug.Log("start");
-            cutTimes += 1;
-            StartCoroutine("Cut");
-            coroutineOpen = true;
+            this.transform.position = ori + check.getDelta();
         }
     }
-
-    private IEnumerator Cut()
-    {
-        Debug.Log("StartCutDown");
-        for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
-        {
-            if(schedule > 0.5)
-            {
-                this.transform.position += new Vector3(0, downLength * speed * Time.deltaTime);
-            }
-            else
-            {
-                this.transform.position -= new Vector3(0, downLength * speed * Time.deltaTime);
-            }
-            yield return 0;
-        }
-        this.transform.position = oriPosition;
-        coroutineOpen = false;//无协程进行
-        yield break;
-    }
-
-    
 }
