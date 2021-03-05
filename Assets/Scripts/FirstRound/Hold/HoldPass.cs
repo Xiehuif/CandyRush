@@ -12,9 +12,16 @@ public class HoldPass : MonoBehaviour
     public GameObject workBackground;
     public GameObject work;
     public GameObject smokeEffect;//烟雾特效
+    public Transform end;//work目标点
+    private Vector3 begin;//wor中初始位
+    private float schedule = 0.0f;//动画进度
+    private bool down = true;
 
 
-
+    void Start()
+    {
+        begin = work.transform.position;
+    }
     void Update()
     {
         OnPress();
@@ -28,6 +35,7 @@ public class HoldPass : MonoBehaviour
             work.SetActive(true);
             workBackground.SetActive(true);
             standby.SetActive(false);
+            StirringAnimation();
         }
         else
         {
@@ -37,6 +45,31 @@ public class HoldPass : MonoBehaviour
             standby.SetActive(true);
         }
     }
+
+    private void StirringAnimation()
+    {
+        if (down)
+        {
+            schedule += 5 * Time.deltaTime;
+            if (schedule > 1)//末尾去除误差
+            {
+                schedule = 1;
+                down = !down;
+            }
+            work.transform.position = begin + (end.position - begin) * schedule;
+        }
+        else
+        {
+            schedule -= 5 * Time.deltaTime;
+            if (schedule < 0)
+            {
+                schedule = 0;
+                down = !down;
+            }
+            work.transform.position = end.position + (begin - end.position) * schedule;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
