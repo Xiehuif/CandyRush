@@ -45,3 +45,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Gear
+    uniqueID: 2613503863
+    locked: 0
