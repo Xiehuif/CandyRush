@@ -41,10 +41,7 @@ public class PressureProviderController : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
-    {
-        Click();
-    }
+    
 
     void Click()
     {
