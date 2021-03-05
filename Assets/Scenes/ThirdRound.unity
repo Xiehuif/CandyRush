@@ -1012,7 +1012,7 @@ PrefabInstance:
     - target: {fileID: 4776441783427335001, guid: 8b94604cd811ba845a1858a8b44735da,
         type: 3}
       propertyPath: m_ForceMagnitude
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4776441783617694598, guid: 8b94604cd811ba845a1858a8b44735da,
         type: 3}
