@@ -4,46 +4,37 @@ using UnityEngine;
 
 public class CandyCutterCheck : MonoBehaviour
 {
-    private float oriSpeed;
-    private float stopStartTime;
-    
-    public bool onStop;
-    public float lastTime;
-    public GameObject player;
-    public SurfaceEffector2D platform;
+    public bool inCutting;
+    private Transform player;
+    private Vector3 ori;
+    public int score;
     // Start is called before the first frame update
-    void Start()
+    public Vector3 getDelta()
     {
-        onStop = false;
+        return (player.position - ori);
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Start()
     {
-        if(other.tag == "Player")
+        inCutting = false;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("StartCutting");
-            oriSpeed = platform.speed;
-            stopStartTime = Time.realtimeSinceStartup;
-            platform.speed = 0;
-            player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            onStop = true;
+            player = collision.gameObject.transform;
+            ori = player.position;
+            inCutting = true;
+            score = 0;
+            Debug.Log("inCutting");
         }
     }
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (onStop)
+        if (collision.gameObject.tag == "Player")
         {
-            if(stopStartTime + lastTime < Time.realtimeSinceStartup)
-            {
-                RestorePhysicsSystem();
-                onStop = false;
-                return;
-            }
+            inCutting = false;
+            Debug.Log("outCutting");
         }
-    }
-
-    private void RestorePhysicsSystem()
-    {
-        platform.speed = oriSpeed;
     }
 }
