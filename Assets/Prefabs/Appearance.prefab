@@ -43,9 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90dc2bdfdfd001d41a79692e4815b858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriAppearance: 0
+  OriAppearance: 3
   Player: {fileID: 0}
   appearance:
+  - {fileID: 21300000, guid: 5ef2d647da0dc5841a8e851a0dd9a338, type: 3}
+  - {fileID: 21300000, guid: 71fb8bb875c3bb04d9162e27c3b0e237, type: 3}
   - {fileID: 21300000, guid: 0f1eb57cfc05a2141a8f4697d6797707, type: 3}
   - {fileID: 21300000, guid: 406ede8de5bcf4b41b6ca575cb498857, type: 3}
   - {fileID: 21300000, guid: ed6999a8f96a2494eaefe7473d81de1e, type: 3}

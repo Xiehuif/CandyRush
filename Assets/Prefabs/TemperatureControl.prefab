@@ -310,6 +310,7 @@ Transform:
   m_Children:
   - {fileID: 8612347590327948294}
   - {fileID: 1944720901}
+  - {fileID: 2001309422}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -407,11 +408,13 @@ MonoBehaviour:
   safeUpperLimit: 0.4
   safeLowerLimit: 0.15
   status: 0
+  targetAppearance: 1
   cursor: {fileID: 8612347591013295160}
   cursorUpperLimit: {fileID: 8612347590556410952}
   cursorLowerLimit: {fileID: 8612347591052597719}
   safeArea: {fileID: 8612347590299603169}
   temperatureBar: {fileID: 8612347590327948295}
+  smokeEffect: {fileID: 2001309393}
 --- !u!1 &8612347590299603182
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,3 +829,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2871669931219037293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7221239793779962959}
+    m_Modifications:
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871669929385566908, guid: c0276de5f5abd8e41ba41d583cce6024,
+        type: 3}
+      propertyPath: m_Name
+      value: SmokeEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0276de5f5abd8e41ba41d583cce6024, type: 3}
+--- !u!1 &2001309393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2871669929385566908, guid: c0276de5f5abd8e41ba41d583cce6024,
+    type: 3}
+  m_PrefabInstance: {fileID: 2871669931219037293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2001309422 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2871669929385566851, guid: c0276de5f5abd8e41ba41d583cce6024,
+    type: 3}
+  m_PrefabInstance: {fileID: 2871669931219037293}
+  m_PrefabAsset: {fileID: 0}
