@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class AppearanceManager : Singleton<AppearanceManager>
 {
-   Sprite[] appearance;
+   public int OriAppearance;
+   public GameObject Player;
+   public Sprite[] appearance;
    public int AppearanceCount 
    {
-        get;
-        set;
+        get
+        {
+            return appearance.Length;
+        }
+    }
+    public void ReturnToOri()
+    {
+        Player.GetComponent<SpriteRenderer>().sprite = appearance[OriAppearance];
+    }
+    public bool ChangeAppearance(int index)
+    {
+        if(index > AppearanceCount || index < 0)
+            return false;
+        Player.GetComponent<SpriteRenderer>().sprite = appearance[index];
+        return true;
     }
 }
