@@ -55,11 +55,9 @@ public class TriangleRotateForThird : MonoBehaviour
                 m_steamPart.SetActive(false);
                 break;
             case TriangleState.Steam:
-                m_steamPart.SetActive(true);
-                m_thronPart.SetActive(false);
+                m_thronPart.SetActive(true);
                 break;
             case TriangleState.Thron:
-                m_steamPart.SetActive(false);
                 m_thronPart.SetActive(true);
                 break;
             default:
