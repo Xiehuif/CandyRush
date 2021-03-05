@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RealPullSugar : MonoBehaviour
 {
-    public Transform[] itemsToRotate;
+   public Transform[] itemsToRotate;
    public float PullDuartion;
    private GameObject m_player;
    private bool m_BeginToPull = false;
