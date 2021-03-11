@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class DyeTrigger : MonoBehaviour
 {
-    public GameObject DyePrefab;
+    public GameObject Dye;
     private GameObject m_player;
     private bool HasEnter = false;
     private void Update()
     {
-        if(HasEnter&&Input.GetMouseButton(0))
+        if(HasEnter)
             BeginDye(m_player); 
     }
     private void BeginDye(GameObject obj) 
     {
         HasEnter = false;
-        GameObject dyePrefab = Instantiate(DyePrefab);
-        TimeManager.Instance.Pause();
-        DyeCreator creator = dyePrefab.GetComponentInChildren<DyeCreator>();
-        dyePrefab.transform.GetComponentInChildren<DyeCreator>().OnEnd =
-            () => { TimeManager.Instance.DelayDo(
-                ()=> { TimeManager.Instance.Continue(); },1f); };
+        Dye.SetActive(true);
+        TimeManager.Instance.ChangeRate(0.2f);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

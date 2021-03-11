@@ -5,6 +5,14 @@ using UnityEngine.Events;
 
 public class TimeManager : Singleton<TimeManager>
 {
+    public void ChangeRate(float ratio)
+    {
+        if(ratio > 0&&ratio < 2)
+        {
+            InputHandler.Instance.CanClick = false;
+            Time.timeScale = ratio;
+        }
+    }
     public void Pause()
     {
         InputHandler.Instance.CanClick = false;

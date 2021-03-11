@@ -9,17 +9,15 @@ public class DyeCreator : MonoBehaviour
     public Transform PiecesTransform;
     public Transform CreatePoint;
     public Transform Player;
-    public float LeftEdge,Offset;
+    public float LeftEdge;
     public GameObject DyeSliderPrefab;
     public float CreateInterVal,CreateTimes;
+    public float BaseWidth;
     private float time,upBoundry,bottomBoundry;
-    private Vector2 m_canvasScale;
     void Start()
     {
         if (Player == null) Debug.LogError("Player Transform IsMising!");
-        RectTransform rect = transform.parent.GetComponent<RectTransform>();
-        m_canvasScale = new Vector2(rect.localScale.x, rect.localScale.y);
-        LeftEdge = (-1) * rect.rect.width;
+
         time = CreateInterVal;
         if (PreCreatePoints.Length == 0) Debug.Log("The Dye Don't Have Any PreCreatPoints!");
         else
@@ -27,13 +25,11 @@ public class DyeCreator : MonoBehaviour
             for(int i = 0;i < PreCreatePoints.Length;i++)
             {
                 GameObject temp = Instantiate(DyeSliderPrefab, PreCreatePoints[i]);
-                temp.transform.position += new Vector3(0, UnityEngine.Random.Range(-1, 1f) * Offset, 0);
                 temp.transform.parent = PiecesTransform;
+                temp.transform.localScale = new Vector3(UnityEngine.Random.Range(0.4f, 1f), temp.transform.localScale.y, 1);
                 DyeSlider dyeSlider = temp.GetComponent<DyeSlider>();
-                dyeSlider.left *= m_canvasScale.x;
-                dyeSlider.right *= m_canvasScale.x;
 
-                dyeSlider.LeftEdge = LeftEdge;
+                dyeSlider.LeftEdge = LeftEdge + Player.transform.localPosition.x;
                 dyeSlider.player = Player;
             }
         }
@@ -47,18 +43,17 @@ public class DyeCreator : MonoBehaviour
             if(CreateTimes<=-3)
             {
                 Debug.Log("Dye End");
-                OnEnd();
-                Destroy(gameObject);
+                TimeManager.Instance.DelayDo(
+                () => { TimeManager.Instance.Continue(); }, 1f);
+                this.gameObject.SetActive(false);
             }
             else if(CreateTimes <= 0) return;
             GameObject temp = Instantiate(DyeSliderPrefab,CreatePoint);
-            temp.transform.parent = PiecesTransform;
-            temp.transform.position += new Vector3(0,UnityEngine.Random.Range(-1,1f)*Offset,0);
+            temp.transform.parent = PiecesTransform; 
+            temp.transform.localScale = new Vector3(UnityEngine.Random.Range(0.4f, 1f), temp.transform.localScale.y, 1);
             DyeSlider dyeSlider = temp.GetComponent<DyeSlider>();
-            dyeSlider.left *= m_canvasScale.x;
-            dyeSlider.right *= m_canvasScale.x;
 
-            dyeSlider.LeftEdge = LeftEdge;
+            dyeSlider.LeftEdge = LeftEdge + Player.transform.localPosition.x;
             dyeSlider.player = Player;
         }
         else  time += Time.unscaledDeltaTime;
