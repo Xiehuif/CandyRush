@@ -35,7 +35,6 @@ public class RealPullSugar : MonoBehaviour
    }
    private void OnTriggerEnter2D(Collider2D other)
    {
-        Debug.Log("Enter");
        if (other.CompareTag("Player"))
         {
             TimeManager.Instance.Pause();

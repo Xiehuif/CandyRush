@@ -15,12 +15,15 @@ public class HoldControl : MonoBehaviour
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
     private float timeZoomEnd = 0.3f;//时间流速变缓终点
 
+    public int targetAppearance = 0;//目标状态
+
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
     public Transform cursorLowerLimit;//游标下限
     public Transform safeArea;//安全区
     public GameObject temperatureBar;//整个温度条物体
+    public GameObject smokeEffect;//烟雾特效
 
 
     void Start()
@@ -108,6 +111,7 @@ public class HoldControl : MonoBehaviour
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
+            NextAppearance();//改变形态
         }
     }
 
@@ -133,6 +137,13 @@ public class HoldControl : MonoBehaviour
             yield return 0;
         }
         yield break;
+    }
+
+    //改变形态
+    private void NextAppearance()
+    {
+        smokeEffect.SetActive(true);
+        AppearanceManager.Instance.ChangeAppearance(targetAppearance);
     }
 
     private bool DetectPress()//长按函数,先用鼠标模拟,后期再换成触屏
