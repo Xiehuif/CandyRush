@@ -11,6 +11,7 @@ public class Spin : MonoBehaviour
     public float rotateAngle = 90f;
     private float oriAngle;//初始角度
     private bool coroutineOpen = false;//协程状态
+    public bool IsDirctionOp = false;
 
     void Start()
     {
@@ -58,6 +59,8 @@ public class Spin : MonoBehaviour
             yield return 0;
         }
         this.transform.RotateAround(center, Vector3.forward, oriAngle - rotateAngle - this.transform.localEulerAngles.z);
+
+        if (IsDirctionOp) { this.GetComponentInChildren<SurfaceEffector2D>().speed *= -1; }
         coroutineOpen = false;//无协程进行
         yield break;
     }
@@ -75,6 +78,7 @@ public class Spin : MonoBehaviour
         }
         this.transform.RotateAround(center, Vector3.forward, oriAngle - this.transform.localEulerAngles.z);
 
+        if (IsDirctionOp) { this.GetComponentInChildren<SurfaceEffector2D>().speed *= -1; }
         coroutineOpen = false;//无协程进行
         yield break;
     }

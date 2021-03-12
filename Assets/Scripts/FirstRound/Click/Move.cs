@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     private Vector3 endPos;//反相位置
     public float speed = 1.0f;//到位速度
     public bool status = true;//关卡状态
+    public bool IsDirctionOp = false;
     private bool coroutineOpen = false;//协程状态
     void Start()
     {
@@ -51,6 +52,7 @@ public class Move : MonoBehaviour
             origin.position = originPos + (endPos - originPos) * schedule;
             yield return 0;
         }
+        if (IsDirctionOp) { origin.GetComponent<SurfaceEffector2D>().speed *= -1; }
         origin.position = endPos;
         coroutineOpen = false;//无协程进行
         yield break;
@@ -68,6 +70,7 @@ public class Move : MonoBehaviour
             yield return 0;
         }
         origin.position = originPos;
+        if (IsDirctionOp) { origin.GetComponent<SurfaceEffector2D>().speed *= -1; }
         coroutineOpen = false;//无协程进行
         yield break;
     }
