@@ -112,10 +112,10 @@ SurfaceEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Speed: 3
+  m_Speed: 4
   m_SpeedVariation: 0
-  m_ForceScale: 0.1
-  m_UseContactForce: 0
+  m_ForceScale: 0.3
+  m_UseContactForce: 1
   m_UseFriction: 1
   m_UseBounce: 1
 --- !u!1 &6776202110958582611

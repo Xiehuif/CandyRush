@@ -4,10 +4,22 @@ using UnityEngine;
 
 public class ParallaxScrolling : MonoBehaviour
 {
-    //简陋的视差滚动
-    public Transform target;//玩家位置
+    public Transform target;//主摄位置
+    public Transform[] backgroundLayer;
+    private float parallaxCoefficient = 0.1f;
     void Update()
     {
-        this.transform.position = target.position / 1.5f;
+        test();
+        for (int i = 0; i < 4; i++)
+            backgroundLayer[i].transform.position = target.position * (0.6f + i * parallaxCoefficient);
+    }
+    private void test()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Debug.Log(backgroundLayer[0].GetComponent<SpriteRenderer>().bounds.size.x);
+
+            backgroundLayer[0].transform.position = new Vector3(backgroundLayer[0].GetComponent<SpriteRenderer>().bounds.size.x + backgroundLayer[0].transform.position.x, backgroundLayer[0].transform.position.y, backgroundLayer[0].transform.position.z);
+        }
     }
 }

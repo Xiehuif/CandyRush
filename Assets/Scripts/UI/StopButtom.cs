@@ -19,22 +19,23 @@ public class StopButtom : MonoBehaviour
         if (inGameStop)
         {
             Debug.Log("GAME RESTART FROM STOP");
-            Time.timeScale = previousTimeScale;
+            TimeManager.Instance.Continue();
+            Time.timeScale = previousTimeScale;//流速恢复
             inGameStop = false;
         }
         else
         {
             Debug.Log("GAME STOP");
             previousTimeScale = Time.timeScale;
-            Time.timeScale = 0;
+            TimeManager.Instance.Pause();
             inGameStop = true;
         }
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
