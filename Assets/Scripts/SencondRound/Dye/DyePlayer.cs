@@ -16,7 +16,6 @@ public class DyePlayer : MonoBehaviour
     {
         if(Input.GetMouseButton(0))
         {
-            Debug.Log("Click!");
             m_verSpeed =  ratio;
         }
         else m_verSpeed =  Gravity;
