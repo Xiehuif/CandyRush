@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DyeCreator : MonoBehaviour
@@ -13,7 +12,7 @@ public class DyeCreator : MonoBehaviour
     public GameObject DyeSliderPrefab;
     public float CreateInterVal,CreateTimes;
     public float BaseWidth;
-    private float time,upBoundry,bottomBoundry;
+    private float time;
     void Start()
     {
         if (Player == null) Debug.LogError("Player Transform IsMising!");
@@ -42,9 +41,15 @@ public class DyeCreator : MonoBehaviour
             time = 0;
             if(CreateTimes<=-3)
             {
-                Debug.Log("Dye End");
+                //Debug.Log("Dye End");
                 TimeManager.Instance.DelayDo(
-                () => { TimeManager.Instance.Continue(); }, 1f);
+                () =>
+                {
+                    TimeManager.Instance.Continue();
+                    BasePlayer.Instance.GenerateSmoke();
+                    AppearanceManager.Instance.ChangeAppearance(3);
+                    AudioManager.Instance.PlaySoundByName("complete");
+                }, 0.3f);
                 this.gameObject.SetActive(false);
             }
             else if(CreateTimes <= 0) return;

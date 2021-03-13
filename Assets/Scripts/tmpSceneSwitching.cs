@@ -10,6 +10,7 @@ public class tmpSceneSwitching : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            AudioManager.Instance.PlaySoundByName("win");
             SceneManager.LoadScene(nextScene);
         }
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasePlayer : Singleton<BasePlayer>
 {
     public bool OnGround = false;
+    public GameObject SmokeEffect;
     public float DectDistance;
     void Start()
     {
@@ -14,7 +15,12 @@ public class BasePlayer : Singleton<BasePlayer>
             return;
         }
     }
-
+    public void GenerateSmoke()
+    {
+        GameObject smoke = Instantiate(SmokeEffect, transform.position + new Vector3(-0.41f,1.185f,0), Quaternion.identity);
+        smoke.GetComponent<AnimationAutoExit>().ShouldInitHide = false;
+        TimeManager.Instance.DelayDo(() => { Destroy(smoke); },1f);
+    }
     void Update()
     {
         OnGround = false;

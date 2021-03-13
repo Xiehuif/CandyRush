@@ -5,9 +5,11 @@ using UnityEngine;
 public class Death : Singleton<Death>
 {
     private Vector3 m_RebirthPos;
+    private int m_RebirthState;
     public void ChangeReBirthPos(Vector3 pos)
     {
         m_RebirthPos = pos;
+        m_RebirthState = AppearanceManager.Instance.OriAppearance;
     }
     public GameObject[] ItemsToReset;
     public GameObject player;
@@ -32,8 +34,9 @@ public class Death : Singleton<Death>
     }
     public void IsDeath()
     {
+        AudioManager.Instance.PlaySoundByName("dead");
         AppearanceManager.Instance.ReturnToOri();
-        foreach(GameObject item in  ItemsToReset)
+        foreach (GameObject item in ItemsToReset)
         {
             item.SetActive(true);
         }
@@ -42,7 +45,6 @@ public class Death : Singleton<Death>
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;//质心速度清零
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;//角速度清零
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        
         TimeManager.Instance.Continue();
     }
 }

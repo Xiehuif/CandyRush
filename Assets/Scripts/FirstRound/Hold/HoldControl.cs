@@ -15,16 +15,18 @@ public class HoldControl : MonoBehaviour
     private float timeZoomEnd = 0.3f;//时间流速变缓终点
     public int targetAppearance = 0;//目标状态
 
+    public PassCheck passCheck;
+
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
     public Transform cursorLowerLimit;//游标下限
     public Transform safeArea;//安全区
     public GameObject temperatureBar;//整个温度条物体
-    public GameObject smokeEffect;//烟雾特效
     public GameObject heatPrompt;//加热提示牌
     public GameObject coolPrompt;//冷却提示牌
     public GameObject prompt;//提示牌
+    public GameObject smokeEffect;//烟雾特效
 
     void Start()
     {
@@ -55,6 +57,13 @@ public class HoldControl : MonoBehaviour
                 DeathCheck();
             }
         }
+        if (passCheck.pass)
+        {
+            prompt.SetActive(false);
+            NextAppearance();
+            AudioManager.Instance.PlaySoundByName("complete");
+            passCheck.pass = false;
+        }
     }
     private void TemperatureControl()//温度游标控制函数,自动左移,长按右移
     {
@@ -80,7 +89,8 @@ public class HoldControl : MonoBehaviour
         else
         {
             this.tag = "Track";//gameOver
-            Time.timeScale = 1.0F;//修改时间流速
+            TimeManager.Instance.Continue();
+            //Time.timeScale = 1.0F;//修改时间流速
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
 
@@ -108,12 +118,12 @@ public class HoldControl : MonoBehaviour
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
             cameraFollow.target = other.transform;//摄像机归位
             cameraFollow.smooth = 0.1f;//相机速度回调
-            Time.timeScale = 1.0F;//修改时间流速
+            TimeManager.Instance.Continue();
+            //Time.timeScale = 1.0F;//修改时间流速
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
-            prompt.SetActive(false);//隐藏提示牌
-            NextAppearance();//改变形态
+
         }
     }
 
@@ -125,7 +135,8 @@ public class HoldControl : MonoBehaviour
             Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
-        Time.timeScale = timeZoomEnd;//修改时间流速
+        TimeManager.Instance.ChangeRate(timeZoomEnd);
+        //Time.timeScale = timeZoomEnd;//修改时间流速
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         yield break;
     }
@@ -141,7 +152,6 @@ public class HoldControl : MonoBehaviour
         yield break;
     }
 
-    //改变形态
     private void NextAppearance()
     {
         smokeEffect.SetActive(true);
@@ -155,4 +165,5 @@ public class HoldControl : MonoBehaviour
         else
             return false;
     }
+
 }
