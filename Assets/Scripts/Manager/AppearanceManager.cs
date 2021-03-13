@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AppearanceManager : Singleton<AppearanceManager>
 {
-   public int OriAppearance;
-   public GameObject Player;
-   public Sprite[] appearance;
+    public int OriAppearance;
+    public GameObject Player;
+    public Sprite[] appearance;
+    public int CurrentAppearance;
     override protected void Awake()
     {
         base.Awake();
         ReturnToOri();
+        CurrentAppearance = OriAppearance;
     }
     public int AppearanceCount 
    {
@@ -28,6 +30,7 @@ public class AppearanceManager : Singleton<AppearanceManager>
         if(index > AppearanceCount || index < 0)
             return false;
         Player.GetComponent<SpriteRenderer>().sprite = appearance[index];
+        CurrentAppearance = index;
         return true;
     }
 }

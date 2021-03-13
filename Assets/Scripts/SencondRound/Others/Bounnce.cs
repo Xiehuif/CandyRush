@@ -10,6 +10,7 @@ public class Bounnce : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySoundByName("spring");
             GameObject player = collision.gameObject;
             Rigidbody2D player_rig = player.GetComponent<Rigidbody2D>();
             player_rig.freezeRotation = true ;

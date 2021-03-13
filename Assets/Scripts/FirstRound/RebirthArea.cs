@@ -9,6 +9,7 @@ public class RebirthArea : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
+            AppearanceManager.Instance.OriAppearance = AppearanceManager.Instance.CurrentAppearance;
             Death.Instance.ChangeReBirthPos(transform.position);
         }
     }
