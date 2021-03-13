@@ -7,8 +7,7 @@ public class StarRotate : MonoBehaviour
     private GameObject rotateSpace;
     private GameObject position;
     private Transform oriParent;
-    public SurfaceEffector2D speedRelative;
-
+    public SurfaceEffector2D speedRelative
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +28,8 @@ public class StarRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.RotateAround(this.transform.position, new Vector3(0, 0, 1), speedRelative.speed * 15 * Time.deltaTime);
+        
+        this.transform.RotateAround(this.transform.position, new Vector3(0, 0, 1), speedRelative.speed * 15 * Time.deltaTime;);
         this.transform.position = position.transform.position;
     }
 }
