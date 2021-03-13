@@ -7,6 +7,10 @@ public class ClickAccess : MonoBehaviour
     public bool hold;
     public bool status;
     private bool registed;
+    public GameObject currentBase;//底座
+
+    public SpriteRenderer currentBaseRenderer;//底座渲染器
+    public Sprite[] sprites;//1是off,2是on
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +22,13 @@ public class ClickAccess : MonoBehaviour
         }
         if (!status)
         {
+            currentBaseRenderer.sprite = sprites[1];
             this.gameObject.GetComponent<Collider2D>().enabled = true;
             this.gameObject.GetComponent<Renderer>().enabled = true;
         }
         else
         {
+            currentBaseRenderer.sprite = sprites[0];
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             this.gameObject.GetComponent<Renderer>().enabled = false;
         }
@@ -34,13 +40,15 @@ public class ClickAccess : MonoBehaviour
     }
     void Click()
     {
-        if(this.gameObject.GetComponent<Renderer>().enabled == true)
+        if (this.gameObject.GetComponent<Renderer>().enabled == true)
         {
+            currentBaseRenderer.sprite = sprites[0];
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             this.gameObject.GetComponent<Renderer>().enabled = false;
         }
         else
         {
+            currentBaseRenderer.sprite = sprites[1];
             this.gameObject.GetComponent<Collider2D>().enabled = true;
             this.gameObject.GetComponent<Renderer>().enabled = true;
         }
