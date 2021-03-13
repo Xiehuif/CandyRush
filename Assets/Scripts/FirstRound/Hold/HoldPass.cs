@@ -5,7 +5,7 @@ using UnityEngine;
 public class HoldPass : MonoBehaviour
 {
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
-    private float timeZoomEnd = 0.3f;//时间流速变缓终点
+    private float timeZoomEnd = 0.6f;//时间流速变缓终点
     public int targetAppearance = 0;//目标状态
 
     public GameObject standby;
