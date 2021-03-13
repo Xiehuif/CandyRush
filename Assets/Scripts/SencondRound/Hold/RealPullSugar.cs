@@ -28,7 +28,7 @@ public class RealPullSugar : MonoBehaviour
                {
                    m_BeginToPull = false;
                    TimeManager.Instance.Continue();
-                    AppearanceManager.Instance.ChangeAppearance(5);
+                    AppearanceManager.Instance.ChangeAppearance(4);
                    m_player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                }
            }
@@ -38,6 +38,7 @@ public class RealPullSugar : MonoBehaviour
    {
        if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySoundByName("complete");
             TimeManager.Instance.Pause();
             m_player = other.gameObject;
             m_player.transform.position = this.transform.position;

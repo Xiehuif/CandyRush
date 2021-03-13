@@ -48,6 +48,7 @@ public class DyeCreator : MonoBehaviour
                     TimeManager.Instance.Continue();
                     BasePlayer.Instance.GenerateSmoke();
                     AppearanceManager.Instance.ChangeAppearance(3);
+                    AudioManager.Instance.PlaySoundByName("complete");
                 }, 0.3f);
                 this.gameObject.SetActive(false);
             }

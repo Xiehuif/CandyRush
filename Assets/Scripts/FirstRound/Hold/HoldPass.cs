@@ -6,7 +6,6 @@ public class HoldPass : MonoBehaviour
 {
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
     private float timeZoomEnd = 0.6f;//时间流速变缓终点
-    public int targetAppearance = 0;//目标状态
 
     public GameObject standby;
     public GameObject workBackground;
@@ -89,10 +88,6 @@ public class HoldPass : MonoBehaviour
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
-            if (DetectPress())
-            {
-                NextAppearance();//改变形态
-            }
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
             cameraFollow.target = other.transform;//摄像机归位
             cameraFollow.smooth = 0.1f;//相机速度回调
@@ -125,16 +120,10 @@ public class HoldPass : MonoBehaviour
         yield break;
     }
 
-    //改变形态
-    private void NextAppearance()
-    {
-        smokeEffect.SetActive(true);
-        AppearanceManager.Instance.ChangeAppearance(targetAppearance);
-    }
 
     private bool DetectPress()//长按函数,先用鼠标模拟,后期再换成触屏
     {
-        if (Input.GetMouseButton(0))
+if (Input.GetMouseButton(0))
             return true;
         else
             return false;

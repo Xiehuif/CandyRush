@@ -61,6 +61,7 @@ public class HoldControl : MonoBehaviour
         {
             prompt.SetActive(false);
             NextAppearance();
+            AudioManager.Instance.PlaySoundByName("complete");
             passCheck.pass = false;
         }
     }
@@ -88,7 +89,8 @@ public class HoldControl : MonoBehaviour
         else
         {
             this.tag = "Track";//gameOver
-            Time.timeScale = 1.0F;//修改时间流速
+            TimeManager.Instance.Continue();
+            //Time.timeScale = 1.0F;//修改时间流速
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
 
@@ -116,7 +118,8 @@ public class HoldControl : MonoBehaviour
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
             cameraFollow.target = other.transform;//摄像机归位
             cameraFollow.smooth = 0.1f;//相机速度回调
-            Time.timeScale = 1.0F;//修改时间流速
+            TimeManager.Instance.Continue();
+            //Time.timeScale = 1.0F;//修改时间流速
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
@@ -132,7 +135,8 @@ public class HoldControl : MonoBehaviour
             Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
-        Time.timeScale = timeZoomEnd;//修改时间流速
+        TimeManager.Instance.ChangeRate(timeZoomEnd);
+        //Time.timeScale = timeZoomEnd;//修改时间流速
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
         yield break;
     }

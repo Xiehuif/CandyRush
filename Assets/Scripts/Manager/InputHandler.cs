@@ -18,7 +18,11 @@ public class InputHandler : Singleton<InputHandler>
         if (CanClick)
         {
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())//未点击到UI上
+            {
                 OnClick();
+                if(!AudioManager.Instance.IsSoundPlaying)
+                    AudioManager.Instance.PlaySoundByName("click",0.2f);
+            }
         }
     }
     public void StartListener(GameObject obj, Action action)
