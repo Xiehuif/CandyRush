@@ -28,6 +28,7 @@ public class RealPullSugar : MonoBehaviour
                {
                    m_BeginToPull = false;
                    TimeManager.Instance.Continue();
+                    AppearanceManager.Instance.ChangeAppearance(5);
                    m_player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                }
            }
