@@ -5,10 +5,11 @@ using UnityEngine;
 public class AnimationAutoExit : MonoBehaviour
 {
     private Animator anim;
+    public bool ShouldInitHide = true;
     void Start()
     {
         anim = this.GetComponent<Animator>();
-        this.gameObject.SetActive(false);//初始隐藏
+        if(ShouldInitHide) this.gameObject.SetActive(false);//初始隐藏
     }
 
     void Update()
