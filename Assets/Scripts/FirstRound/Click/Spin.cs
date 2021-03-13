@@ -13,6 +13,7 @@ public class Spin : MonoBehaviour
     private bool coroutineOpen = false;//协程状态
     public bool IsDirctionOp = false;
 
+
     void Start()
     {
         InputHandler.Instance.StartListener(this.gameObject, OnClick);
@@ -36,11 +37,13 @@ public class Spin : MonoBehaviour
         {
             if (status)
             {
+                
                 StartCoroutine("ToEnd");
             }
             else
             {
                 StartCoroutine("ToOri");
+                
             }
             status = !status;
             coroutineOpen = true;//协程进行中
@@ -62,6 +65,7 @@ public class Spin : MonoBehaviour
 
         if (IsDirctionOp) { this.GetComponentInChildren<SurfaceEffector2D>().speed *= -1; }
         coroutineOpen = false;//无协程进行
+        
         yield break;
     }
 
@@ -80,6 +84,7 @@ public class Spin : MonoBehaviour
 
         if (IsDirctionOp) { this.GetComponentInChildren<SurfaceEffector2D>().speed *= -1; }
         coroutineOpen = false;//无协程进行
+        
         yield break;
     }
 #if UNITY_EDITOR
