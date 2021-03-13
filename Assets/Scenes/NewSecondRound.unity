@@ -11697,36 +11697,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio
       objectReference: {fileID: 0}
-    - target: {fileID: 4681273791477151313, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: AudioNames.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4681273791477151313, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: AudioSources.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4681273791477151313, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: AudioNames.Array.data[6]
-      value: click
-      objectReference: {fileID: 0}
-    - target: {fileID: 4681273791477151313, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: AudioSources.Array.data[6]
-      value: 
-      objectReference: {fileID: 8300000, guid: f27f801d2ed21fc46b2572e90c76680a, type: 3}
-    - target: {fileID: 4681273791477151314, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4681273791477151314, guid: ba14579393760a14c82913b5623cea44,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 660162a41b5d01c4a86584afa871b3b0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba14579393760a14c82913b5623cea44, type: 3}
 --- !u!1001 &8335502428321332244
