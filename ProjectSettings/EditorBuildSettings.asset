@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/FirstRound.unity
+    guid: 0e3012895b8c74b4c9ce8dc8423f777e
+  - enabled: 1
+    path: Assets/Scenes/NewSecondRound.unity
+    guid: 5e20ebe9f62225748b823e8ef2cb289a
+  - enabled: 1
+    path: Assets/Scenes/NewThirdRound.unity
+    guid: 06197f1c220bc334cb9a7aef50a41c44
+  - enabled: 0
+    path: Assets/Scenes/MilkFirstRound.unity
+    guid: 7fcd460b938869c45afcfbeefbf7a46e
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/ThirdRound.unity
+    guid: 63e82efbd17d88a41a1545c63eb4f5b6
+  - enabled: 0
+    path: Assets/Scenes/MilkSecondRound.unity
+    guid: e2ba6ea2c9630084cb1933ba52e7d9bb
+  - enabled: 0
+    path: Assets/Scenes/MilkThirdRound.unity
+    guid: be037a6b51d1669499b3d34c693434b1
+  - enabled: 0
+    path: Assets/Scenes/SecondRound.unity
+    guid: ed2931612abce3a4faf3f3f1659d2b55
+  m_configObjects: {}
