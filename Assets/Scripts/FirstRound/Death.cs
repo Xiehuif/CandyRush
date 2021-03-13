@@ -33,7 +33,7 @@ public class Death : Singleton<Death>
     public void IsDeath()
     {
         AppearanceManager.Instance.ReturnToOri();
-        foreach(GameObject item in  ItemsToReset)
+        foreach (GameObject item in ItemsToReset)
         {
             item.SetActive(true);
         }
@@ -42,7 +42,6 @@ public class Death : Singleton<Death>
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;//质心速度清零
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;//角速度清零
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-        
         TimeManager.Instance.Continue();
     }
 }

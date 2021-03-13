@@ -33,6 +33,7 @@ public class HoldPass : MonoBehaviour
         {
             this.tag = "Untagged";//tag置空
             work.SetActive(true);
+            smokeEffect.SetActive(true);
             workBackground.SetActive(true);
             standby.SetActive(false);
             StirringAnimation();
@@ -41,6 +42,7 @@ public class HoldPass : MonoBehaviour
         {
             this.tag = "Track";
             work.SetActive(false);
+            smokeEffect.SetActive(false);
             workBackground.SetActive(false);
             standby.SetActive(true);
         }
@@ -76,15 +78,21 @@ public class HoldPass : MonoBehaviour
         {
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();//获取主摄脚本
             StartCoroutine("ToBegin");
+            Time.timeScale = timeZoomEnd;//修改时间流速
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
             cameraFollow.smooth = 0.01f;//相机速度变慢
             cameraFollow.target = this.transform;//摄像机对准关卡
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
-
+            if (DetectPress())
+            {
+                NextAppearance();//改变形态
+            }
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();
             cameraFollow.target = other.transform;//摄像机归位
             cameraFollow.smooth = 0.1f;//相机速度回调
@@ -92,7 +100,6 @@ public class HoldPass : MonoBehaviour
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
-            NextAppearance();//改变形态
         }
     }
 
@@ -104,8 +111,6 @@ public class HoldPass : MonoBehaviour
             Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
-        Time.timeScale = timeZoomEnd;//修改时间流速
-        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         yield break;
     }
 
