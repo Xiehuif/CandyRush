@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NewSecondRound.unity
     guid: 5e20ebe9f62225748b823e8ef2cb289a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FirstRound.unity
     guid: 0e3012895b8c74b4c9ce8dc8423f777e
   - enabled: 0
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SecondRound.unity
     guid: ed2931612abce3a4faf3f3f1659d2b55
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewThirdRound.unity
     guid: 06197f1c220bc334cb9a7aef50a41c44
   m_configObjects: {}
