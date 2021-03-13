@@ -54,16 +54,16 @@ public class StageChooseCtl : MonoBehaviour
 
     public void LeftStage()
     {
-        if (curChooseStage > 0)
-            curChooseStage--;
-        OnStageChanged();
+        //if (curChooseStage > 0)
+        //    curChooseStage--;
+        //OnStageChanged();
     }
 
     public void RightStage()
     {
-        if (curChooseStage < m_sceneCount - 1)
-            curChooseStage++;
-        OnStageChanged();
+        //if (curChooseStage < m_sceneCount - 1)
+        //    curChooseStage++;
+        //OnStageChanged();
     }
 
     private void OnStageChanged()

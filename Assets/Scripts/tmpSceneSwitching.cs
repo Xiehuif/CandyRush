@@ -11,14 +11,15 @@ public class tmpSceneSwitching : MonoBehaviour
         if (other.tag == "Player")
         {
             AudioManager.Instance.PlaySoundByName("win");
-            SceneManager.LoadScene(nextScene);
+            GameObject.FindWithTag("Player").GetComponentInChildren<Death>().StopMoving();
+            UIManager.Instance.Succeed();
         }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(nextScene);
+            //SceneManager.LoadScene(nextScene);
         }
     }
 }
