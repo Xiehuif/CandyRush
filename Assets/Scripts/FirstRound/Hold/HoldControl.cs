@@ -13,7 +13,6 @@ public class HoldControl : MonoBehaviour
     private float timer = 0;//关卡计时器
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
     private float timeZoomEnd = 0.3f;//时间流速变缓终点
-
     public int targetAppearance = 0;//目标状态
 
 
@@ -25,11 +24,10 @@ public class HoldControl : MonoBehaviour
     public GameObject smokeEffect;//烟雾特效
     public GameObject heatPrompt;//加热提示牌
     public GameObject coolPrompt;//冷却提示牌
-    public GameObject donePrompt;//完成提示牌
+    public GameObject prompt;//提示牌
 
     void Start()
     {
-
         coolPrompt.SetActive(coolDown);
         heatPrompt.SetActive(!coolDown);
         //根据加热or冷却模式来初始化安全区的位置
@@ -114,6 +112,7 @@ public class HoldControl : MonoBehaviour
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
             StartCoroutine("ToEnd");
             Camera.main.orthographicSize = 5;//摄像机归位(消除误差)
+            prompt.SetActive(false);//隐藏提示牌
             NextAppearance();//改变形态
         }
     }
