@@ -42,9 +42,13 @@ public class DyeCreator : MonoBehaviour
             if(CreateTimes<=-3)
             {
                 //Debug.Log("Dye End");
-                AppearanceManager.Instance.ChangeAppearance(3);
                 TimeManager.Instance.DelayDo(
-                () => { TimeManager.Instance.Continue(); }, 0.5f);
+                () =>
+                {
+                    TimeManager.Instance.Continue();
+                    BasePlayer.Instance.GenerateSmoke();
+                    AppearanceManager.Instance.ChangeAppearance(3);
+                }, 0.3f);
                 this.gameObject.SetActive(false);
             }
             else if(CreateTimes <= 0) return;

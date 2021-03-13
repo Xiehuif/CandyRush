@@ -7,7 +7,12 @@ public class AppearanceManager : Singleton<AppearanceManager>
    public int OriAppearance;
    public GameObject Player;
    public Sprite[] appearance;
-   public int AppearanceCount 
+    override protected void Awake()
+    {
+        base.Awake();
+        ReturnToOri();
+    }
+    public int AppearanceCount 
    {
         get
         {
