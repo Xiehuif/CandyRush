@@ -52,12 +52,14 @@ public class TriangleRotateForThird : MonoBehaviour
         {
             case TriangleState.Road:
                 m_thronPart.SetActive(false);
-                m_steamPart.SetActive(false);
+                if (m_steamPart != null) m_steamPart.SetActive(false);
                 break;
             case TriangleState.Steam:
-                m_thronPart.SetActive(true);
+                m_thronPart.SetActive(false);
+                if(m_steamPart != null) m_steamPart.SetActive(true);
                 break;
             case TriangleState.Thron:
+                if (m_steamPart != null) m_steamPart.SetActive(false);
                 m_thronPart.SetActive(true);
                 break;
             default:
