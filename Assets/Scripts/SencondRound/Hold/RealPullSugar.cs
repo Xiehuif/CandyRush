@@ -38,6 +38,7 @@ public class RealPullSugar : MonoBehaviour
    {
        if (other.CompareTag("Player"))
         {
+            AudioManager.Instance.PlaySoundByName("complete");
             TimeManager.Instance.Pause();
             m_player = other.gameObject;
             m_player.transform.position = this.transform.position;

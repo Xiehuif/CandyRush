@@ -61,6 +61,7 @@ public class HoldControl : MonoBehaviour
         {
             prompt.SetActive(false);
             NextAppearance();
+            AudioManager.Instance.PlaySoundByName("complete");
             passCheck.pass = false;
         }
     }
