@@ -1,17 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DyePlayer : MonoBehaviour
 {
     public float UpBoundry,BottomBoundry;
     public float ratio,Gravity;
     private float m_verSpeed;
-    private bool ReachBoundary = false;
-    void Start()
-    {
-        Debug.Log(transform.parent.parent.name);
-    }
     void Update()
     {
         if(Input.GetMouseButton(0))
