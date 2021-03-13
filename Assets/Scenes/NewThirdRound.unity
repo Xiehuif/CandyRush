@@ -2739,6 +2739,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemperatureControl
       objectReference: {fileID: 0}
+    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: targetAppearance
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_RootOrder
@@ -2752,7 +2757,7 @@ PrefabInstance:
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.08
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
@@ -3816,6 +3821,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 790354020}
     m_Modifications:
+    - target: {fileID: 4439472123074330767, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.035577595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439472123074330767, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05745035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439472123074330767, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6743949
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439472123074330767, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439472123074330767, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6053778863481286499, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6776202110914215140, guid: 9665bb2f38034554b9e8755f4cb1f3fe,
         type: 3}
       propertyPath: m_RootOrder
@@ -10596,6 +10631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TemperatureControl (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: targetAppearance
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
