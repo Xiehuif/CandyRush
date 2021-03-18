@@ -52,6 +52,7 @@ MonoBehaviour:
   - complete
   - win
   - collect
+  - click
   AudioSources:
   - {fileID: 8300000, guid: 77a9ab29e24f7954cb29a047b809f08b, type: 3}
   - {fileID: 8300000, guid: 6ad833fd37d23304e940874b2e528959, type: 3}
@@ -59,6 +60,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f27f801d2ed21fc46b2572e90c76680a, type: 3}
   - {fileID: 8300000, guid: 8c23137cb18e6f7438e3f9d2b0617a12, type: 3}
   - {fileID: 8300000, guid: 3855b039eef6a6e4b810ff8de795b4f0, type: 3}
+  - {fileID: 8300000, guid: f27f801d2ed21fc46b2572e90c76680a, type: 3}
   IsBGMPlaying: 0
   IsSoundPlaying: 0
   BGM: {fileID: 4681273791477151314}
@@ -73,9 +75,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 660162a41b5d01c4a86584afa871b3b0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
