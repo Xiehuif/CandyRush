@@ -22,7 +22,6 @@ public class CandyCutterCheck : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Player")
         {
             trackEffector.speed = 1;
@@ -30,7 +29,6 @@ public class CandyCutterCheck : MonoBehaviour
             ori = player.position;
             inCutting = true;
             score = 0;
-            Debug.Log("inCutting");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

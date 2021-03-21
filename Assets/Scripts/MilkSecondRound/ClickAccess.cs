@@ -62,12 +62,14 @@ public class ClickAccess : MonoBehaviour
             {
                 if (this.gameObject.GetComponent<Renderer>().enabled == true)
                 {
+                    currentBaseRenderer.sprite = sprites[0];
                     this.gameObject.GetComponent<Collider2D>().enabled = false;
                     this.gameObject.GetComponent<Renderer>().enabled = false;
                 }
             }
             else
             {
+                currentBaseRenderer.sprite = sprites[1];
                 this.gameObject.GetComponent<Collider2D>().enabled = true;
                 this.gameObject.GetComponent<Renderer>().enabled = true;
             }
