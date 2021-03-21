@@ -11,26 +11,64 @@ public class KnifeMove : MonoBehaviour
     };
     public KnifeStatus thisStatus;
     public CandyCutterCheck check;
-    public Sprite cutUp;
-    public Sprite cutDown;
+    public Sprite upFrame;
+    public Sprite downFrame;
     public bool tie;
     public KnifeMove another;
     public CandyCutterCheck scorer;
+
+    public RuntimeAnimatorController upController;
+    public RuntimeAnimatorController downController;
+    bool inTrans;  
+    
+    private IEnumerator Down()
+    {
+        while(this.gameObject.GetComponent<SpriteRenderer>().sprite != downFrame)
+        {
+            yield return 0;
+        }
+        this.gameObject.GetComponent<Animator>().speed = 0;
+        inTrans = false;
+        Debug.Log("End Down  " + gameObject.name);
+        yield break;
+    }
+
+    private IEnumerator Up()
+    {
+        while (this.gameObject.GetComponent<SpriteRenderer>().sprite != upFrame)
+        {
+            yield return 0;
+        }
+        this.gameObject.GetComponent<Animator>().speed = 0;
+        inTrans = false;
+        Debug.Log("End Up  " + gameObject.name);
+        yield break;
+    }
     public void PutDown()
     {
         thisStatus = KnifeStatus.Down;
-        this.GetComponent<SpriteRenderer>().sprite = cutDown;
+        this.gameObject.GetComponent<Animator>().runtimeAnimatorController = downController;
+        this.gameObject.GetComponent<Animator>().speed = 3f;
+
+        inTrans = true;
+        StartCoroutine("Down");
+        Debug.Log(gameObject.name + "  PutDown");
     }
 
     public void GetUp()
     {
         thisStatus = KnifeStatus.Up;
-        this.GetComponent<SpriteRenderer>().sprite = cutUp;
+        this.gameObject.GetComponent<Animator>().runtimeAnimatorController = upController;
+        this.gameObject.GetComponent<Animator>().speed = 3f;
+        inTrans = true;
+        StartCoroutine("Up");
+   
+        Debug.Log(gameObject.name + "  GetUp");
     }
     // Start is called before the first frame update
     void Start()
     {
-        if(this.name == "prev")
+        if (this.name == "right") 
         {
             PutDown();
             tie = true;
@@ -40,12 +78,13 @@ public class KnifeMove : MonoBehaviour
             GetUp();
             tie = false;
         }
+        inTrans = false;
     }
     bool DetectLeft()
     {
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.x < (Screen.width / 2)) {
-            Debug.Log("TouchLeft");
-            return true; 
+            return true;
+
         }
         else return false;
     }
@@ -53,7 +92,6 @@ public class KnifeMove : MonoBehaviour
     bool DetectRight()
     {
         if (Input.GetMouseButtonDown(0) && Input.mousePosition.x > (Screen.width / 2)) {
-            Debug.Log("TouchRight");
             return true;
             
         }
@@ -64,16 +102,14 @@ public class KnifeMove : MonoBehaviour
     {
         if (check.inCutting)
         {
-            if (tie && DetectLeft() && thisStatus == KnifeStatus.Up)
+            if (tie && DetectLeft() && thisStatus == KnifeStatus.Up && !inTrans)
             {
-                Debug.Log("GettingUp");
                 PutDown();
                 another.GetUp();
                 scorer.score += 1;
             }
-            if (!tie && DetectRight() && thisStatus == KnifeStatus.Up)
+            if (!tie && DetectRight() && thisStatus == KnifeStatus.Up && !inTrans)
             {
-                Debug.Log("GettingUp");
                 PutDown();
                 another.GetUp();
                 scorer.score += 1;
