@@ -33,10 +33,26 @@ public class InPackage : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GetScore()
     {
-        
+        int score = 0;
+        switch (checkQuality)
+        {
+            case PackageArea.Quality.best:
+                score = ScoreManager.s_scoresDic["Package_Perfect"];
+                break;
+            case PackageArea.Quality.great:
+                score = ScoreManager.s_scoresDic["Package_Nice"];
+                break;
+            case PackageArea.Quality.bad:
+                score = ScoreManager.s_scoresDic["Package_Normal"];
+                break;
+            default:
+                Debug.LogWarning("Invalid quality!");
+                break;
+        }
+        ScoreManager.Instance.AddScore(score);
+
     }
 
     private IEnumerator To()

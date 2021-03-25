@@ -30,6 +30,7 @@ public class PackageArea : MonoBehaviour
         {
             Debug.Log(selfQuality);
             final.checkQuality = selfQuality;
+            final.GetScore();
         }
     }
     // Update is called once per frame
