@@ -29,7 +29,10 @@ public class PackageArea : MonoBehaviour
         else
         {
             Debug.Log(selfQuality);
-            final.checkQuality = selfQuality;
+            if(final.checkQuality < selfQuality)
+            {
+                final.checkQuality = selfQuality;
+            }
         }
     }
     // Update is called once per frame

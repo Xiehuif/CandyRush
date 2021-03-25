@@ -51,6 +51,7 @@ public class Death : Singleton<Death>
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.transform.position = new Vector3(m_RebirthPos.x, m_RebirthPos.y, 0);//回归初始位置
         player.transform.rotation = new Quaternion(0, 0, 0, 0);//初始旋转角
+        player.GetComponent<Rigidbody2D>().isKinematic = false;
         TimeManager.Instance.Continue();
         m_deathing = false;
     }

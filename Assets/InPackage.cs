@@ -10,11 +10,16 @@ public class InPackage : MonoBehaviour
     public float length;
     public float speed;
     public GameObject box;
+
+    public GameObject Player;
+
+    bool gameHasEnded;
     // Start is called before the first frame update
     void Start()
     {
         locked = false;
         inActive = false;
+        gameHasEnded = false;
         InputHandler.Instance.StartListener(this.gameObject, check);
     }
     private void OnDisable()
@@ -30,6 +35,9 @@ public class InPackage : MonoBehaviour
             box.SetActive(false);
             StartCoroutine("To");
             locked = true;
+            Player.GetComponent<Rigidbody2D>().isKinematic = true;
+            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+            
         }
     }
 
@@ -51,8 +59,26 @@ public class InPackage : MonoBehaviour
             yield return 0;
         }
 
-
+        this.transform.position = this.transform.position - new Vector3(0, length  / 2, 0);
         Time.timeScale = 0; //Game End
+        switch (checkQuality)
+        {
+            case PackageArea.Quality.bad:
+                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Normal"]);
+                break;
+            case PackageArea.Quality.great:
+                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Nice"]);
+                break;
+            case PackageArea.Quality.best:
+                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Perfect"]);
+                break;
+            default:
+                Debug.LogWarning("NO CORRECT QUALITY");
+                break;
+        }
+        AudioManager.Instance.PlaySoundByName("win");
+        GameObject.FindWithTag("Player").GetComponentInChildren<Death>().StopMoving();
+        UIManager.Instance.Succeed();
         yield break;
     }
 }
