@@ -22,14 +22,8 @@ public class GameEndCtrl : MonoBehaviour
     public void NextStage()
     {
         string cur = SceneManager.GetActiveScene().name;
-        switch (cur)
-        {
-            case "FirstRound":
-                SceneManager.LoadScene("NewSecondRound");
-                break;
-            case "NewSecondRound":
-                SceneManager.LoadScene("NewThirdRound");
-                break;
-        }
+        int index = UIManager.Instance.stagesName.IndexOf(cur);
+        if (index < 2)
+            SceneManager.LoadScene(index + 1);
     }
 }
