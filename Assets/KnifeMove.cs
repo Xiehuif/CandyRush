@@ -106,13 +106,13 @@ public class KnifeMove : MonoBehaviour
             {
                 PutDown();
                 another.GetUp();
-                scorer.score += 1;
+                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["CandyCut"]);
             }
             if (!tie && DetectRight() && thisStatus == KnifeStatus.Up && !inTrans)
             {
                 PutDown();
                 another.GetUp();
-                scorer.score += 1;
+                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["CandyCut"]);
             }
         }
     }
