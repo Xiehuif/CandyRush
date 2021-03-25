@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
+    public static readonly List<string> s_stagesName = new List<string>
+    { "FirstRound", "NewSecondRound", "NewThirdRound" };
+
     public void Succeed()
     {
         var s = (GameObject)Resources.Load("SuccessCanvas");
