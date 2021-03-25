@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    public readonly List<string> stagesName = new List<string>
+    public static readonly List<string> s_stagesName = new List<string>
     { "FirstRound", "NewSecondRound", "NewThirdRound" };
 
     public void Succeed()

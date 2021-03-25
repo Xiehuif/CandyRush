@@ -16,7 +16,7 @@ public class SpriteChange : MonoBehaviour
     private void Start()
     {
         cur = SceneManager.GetActiveScene().name;
-        int index = UIManager.Instance.stagesName.IndexOf(cur);
+        int index = UIManager.s_stagesName.IndexOf(cur);
 
         if (index == 1)
             m_car.SetActive(false); //第二关没车
