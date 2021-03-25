@@ -9,6 +9,7 @@ public class UIManager : Singleton<UIManager>
     public void Succeed()
     {
         var s = (GameObject)Resources.Load("SuccessCanvas");
+        Debug.Log("Succeed");
         Instantiate(s);
     }
 

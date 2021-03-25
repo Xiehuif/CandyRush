@@ -41,28 +41,6 @@ public class InPackage : MonoBehaviour
         }
     }
 
-    public void GetScore()
-    {
-        int score = 0;
-        switch (checkQuality)
-        {
-            case PackageArea.Quality.best:
-                score = ScoreManager.s_scoresDic["Package_Perfect"];
-                break;
-            case PackageArea.Quality.great:
-                score = ScoreManager.s_scoresDic["Package_Nice"];
-                break;
-            case PackageArea.Quality.bad:
-                score = ScoreManager.s_scoresDic["Package_Normal"];
-                break;
-            default:
-                Debug.LogWarning("Invalid quality!");
-                break;
-        }
-        ScoreManager.Instance.AddScore(score);
-
-    }
-
     private IEnumerator To()
     {
         for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
@@ -76,7 +54,7 @@ public class InPackage : MonoBehaviour
         }
 
         this.transform.position = this.transform.position - new Vector3(0, length  / 2, 0);
-        Time.timeScale = 0; //Game End
+        TimeManager.Instance.Pause(); //Game End
         switch (checkQuality)
         {
             case PackageArea.Quality.bad:
@@ -94,6 +72,7 @@ public class InPackage : MonoBehaviour
         }
         AudioManager.Instance.PlaySoundByName("win");
         GameObject.FindWithTag("Player").GetComponentInChildren<Death>().StopMoving();
+        TimeManager.Instance.Continue();
         UIManager.Instance.Succeed();
         yield break;
     }
