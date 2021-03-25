@@ -44,6 +44,7 @@ public class ScoreManager : Singleton<ScoreManager>
         SetScore(0);
     }
 
+
     //唯一外界接口,增加分数
     public void AddScore(int add)
     {
