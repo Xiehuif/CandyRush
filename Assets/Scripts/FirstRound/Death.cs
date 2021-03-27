@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IResetable
+{
+    void Reset();
+}
+
 public class Death : Singleton<Death>
 {
     private int m_score;
@@ -42,16 +47,18 @@ public class Death : Singleton<Death>
         m_deathing = true;
         AudioManager.Instance.PlaySoundByName("dead");
         AppearanceManager.Instance.ReturnToOri();
-        foreach (GameObject item in ItemsToReset)
-        {
-            item.SetActive(true);
-        }
         StopMoving();
         UIManager.Instance.Fail();
     }
 
     public void OnRestart()
     {
+        foreach (GameObject item in ItemsToReset)
+        {
+            item.SetActive(true);
+            IResetable resetable = item.GetComponentInChildren<IResetable>();
+            if (resetable != null) resetable.Reset();
+        }
         ScoreManager.Instance.SetScore(this);
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.transform.position = new Vector3(m_RebirthPos.x, m_RebirthPos.y, 0);//回归初始位置

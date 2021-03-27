@@ -4347,6 +4347,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 754778076}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &759252075 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4253363466950160041, guid: 267dfb0f53aa9504d989a85f87041992,
+    type: 3}
+  m_PrefabInstance: {fileID: 4253363468197217932}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &781868218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3824767890858416013, guid: 95aad71e12b01cd4f9c4e8deff071d90,
@@ -8571,6 +8577,16 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
+        type: 3}
+      propertyPath: ItemsToReset.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
+        type: 3}
+      propertyPath: ItemsToReset.Array.data[0]
+      value: 
+      objectReference: {fileID: 759252075}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cc13edda8e27e34ea3556e0770d5592, type: 3}
 --- !u!1001 &1559706863

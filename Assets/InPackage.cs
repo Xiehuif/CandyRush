@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InPackage : MonoBehaviour
+public class InPackage : MonoBehaviour,IResetable
 {
     public bool locked;
     public bool inActive;
@@ -14,9 +14,19 @@ public class InPackage : MonoBehaviour
     public GameObject Player;
 
     bool gameHasEnded;
-    // Start is called before the first frame update
+    private Vector3 m_OriPos;
+    public void Reset()
+    {
+        this.transform.position = m_OriPos;
+        locked = false;
+        inActive = false;
+        gameHasEnded = false;
+        box.SetActive(true);
+        Debug.Log("OK");
+    }
     void Start()
     {
+        m_OriPos = this.transform.position;
         locked = false;
         inActive = false;
         gameHasEnded = false;
