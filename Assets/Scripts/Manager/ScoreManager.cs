@@ -9,7 +9,7 @@ public class ScoreManager : Singleton<ScoreManager>
     private const int MaxScore = 30000;
 
     //得分规范表
-    private static readonly Dictionary<string, int> s_scoresDic = new  Dictionary<string, int>()
+    private static readonly Dictionary<string, int> s_scoresDic = new Dictionary<string, int>()
     {
         {"CandyCut",5 },            //每次切糖
         {"NormalItem",10 },         //普通道具
@@ -48,8 +48,8 @@ public class ScoreManager : Singleton<ScoreManager>
     //唯一外界接口,增加分数
     public void AddScore(string name)
     {
-        SetScore(m_score+ s_scoresDic[name]);
+        SetScore(m_score + s_scoresDic[name]);
     }
     public int GetScore() { return m_score; }
-    public void SetScore(Death die) { m_score = die.GetLastScore()}
+    public void SetScore(Death die) { m_score = die.GetLastScore(); }
 }
