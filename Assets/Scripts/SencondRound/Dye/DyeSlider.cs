@@ -37,6 +37,7 @@ public class DyeSlider : MonoBehaviour
         else
         {
             //Debug.Log("Destory Piece!");
+            GetComponentInParent<DyeCreator>().Add(m_res / m_range);
             Destroy(gameObject);
         }
     }
