@@ -54,7 +54,6 @@ public class InPackage : MonoBehaviour
         }
 
         this.transform.position = this.transform.position - new Vector3(0, length  / 2, 0);
-        TimeManager.Instance.Pause(); //Game End
         switch (checkQuality)
         {
             case PackageArea.Quality.bad:
@@ -70,10 +69,7 @@ public class InPackage : MonoBehaviour
                 Debug.LogWarning("NO CORRECT QUALITY");
                 break;
         }
-        AudioManager.Instance.PlaySoundByName("win");
-        GameObject.FindWithTag("Player").GetComponentInChildren<Death>().StopMoving();
-        TimeManager.Instance.Continue();
-        UIManager.Instance.Succeed();
+        GameInterface.Succeed();
         yield break;
     }
 }

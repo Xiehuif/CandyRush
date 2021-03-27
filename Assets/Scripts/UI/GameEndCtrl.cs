@@ -21,9 +21,8 @@ public class GameEndCtrl : MonoBehaviour
 
     public void NextStage()
     {
-        string cur = SceneManager.GetActiveScene().name;
-        int index = UIManager.s_stagesName.IndexOf(cur);
-        if (index < 2)
+        int index = SceneTranlater.GetCurrentBuildIndex();
+        if (index < 3)
             SceneManager.LoadScene(index + 1);
     }
 }
