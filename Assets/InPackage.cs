@@ -57,13 +57,13 @@ public class InPackage : MonoBehaviour
         switch (checkQuality)
         {
             case PackageArea.Quality.bad:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Normal"]);
+                ScoreManager.Instance.AddScore("Package_Normal");
                 break;
             case PackageArea.Quality.great:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Nice"]);
+                ScoreManager.Instance.AddScore("Package_Nice");
                 break;
             case PackageArea.Quality.best:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Perfect"]);
+                ScoreManager.Instance.AddScore("Package_Perfect");
                 break;
             default:
                 Debug.LogWarning("NO CORRECT QUALITY");
