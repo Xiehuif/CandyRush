@@ -20,13 +20,14 @@ public class Death : Singleton<Death>
         m_RebirthPos = pos;
         m_RebirthState = AppearanceManager.Instance.OriAppearance;
     }
-    public GameObject[] ItemsToReset;
+    public List<GameObject> ItemsToReset = new List<GameObject>();
     public GameObject player;
     void Start()
     {
-        m_score = ScoreManager.Instance.GetScore();
+        m_score = 0;
         m_RebirthPos = transform.position;
-        player = transform.parent.gameObject;
+        if (transform.parent == null) player = GameObject.FindGameObjectWithTag("Player");
+        else player = transform.parent.gameObject;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -67,7 +68,14 @@ public class Death : Singleton<Death>
         TimeManager.Instance.Continue();
         m_deathing = false;
     }
-
+    public void Add(GameObject itemToReset)
+    {
+        if (ItemsToReset.Contains(itemToReset))
+        {
+            return;
+        }
+        else ItemsToReset.Add(itemToReset);
+    }
     public void StopMoving()
     {
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;//质心速度清零

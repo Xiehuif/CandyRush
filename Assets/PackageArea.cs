@@ -25,8 +25,4 @@ public class PackageArea : MonoBehaviour
             final.checkQuality = selfQuality;
         }
     }
-    void Update()
-    {
-        
-    }
 }

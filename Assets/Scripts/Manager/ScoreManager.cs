@@ -51,5 +51,5 @@ public class ScoreManager : Singleton<ScoreManager>
         SetScore(m_score + s_scoresDic[name]);
     }
     public int GetScore() { return m_score; }
-    public void SetScore(Death die) { m_score = die.GetLastScore(); }
+    public void SetScore(Death die) { SetScore(die.GetLastScore()); }
 }
