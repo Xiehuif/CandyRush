@@ -1,16 +1,18 @@
 ﻿
 using UnityEngine.SceneManagement;
 
-public class SceneTranlater
+public static class SceneTranlater
 {
-    public int CurrentScene;
-    public void LoadSceneByCount(int SceneCount)
+    public static void LoadSceneByCount(int SceneCount)
     {
         SceneManager.LoadScene(SceneCount);
     }
-    public void LoadSceneByName(string SceneName)
+    public static void LoadSceneByName(string SceneName)
     {
         SceneManager.LoadScene(SceneName);
     }
-   
+    public static int GetCurrentBuildIndex()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }

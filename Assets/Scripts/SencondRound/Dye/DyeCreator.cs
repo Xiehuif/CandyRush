@@ -3,21 +3,23 @@ using UnityEngine;
 
 public class DyeCreator : MonoBehaviour
 {
-    public Action OnEnd;
     public Transform[] PreCreatePoints;
     public Transform PiecesTransform;
     public Transform CreatePoint;
     public Transform Player;
     public float LeftEdge;
     public GameObject DyeSliderPrefab;
-    public float CreateInterVal,CreateTimes;
+    public float CreateInterVal;
+    public int CreateTimes;
     public float BaseWidth;
-    private float time;
+    private float m_time;
+    private float m_score,m_wholeTimes;
     void Start()
     {
         if (Player == null) Debug.LogError("Player Transform IsMising!");
-
-        time = CreateInterVal;
+        m_score = 0;
+        m_wholeTimes = CreateTimes;
+        m_time = CreateInterVal;
         if (PreCreatePoints.Length == 0) Debug.Log("The Dye Don't Have Any PreCreatPoints!");
         else
         {
@@ -35,13 +37,12 @@ public class DyeCreator : MonoBehaviour
     }
     void Update()
     {
-        if(time >= CreateInterVal)
+        if(m_time >= CreateInterVal)
         {
-            CreateTimes--;
-            time = 0;
-            if(CreateTimes<=-3)
+            m_wholeTimes--;
+            m_time = 0;
+            if(m_wholeTimes <= -3)
             {
-                //Debug.Log("Dye End");
                 TimeManager.Instance.DelayDo(
                 () =>
                 {
@@ -52,7 +53,7 @@ public class DyeCreator : MonoBehaviour
                 }, 0.3f);
                 this.gameObject.SetActive(false);
             }
-            else if(CreateTimes <= 0) return;
+            else if(m_wholeTimes <= 0) return;
             GameObject temp = Instantiate(DyeSliderPrefab,CreatePoint);
             temp.transform.parent = PiecesTransform; 
             temp.transform.localScale = new Vector3(UnityEngine.Random.Range(0.4f, 1f), temp.transform.localScale.y, 1);
@@ -61,6 +62,17 @@ public class DyeCreator : MonoBehaviour
             dyeSlider.LeftEdge = LeftEdge + Player.transform.localPosition.x;
             dyeSlider.player = Player;
         }
-        else  time += Time.unscaledDeltaTime;
+        else  m_time += Time.unscaledDeltaTime;
+    }
+    private void OnDisable()
+    {
+        if (m_score > CreateInterVal * 0.7f) ScoreManager.Instance.AddScore("Dye_Perfect");  
+        else if (m_score > CreateInterVal * 0.5f) ScoreManager.Instance.AddScore("Dye_Nice");
+        else ScoreManager.Instance.AddScore("Dye_Normal");
+    }
+    public void Add(float delta)
+    {
+        if (delta > 0) m_score += delta;
+        else return;
     }
 }

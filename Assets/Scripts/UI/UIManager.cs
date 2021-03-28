@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Singleton<UIManager>
+/// <summary>
+/// 关卡判断更简单
+/// </summary>
+public enum SceneIndex
 {
-    public static readonly List<string> s_stagesName = new List<string>
-    { "FirstRound", "NewSecondRound", "NewThirdRound" };
+    MENU,
+    FIRST,
+    SECOND,
+    THIRD
+}
 
+public class UIManager : Singleton<UIManager>
+{ 
     public void Succeed()
     {
         var s = (GameObject)Resources.Load("SuccessCanvas");

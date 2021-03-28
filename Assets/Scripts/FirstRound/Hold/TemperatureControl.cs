@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoldControl : MonoBehaviour
+public class TemperatureControl : MonoBehaviour
 {
     public float speed = 0.4f;//变温速度
     public bool coolDown = true;//加热or冷却
@@ -11,6 +11,7 @@ public class HoldControl : MonoBehaviour
     private float currentTemperature = 0.5f;//初始进度位置
     public bool status = false;//关卡状态
     private float timer = 0;//关卡计时器
+    private float evaluationTimer = 0;//评价计时器
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
     private float timeZoomEnd = 0.3f;//时间流速变缓终点
     public int targetAppearance = 0;//目标状态
@@ -28,8 +29,12 @@ public class HoldControl : MonoBehaviour
     public GameObject prompt;//提示牌
     public GameObject smokeEffect;//烟雾特效
 
+
+
     void Start()
     {
+        timer = 0;
+        evaluationTimer = 0;
         coolPrompt.SetActive(coolDown);
         heatPrompt.SetActive(!coolDown);
         //根据加热or冷却模式来初始化安全区的位置
@@ -51,21 +56,28 @@ public class HoldControl : MonoBehaviour
         if (status)
         {
             timer += Time.deltaTime;//关卡计时器
-            TemperatureControl();
+            PressControl();
             if (timer > 1)//进入关卡3s后开始死亡检测
             {
                 DeathCheck();
             }
+            else if ((coolDown && currentTemperature > safeLowerLimit && currentTemperature < safeUpperLimit) || (!coolDown && currentTemperature < 1 - safeLowerLimit && currentTemperature > 1 - safeUpperLimit))
+                evaluationTimer += Time.deltaTime;
+
         }
         if (passCheck.pass)
         {
+            if (evaluationTimer > 0.7f)
+                ScoreManager.Instance.AddScore("TC_Perfect");
+            else
+                ScoreManager.Instance.AddScore("TC_Normal");
             prompt.SetActive(false);
             NextAppearance();
             AudioManager.Instance.PlaySoundByName("complete");
             passCheck.pass = false;
         }
     }
-    private void TemperatureControl()//温度游标控制函数,自动左移,长按右移
+    private void PressControl()//温度游标控制函数,自动左移,长按右移
     {
         cursor.position = cursorLowerLimit.position + (cursorUpperLimit.position - cursorLowerLimit.position) * currentTemperature;
         if (DetectPress())

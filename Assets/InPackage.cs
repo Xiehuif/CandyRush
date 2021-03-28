@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InPackage : MonoBehaviour
+public class InPackage : MonoBehaviour,IResetable
 {
     public bool locked;
     public bool inActive;
@@ -14,9 +14,19 @@ public class InPackage : MonoBehaviour
     public GameObject Player;
 
     bool gameHasEnded;
-    // Start is called before the first frame update
+    private Vector3 m_OriPos;
+    public void Reset()
+    {
+        this.transform.position = m_OriPos;
+        locked = false;
+        inActive = false;
+        gameHasEnded = false;
+        box.SetActive(true);
+        Debug.Log("OK");
+    }
     void Start()
     {
+        m_OriPos = this.transform.position;
         locked = false;
         inActive = false;
         gameHasEnded = false;
@@ -41,28 +51,6 @@ public class InPackage : MonoBehaviour
         }
     }
 
-    public void GetScore()
-    {
-        int score = 0;
-        switch (checkQuality)
-        {
-            case PackageArea.Quality.best:
-                score = ScoreManager.s_scoresDic["Package_Perfect"];
-                break;
-            case PackageArea.Quality.great:
-                score = ScoreManager.s_scoresDic["Package_Nice"];
-                break;
-            case PackageArea.Quality.bad:
-                score = ScoreManager.s_scoresDic["Package_Normal"];
-                break;
-            default:
-                Debug.LogWarning("Invalid quality!");
-                break;
-        }
-        ScoreManager.Instance.AddScore(score);
-
-    }
-
     private IEnumerator To()
     {
         for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
@@ -76,25 +64,22 @@ public class InPackage : MonoBehaviour
         }
 
         this.transform.position = this.transform.position - new Vector3(0, length  / 2, 0);
-        Time.timeScale = 0; //Game End
         switch (checkQuality)
         {
             case PackageArea.Quality.bad:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Normal"]);
+                ScoreManager.Instance.AddScore("Package_Normal");
                 break;
             case PackageArea.Quality.great:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Nice"]);
+                ScoreManager.Instance.AddScore("Package_Nice");
                 break;
             case PackageArea.Quality.best:
-                ScoreManager.Instance.AddScore(ScoreManager.s_scoresDic["Package_Perfect"]);
+                ScoreManager.Instance.AddScore("Package_Perfect");
                 break;
             default:
                 Debug.LogWarning("NO CORRECT QUALITY");
                 break;
         }
-        AudioManager.Instance.PlaySoundByName("win");
-        GameObject.FindWithTag("Player").GetComponentInChildren<Death>().StopMoving();
-        UIManager.Instance.Succeed();
+        GameInterface.Succeed();
         yield break;
     }
 }

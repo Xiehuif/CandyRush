@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SpriteChange : MonoBehaviour
 {
-    private string cur;
+    public float BiggerTime { get { return 1f; } }
 
     [SerializeField]
     List<GameObject> objs;
@@ -15,24 +15,23 @@ public class SpriteChange : MonoBehaviour
 
     private void Start()
     {
-        cur = SceneManager.GetActiveScene().name;
-        int index = UIManager.s_stagesName.IndexOf(cur);
+        int index = SceneTranlater.GetCurrentBuildIndex();
 
-        if (index == 1)
+        if (index == (int)SceneIndex.SECOND)
             m_car.SetActive(false); //第二关没车
 
-        objs[index].SetActive(true);
+        objs[index-1].SetActive(true);
 
-        if (index == 2)
+        if (index == (int)SceneIndex.THIRD)
             StartCoroutine(BecomeLarger());  //第三关UI变大
     }
 
     //第三关结束时UI逐渐放大
     IEnumerator BecomeLarger()
     {
-        for(float i=0;i<1;i+=Time.deltaTime)
+        for(float i=0;i<BiggerTime;i+=Time.unscaledDeltaTime)
         {
-            this.transform.localScale = new Vector3(i, i, 1);
+            this.transform.localScale = new Vector3(i/BiggerTime, i/BiggerTime, 1);
             yield return null;
         }
         this.transform.localScale = Vector3.one;

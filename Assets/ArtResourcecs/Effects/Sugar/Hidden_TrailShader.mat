@@ -28,7 +28,7 @@ Material:
     - _Range: 0.741
     m_Colors:
     - _EdgeColor: {r: 0.5803922, g: 0.15294118, b: 0.7490196, a: 1}
-    - _EdgeColor2: {r: 0.5568628, g: 0.40784314, b: 1.4980392, a: 1}
-    - _MainColor: {r: 0, g: 0.5570469, b: 1, a: 1}
+    - _EdgeColor2: {r: 0.27338123, g: 0, b: 2, a: 1}
+    - _MainColor: {r: 0, g: 0.9441652, b: 1, a: 1}
     - _TimeControl: {r: 0.001, g: 0, b: 0, a: 0}
-    - _TrailColor: {r: 0.15472585, g: 0.35332358, b: 0.5377358, a: 1}
+    - _TrailColor: {r: 0, g: 0.99215686, b: 0.2510661, a: 1}
