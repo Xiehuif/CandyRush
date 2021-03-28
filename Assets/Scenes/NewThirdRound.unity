@@ -28322,6 +28322,11 @@ PrefabInstance:
       objectReference: {fileID: 2055905255}
     - target: {fileID: 4253363466225279512, guid: 267dfb0f53aa9504d989a85f87041992,
         type: 3}
+      propertyPath: m_Color.a
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253363466225279512, guid: 267dfb0f53aa9504d989a85f87041992,
+        type: 3}
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
@@ -28384,6 +28389,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253363467805694495, guid: 267dfb0f53aa9504d989a85f87041992,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253363467881653543, guid: 267dfb0f53aa9504d989a85f87041992,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.50980395
       objectReference: {fileID: 0}
     - target: {fileID: 4253363467881653543, guid: 267dfb0f53aa9504d989a85f87041992,
         type: 3}
