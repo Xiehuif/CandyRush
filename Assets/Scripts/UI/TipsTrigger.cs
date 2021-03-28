@@ -30,6 +30,8 @@ public class TipsTrigger : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             if (ui.CurrentIndex != TipIndex) break;
+            TipShower.GetComponentInChildren<Text>().color = new Color(0,0,0,(count - i) / count);
+            TipShower.GetComponentInChildren<Image>().color = new Color(1, 1, 1, (count - i) / count);
             yield return new WaitForSeconds(0.1f);
         }
         TipShower.SetActive(false);
