@@ -19,8 +19,10 @@ public class KnifeMove : MonoBehaviour
 
     public RuntimeAnimatorController upController;
     public RuntimeAnimatorController downController;
-    bool inTrans;  
-    
+    bool inTrans;
+    public GameObject lightOfKnife;
+
+    private Emit emitScript;
     private IEnumerator Down()
     {
         while(this.gameObject.GetComponent<SpriteRenderer>().sprite != downFrame)
@@ -49,7 +51,7 @@ public class KnifeMove : MonoBehaviour
         thisStatus = KnifeStatus.Down;
         this.gameObject.GetComponent<Animator>().runtimeAnimatorController = downController;
         this.gameObject.GetComponent<Animator>().speed = 3f;
-
+        lightOfKnife.SetActive(true);
         inTrans = true;
         StartCoroutine("Down");
         Debug.Log(gameObject.name + "  PutDown");
@@ -60,6 +62,7 @@ public class KnifeMove : MonoBehaviour
         thisStatus = KnifeStatus.Up;
         this.gameObject.GetComponent<Animator>().runtimeAnimatorController = upController;
         this.gameObject.GetComponent<Animator>().speed = 3f;
+        lightOfKnife.SetActive(false);
         inTrans = true;
         StartCoroutine("Up");
    
@@ -68,6 +71,7 @@ public class KnifeMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        emitScript = FindObjectOfType<Emit>();
         if (this.name == "right") 
         {
             PutDown();
@@ -106,12 +110,14 @@ public class KnifeMove : MonoBehaviour
             {
                 PutDown();
                 another.GetUp();
+                emitScript.emitCreate();
                 ScoreManager.Instance.AddScore("CandyCut");
             }
             if (!tie && DetectRight() && thisStatus == KnifeStatus.Up && !inTrans)
             {
                 PutDown();
                 another.GetUp();
+                emitScript.emitCreate();
                 ScoreManager.Instance.AddScore("CandyCut");
             }
         }
