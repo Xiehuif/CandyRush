@@ -10,6 +10,7 @@ public class CandyCutterCheck : MonoBehaviour
     public int score;
     public SurfaceEffector2D trackEffector;
     private float oriEffectorSpeed;
+    public Emit emitScript;
     // Start is called before the first frame update
     public Vector3 getDelta()
     {
@@ -24,6 +25,7 @@ public class CandyCutterCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            emitScript.emitInit();
             trackEffector.speed = 1;
             player = collision.gameObject.transform;
             ori = player.position;
@@ -35,6 +37,7 @@ public class CandyCutterCheck : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            emitScript.clearEmits();
             trackEffector.speed = oriEffectorSpeed;
             inCutting = false;
             Debug.Log("outCutting");

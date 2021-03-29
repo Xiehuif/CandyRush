@@ -7,7 +7,6 @@ public class InPackage : MonoBehaviour,IResetable
     public bool locked;
     public bool inActive;
     public PackageArea.Quality checkQuality;
-    public float length;
     public float speed;
     public GameObject box;
 
@@ -17,7 +16,7 @@ public class InPackage : MonoBehaviour,IResetable
     private Vector3 m_OriPos;
     public void Reset()
     {
-        this.transform.position = m_OriPos;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;   
         locked = false;
         inActive = false;
         gameHasEnded = false;
@@ -26,7 +25,6 @@ public class InPackage : MonoBehaviour,IResetable
     }
     void Start()
     {
-        m_OriPos = this.transform.position;
         locked = false;
         inActive = false;
         gameHasEnded = false;
@@ -53,17 +51,16 @@ public class InPackage : MonoBehaviour,IResetable
 
     private IEnumerator To()
     {
-        for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
+        this.transform.position = Player.transform.position + new Vector3(0, 10, 0);
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        m_OriPos = this.transform.position;
+        for (float schedule = 0; schedule < 1; schedule += speed * Time.deltaTime)
         {
-            if (schedule > 1)//末尾去除误差
-            {
-                break;
-            }
-            this.transform.position  = this.transform.position - new Vector3(0,length * schedule / 2,0);
+            this.transform.position  = m_OriPos + (Player.transform.position - m_OriPos)*schedule;
             yield return 0;
         }
 
-        this.transform.position = this.transform.position - new Vector3(0, length  / 2, 0);
+        this.transform.position = Player.transform.position;
         switch (checkQuality)
         {
             case PackageArea.Quality.bad:
