@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3146121846447582410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 76.99, y: 1.84, z: 0}
-  m_LocalScale: {x: 10.5, y: 5.25, z: 1.05}
+  m_LocalScale: {x: 10, y: 5, z: 1.05}
   m_Children:
   - {fileID: 3146121848116308221}
   - {fileID: 3146121846615833421}
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnGround: 0
-  SmokeEffect: {fileID: 0}
+  SmokeEffect: {fileID: 2871669929385566908, guid: c0276de5f5abd8e41ba41d583cce6024,
+    type: 3}
   DectDistance: 0.5
 --- !u!1 &3146121846615833458
 GameObject:
@@ -241,6 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3146121847106382698}
   - component: {fileID: 3146121847106382693}
+  - component: {fileID: 1161914980}
   m_Layer: 0
   m_Name: Material
   m_TagString: Untagged
@@ -301,7 +303,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 5ef2d647da0dc5841a8e851a0dd9a338, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f1eb57cfc05a2141a8f4697d6797707, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -312,6 +314,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1161914980
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146121847106382699}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 28652a6eb8314b8438ef9b1e81fae313, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3146121848116308194
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,5 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c505669c451ce4a80555384bae9d3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemsToReset: []
+  ItemsToReset:
+  - {fileID: 0}
   player: {fileID: 0}
