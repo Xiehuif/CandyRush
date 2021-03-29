@@ -22,7 +22,7 @@ public class KnifeMove : MonoBehaviour
     bool inTrans;
     public GameObject lightOfKnife;
 
-    public Emit emitScript;
+    private Emit emitScript;
     private IEnumerator Down()
     {
         while(this.gameObject.GetComponent<SpriteRenderer>().sprite != downFrame)
@@ -71,6 +71,7 @@ public class KnifeMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        emitScript = FindObjectOfType<Emit>();
         if (this.name == "right") 
         {
             PutDown();

@@ -10,7 +10,7 @@ public class CandyCutterCheck : MonoBehaviour
     public int score;
     public SurfaceEffector2D trackEffector;
     private float oriEffectorSpeed;
-    public Emit emitScript;
+    private Emit emitScript;
     // Start is called before the first frame update
     public Vector3 getDelta()
     {
@@ -20,6 +20,7 @@ public class CandyCutterCheck : MonoBehaviour
     {
         oriEffectorSpeed = trackEffector.speed;
         inCutting = false;
+        emitScript = FindObjectOfType<Emit>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
