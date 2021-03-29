@@ -2588,6 +2588,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 763909003005996720, guid: 10ffaf2823276bd41a695e21e67870b6,
         type: 3}
+      propertyPath: box
+      value: 
+      objectReference: {fileID: 1021194919}
+    - target: {fileID: 763909003005996720, guid: 10ffaf2823276bd41a695e21e67870b6,
+        type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1161914978}
@@ -12466,6 +12471,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95aad71e12b01cd4f9c4e8deff071d90, type: 3}
+--- !u!1 &1021194919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3146121846615833458, guid: 6cc13edda8e27e34ea3556e0770d5592,
+    type: 3}
+  m_PrefabInstance: {fileID: 1161914977}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1022524888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4629631544225078276, guid: e9ceb99e9ef87544d984b1ef812e18d6,
@@ -14276,31 +14287,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2445638014995682685, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: SmokeEffect
-      value: 
-      objectReference: {fileID: 2871669929385566908, guid: c0276de5f5abd8e41ba41d583cce6024,
-        type: 3}
-    - target: {fileID: 3146121846447582405, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
@@ -14357,25 +14347,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3146121847106382693, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 0f1eb57cfc05a2141a8f4697d6797707,
-        type: 3}
-    - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: ItemsToReset.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: ItemsToReset.Array.data[0]
-      value: 
-      objectReference: {fileID: 362489710}
-    - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
-        type: 3}
-      propertyPath: ItemsToReset.Array.data[1]
       value: 
       objectReference: {fileID: 362489710}
     m_RemovedComponents: []
@@ -17004,6 +16978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b790e8df72809e43b7d748d8ae91fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClickEffect: {fileID: 2622583404527425649, guid: dccb391fbf90e3544934a7560290a423,
+    type: 3}
+  HoldEffect: {fileID: 5292618708904427184, guid: 874beb9562a083c44ad401e602312adb,
+    type: 3}
   CanClick: 1
 --- !u!1001 &1386744665
 PrefabInstance:

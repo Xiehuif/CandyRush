@@ -8,6 +8,7 @@ public class TipsTrigger : MonoBehaviour
     public GameObject TipLoader,TipShower;
     public int TipIndex;
     private UITips ui;
+    private bool IsPlaying;
     private void Start()
     {
         ui = TipLoader.GetComponentInChildren<UITips>();
@@ -27,14 +28,20 @@ public class TipsTrigger : MonoBehaviour
     }
     IEnumerator Fade()
     {
+        if(IsPlaying)
+        {
+            IsPlaying = false;
+            yield return null;
+        }
         for (int i = 0; i < count; i++)
         {
             if (ui.CurrentIndex != TipIndex) break;
-            TipShower.GetComponentInChildren<Text>().color = new Color(0,0,0,(count - i) / count);
-            TipShower.GetComponentInChildren<Image>().color = new Color(1, 1, 1, (count - i) / count);
-            yield return new WaitForSeconds(0.1f);
+            TipShower.GetComponentInChildren<Text>().color = new Color(0,0,0,(count - i) /(float) count);
+            TipShower.GetComponentInChildren<Image>().color = new Color(1, 1, 1, (count - i) /(float) count);
+            yield return new WaitForSeconds(0.2f);
         }
-        TipShower.SetActive(false);
+        if (ui.CurrentIndex == TipIndex)
+            TipShower.SetActive(false);
         yield return null;
     }
 }

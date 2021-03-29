@@ -39,12 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: New Layer
-    uniqueID: 3289407417
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Gear
     uniqueID: 2613503863
+    locked: 0
+  - name: OverLay
+    uniqueID: 3289407417
     locked: 0
