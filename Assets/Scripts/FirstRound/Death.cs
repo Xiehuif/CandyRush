@@ -12,7 +12,7 @@ public class Death : Singleton<Death>
     private int m_score;
     private Vector3 m_RebirthPos;
     private int m_RebirthState;
-    private bool m_deathing=false;
+    private bool m_deathing = false;
     public int GetLastScore() { return m_score; }
     public void ChangeReBirthPos(Vector3 pos)
     {
@@ -31,14 +31,14 @@ public class Death : Singleton<Death>
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Track"&&!m_deathing)
+        if (other.tag == "Track" && !m_deathing)
         {
             IsDeath();
         }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Track"&&!m_deathing)
+        if (other.tag == "Track" && !m_deathing)
         {
             IsDeath();
         }
@@ -61,11 +61,11 @@ public class Death : Singleton<Death>
             if (resetable != null) resetable.Reset();
         }
         ScoreManager.Instance.SetScore(this);
+        TimeManager.Instance.Continue();
         player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.transform.position = new Vector3(m_RebirthPos.x, m_RebirthPos.y, 0);//回归初始位置
         player.transform.rotation = new Quaternion(0, 0, 0, 0);//初始旋转角
         player.GetComponent<Rigidbody2D>().isKinematic = false;
-        TimeManager.Instance.Continue();
         m_deathing = false;
     }
     public void Add(GameObject itemToReset)
