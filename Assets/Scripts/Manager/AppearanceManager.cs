@@ -25,7 +25,7 @@ public class AppearanceManager : Singleton<AppearanceManager>
     }
     public void ReturnToOri()
     {
-        Player.GetComponent<SpriteRenderer>().sprite = appearance[OriAppearance];
+        ChangeAppearance(OriAppearance);
     }
     public bool ChangeAppearance(int index)
     {
@@ -42,11 +42,13 @@ public class AppearanceManager : Singleton<AppearanceManager>
         }
         else if(index >= 4)
         {
+            Player.GetComponent<Animator>().enabled = false;
             Player.transform.localPosition = box.transform.localPosition - new Vector3(0,0.05f,0);
             box.SetActive(false);
         }
         else
         {
+            Player.GetComponent<Animator>().enabled = false;
             Player.transform.localPosition = m_OriPos;
             box.SetActive(true);
         }
