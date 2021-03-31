@@ -62,9 +62,12 @@ public class Death : Singleton<Death>
         }
         ScoreManager.Instance.SetScore(this);
         TimeManager.Instance.Continue();
-        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+        
         player.transform.position = new Vector3(m_RebirthPos.x, m_RebirthPos.y, 0);//回归初始位置
         player.transform.rotation = new Quaternion(0, 0, 0, 0);//初始旋转角
+        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;//质心速度清零
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;//角速度清零
+        player.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
         player.GetComponent<Rigidbody2D>().isKinematic = false;
         m_deathing = false;
     }
