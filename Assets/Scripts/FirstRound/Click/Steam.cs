@@ -6,9 +6,9 @@ public class Steam : MonoBehaviour
 {
     public GameObject collisionBody;//碰撞体
     public GameObject wheel;//滚轮
-    public Animator steam;//动画所在
-    public float speed = 1.0f;//到位速度
-    public float rotatingSpeed = 80.0f;//滚轮转速
+    public GameObject steamStandby;//待机蒸汽
+    public Animator steam;//蒸汽动画
+    private float rotatingSpeed = 100.0f;//滚轮转速
     private bool coroutineOpen = false;//协程状态
     void Start()
     {
@@ -30,19 +30,18 @@ public class Steam : MonoBehaviour
     }
     private IEnumerator ToStay()
     {
+        steamStandby.SetActive(false);
         collisionBody.SetActive(true);
         rotatingSpeed *= 4;//加速旋转
         yield return new WaitForSeconds(GetLengthByName(steam, "蒸汽开启"));
-        // for (float schedule = 0; schedule <= 1; schedule += speed * Time.deltaTime)
-        // {
-        //     yield return 0;
-        // }
         rotatingSpeed /= 4;//归速
         collisionBody.SetActive(false);
+        steamStandby.SetActive(true);
         coroutineOpen = false;//无协程进行
         yield break;
     }
 
+    //获取动画长度
     private float GetLengthByName(Animator animator, string name)
     {
         float length = 0;

@@ -190,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884490566278823469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.001, y: -0.046, z: 0}
+  m_LocalPosition: {x: 0.125, y: 0.018, z: 0}
   m_LocalScale: {x: 0.06666667, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 4776441783617694598}
@@ -406,9 +406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionBody: {fileID: 4776441783427334950}
   wheel: {fileID: 82766247398686445}
+  steamStandby: {fileID: 1884490566278823469}
   steam: {fileID: 4192380456166235195}
-  speed: 1
-  rotatingSpeed: 1
 --- !u!1 &7266962546238658874
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7266962546238658874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0226, y: 0.0089, z: 0}
+  m_LocalPosition: {x: 0.00587, y: 0.0091, z: 0}
   m_LocalScale: {x: 0.0028469753, y: 0.004145078, z: 1}
   m_Children: []
   m_Father: {fileID: 4776441783427334949}
