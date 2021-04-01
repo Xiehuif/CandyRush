@@ -12,14 +12,12 @@ public class InPackage : MonoBehaviour,IResetable
 
     public GameObject Player;
 
-    bool gameHasEnded;
     private Vector3 m_OriPos;
     public void Reset()
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = false;   
         locked = false;
         inActive = false;
-        gameHasEnded = false;
         box.SetActive(true);
         Debug.Log("OK");
     }
@@ -27,7 +25,6 @@ public class InPackage : MonoBehaviour,IResetable
     {
         locked = false;
         inActive = false;
-        gameHasEnded = false;
         InputHandler.Instance.StartListener(this.gameObject, check);
     }
     private void OnDisable()
