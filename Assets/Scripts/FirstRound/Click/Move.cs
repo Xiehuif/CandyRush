@@ -40,7 +40,21 @@ public class Move : MonoBehaviour
             coroutineOpen = true;//协程进行中
         }
     }
-
+    private void Reverse()
+    {
+        origin.GetComponent<SurfaceEffector2D>().speed *= -1;
+        GameObject left = origin.transform.Find("left_arrow").gameObject, right = origin.transform.Find("right_arrow").gameObject;
+        if (origin.GetComponent<SurfaceEffector2D>().speed > 0)
+        {
+            left.SetActive(false);
+            right.SetActive(true);
+        }
+        else
+        {
+            left.SetActive(true);
+            right.SetActive(false);
+        }
+    }
     private IEnumerator ToEnd()
     {
         for (float schedule = 0; schedule < 2; schedule += speed * Time.deltaTime)
@@ -52,7 +66,7 @@ public class Move : MonoBehaviour
             origin.position = originPos + (endPos - originPos) * schedule;
             yield return 0;
         }
-        if (IsDirctionOp) { origin.GetComponent<SurfaceEffector2D>().speed *= -1; }
+        if (IsDirctionOp) { Reverse(); }
         origin.position = endPos;
         coroutineOpen = false;//无协程进行
         yield break;
@@ -70,7 +84,12 @@ public class Move : MonoBehaviour
             yield return 0;
         }
         origin.position = originPos;
-        if (IsDirctionOp) { origin.GetComponent<SurfaceEffector2D>().speed *= -1; }
+//#if IsDirctionOp
+        if (IsDirctionOp) 
+        {
+            Reverse();
+        }
+//#endif
         coroutineOpen = false;//无协程进行
         yield break;
     }
