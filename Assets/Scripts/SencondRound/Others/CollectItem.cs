@@ -13,6 +13,7 @@ public class CollectItem : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             ScoreManager.Instance.AddScore("NormalItem");
+            AudioManager.Instance.PlaySoundByName("collect");
             this.gameObject.SetActive(false);
         }
     }

@@ -10,6 +10,7 @@ public class Steam : MonoBehaviour
     public Animator steam;//蒸汽动画
     private float rotatingSpeed = 100.0f;//滚轮转速
     private bool coroutineOpen = false;//协程状态
+
     void Start()
     {
         InputHandler.Instance.StartListener(this.gameObject, OnClick);
