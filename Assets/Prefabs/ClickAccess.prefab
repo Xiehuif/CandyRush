@@ -305,13 +305,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95674753bad02447952eec99b014a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hold: 0
+  hold: 1
   status: 0
   currentBase: {fileID: 3698741985233548228}
+  topCoverRenderer: {fileID: 1372775131804087541}
   currentBaseRenderer: {fileID: 8163586911098096629}
-  sprites:
+  spritesOfClick:
   - {fileID: 8296688271642202900, guid: 218a72b622b0c204b91075df195b8e35, type: 3}
   - {fileID: 4933349352126476548, guid: 12f32405e1ee72443822c1d75a100a58, type: 3}
+  spritesOfHold:
+  - {fileID: 21300000, guid: 310d6bb225bc1ec449b58605469cf123, type: 3}
+  - {fileID: 21300000, guid: 69a6af33d3eddb54d8f68bb40b078a0a, type: 3}
+  spritesOfTopCover:
+  - {fileID: 6644595539859986086, guid: ecd55de51cdddc541a949f2eea954e5f, type: 3}
+  - {fileID: 21300000, guid: 0e28490d75f5c644790dcb7ae6cd8faf, type: 3}
 --- !u!212 &1683865487
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -8,17 +8,29 @@ public class ClickAccess : MonoBehaviour
     public bool status;
     private bool registed;
     public GameObject currentBase;//底座
+    public SpriteRenderer topCoverRenderer;
 
     public SpriteRenderer currentBaseRenderer;//底座渲染器
-    public Sprite[] sprites;//1是off,2是on
+    private Sprite[] sprites;//1是off,2是on
+    public Sprite[] spritesOfClick;
+    public Sprite[] spritesOfHold;
+    public Sprite[] spritesOfTopCover;
     // Start is called before the first frame update
     void Start()
     {
+        
         registed = false;
         if (!hold)
         {
             InputHandler.Instance.StartListener(this.gameObject, Click);
+            sprites = spritesOfClick;
+            topCoverRenderer.sprite = spritesOfTopCover[0];
             registed = true;
+        }
+        else
+        {
+            sprites = spritesOfHold;
+            topCoverRenderer.sprite = spritesOfTopCover[1];
         }
         if (!status)
         {
