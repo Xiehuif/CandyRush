@@ -1098,7 +1098,7 @@ PrefabInstance:
     - target: {fileID: 763909003005996720, guid: 10ffaf2823276bd41a695e21e67870b6,
         type: 3}
       propertyPath: CurrentAppearance
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1073188490126517075, guid: 10ffaf2823276bd41a695e21e67870b6,
         type: 3}
