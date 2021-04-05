@@ -25,7 +25,7 @@ public class ZoomOut : MonoBehaviour
     private IEnumerator ToBegin()
     {
         //摄像机拉近
-        for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
+        for (float schedule = 0; schedule <= 1; schedule += 0.7f * Time.deltaTime)
         {
             Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
@@ -36,7 +36,7 @@ public class ZoomOut : MonoBehaviour
     private IEnumerator ToEnd()
     {
         //摄像机归位
-        for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
+        for (float schedule = 0; schedule <= 1; schedule += 0.7f * Time.deltaTime)
         {
             Camera.main.orthographicSize = cameraZoomEndPoint + (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
