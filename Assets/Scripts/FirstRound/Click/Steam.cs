@@ -2,19 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Steam : MonoBehaviour
+public class Steam : MonoBehaviour,IResetable
 {
     public GameObject collisionBody;//碰撞体
     public GameObject wheel;//滚轮
     public GameObject steamStandby;//待机蒸汽
     public Animator steam;//蒸汽动画
-    private float rotatingSpeed = 100.0f;//滚轮转速
+    private const float StartRotateSpeed = 100.0f;  //初始转速
+    private float rotatingSpeed;//滚轮转速
     private bool coroutineOpen = false;//协程状态
+
+    public void Reset()
+    {
+        StopAllCoroutines();
+        rotatingSpeed = StartRotateSpeed;
+        collisionBody.SetActive(false);
+        steamStandby.SetActive(true);
+        coroutineOpen = false;//无协程进行
+    }
 
     void Start()
     {
         InputHandler.Instance.StartListener(this.gameObject, OnClick);
         collisionBody.SetActive(false);//初始隐藏
+        rotatingSpeed = StartRotateSpeed;
+        Death.Instance.Add(gameObject);
     }
     private void OnClick()
     {
