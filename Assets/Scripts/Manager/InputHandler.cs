@@ -25,7 +25,7 @@ public class InputHandler : Singleton<InputHandler>
     }
     void Update()
     {
-        if(IsEffectExit)
+        if (IsEffectExit)
         {
             if (m_ExitTime > 0) m_ExitTime -= Time.unscaledDeltaTime;
             else
@@ -34,7 +34,7 @@ public class InputHandler : Singleton<InputHandler>
                 m_ClickEffect.SetActive(false);
             }
         }
-        if(IsHoldExit)
+        if (IsHoldExit)
         {
             if (m_HoldExitTime > 0) m_HoldExitTime -= Time.unscaledDeltaTime;
             else
@@ -42,11 +42,11 @@ public class InputHandler : Singleton<InputHandler>
                 IsHoldExit = false;
                 m_HoldEffect.SetActive(false);
             }
-            
+
         }
         if (CanClick)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && IsPointUI(Input.mousePosition))
             {
                 m_HoldTime += Time.unscaledDeltaTime;
                 if (m_HoldTime > 0.6f)
@@ -63,11 +63,12 @@ public class InputHandler : Singleton<InputHandler>
                 }
             }
             else m_HoldTime = 0;
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())//未点击到UI上
+            if (Input.GetMouseButtonDown(0) && IsPointUI(Input.mousePosition))//未点击到UI上
             {
+
                 OnClick();
-                if(!AudioManager.Instance.IsSoundPlaying)
-                    AudioManager.Instance.PlaySoundByName("click",0.2f);
+                if (!AudioManager.Instance.IsSoundPlaying)
+                    AudioManager.Instance.PlaySoundByName("click", 0.2f);
                 if (!IsEffectExit)
                 {
                     m_ClickEffect.SetActive(true);
@@ -79,6 +80,17 @@ public class InputHandler : Singleton<InputHandler>
             }
         }
     }
+
+    private bool IsPointUI(Vector2 screenPosition)
+    {
+        PointerEventData eventData = new PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+        eventData.position = new Vector2(screenPosition.x, screenPosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        Debug.Log(results.Count);
+        return !(results.Count > 0);
+    }
+
     public void StartListener(GameObject obj, Action action)
     {
         if (!ListenerName.Contains(obj))
