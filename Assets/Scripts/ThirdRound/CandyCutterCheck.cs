@@ -11,7 +11,9 @@ public class CandyCutterCheck : MonoBehaviour
     public SurfaceEffector2D trackEffector;
     private float oriEffectorSpeed;
     private Emit emitScript;
-    // Start is called before the first frame update
+    public int targetAppearance = 5;//目标状态
+    public GameObject smokeEffect;//烟雾特效
+
     public Vector3 getDelta()
     {
         return (player.position - ori);
@@ -41,7 +43,14 @@ public class CandyCutterCheck : MonoBehaviour
             emitScript.clearEmits();
             trackEffector.speed = oriEffectorSpeed;
             inCutting = false;
+            NextAppearance();
             Debug.Log("outCutting");
         }
+    }
+
+    private void NextAppearance()
+    {
+        smokeEffect.SetActive(true);
+        AppearanceManager.Instance.ChangeAppearance(targetAppearance);
     }
 }
