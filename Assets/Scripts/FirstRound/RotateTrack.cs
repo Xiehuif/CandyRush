@@ -39,6 +39,8 @@ public class RotateTrack : MonoBehaviour,IResetable
         m_playerTrans = GameObject.FindWithTag("Player").transform;
         m_playerRig = m_playerTrans.GetComponent<Rigidbody2D>();
 
+        Death.Instance.Add(gameObject);
+
         m_curAngle = m_startAngle;
         SetTrackState(true);
         UpdatePosition();

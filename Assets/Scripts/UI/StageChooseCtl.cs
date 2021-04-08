@@ -35,7 +35,7 @@ public class StageChooseCtl : MonoBehaviour
         switch(curChooseStage)
         {
             case 1:
-                SceneManager.LoadScene("FirstRound");
+                SceneManager.LoadScene("NewFirstRound");
                 break;
             case 2:
                 SceneManager.LoadScene("NewSecondRound");

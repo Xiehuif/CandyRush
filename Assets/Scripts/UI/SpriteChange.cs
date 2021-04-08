@@ -17,8 +17,6 @@ public class SpriteChange : MonoBehaviour
     {
         int index = SceneTranlater.GetCurrentBuildIndex();
 
-        if (index == (int)SceneIndex.SECOND)
-            m_car.SetActive(false); //第二关没车
 
         objs[index-1].SetActive(true);
 
