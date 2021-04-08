@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: a006e7bfed0716c44aa4ce2903f2f9d6
+guid: b7574c5777a1d8b44bf24592a2880222
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7392260961844306816
-    second: "\u4E09\u9762\u673A\u51733_0"
+      213: 8176671596275767475
+    second: "\u4E09\u9762\u673A\u5173\u6309\u94AE_0"
   - first:
-      213: 3564356695641817033
-    second: "\u4E09\u9762\u673A\u51733_1"
+      213: -2049514841476827406
+    second: "\u4E09\u9762\u673A\u5173\u6309\u94AE_1"
   - first:
-      213: -3915525703996521861
-    second: "\u4E09\u9762\u673A\u51733_2"
+      213: -6344297667953073735
+    second: "\u4E09\u9762\u673A\u5173\u6309\u94AE_2"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -104,29 +104,59 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u4E09\u9762\u673A\u51733_0"
+      name: "\u4E09\u9762\u673A\u5173\u6309\u94AE_0"
       rect:
         serializedVersion: 2
-        x: 1071
-        y: 584
+        x: 940
+        y: 590
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b81b05be7f597170800000000000000
+      internalID: 8176671596275767475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u4E09\u9762\u673A\u5173\u6309\u94AE_1"
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 591
+        width: 83
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f6f1e74c19ae83e0800000000000000
+      internalID: -2049514841476827406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u4E09\u9762\u673A\u5173\u6309\u94AE_2"
+      rect:
+        serializedVersion: 2
+        x: 1182
+        y: 587
         width: 85
-        height: 85
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,50 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 083a7bdcd26969660800000000000000
-      internalID: 7392260961844306816
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u4E09\u9762\u673A\u51733_1"
-      rect:
-        serializedVersion: 2
-        x: 996
-        y: 456
-        width: 83
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cff388a783277130800000000000000
-      internalID: 3564356695641817033
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u4E09\u9762\u673A\u51733_2"
-      rect:
-        serializedVersion: 2
-        x: 1146
-        y: 456
-        width: 83
-        height: 83
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b7240681e1249a9c0800000000000000
-      internalID: -3915525703996521861
+      spriteID: 9b1615072e684f7a0800000000000000
+      internalID: -6344297667953073735
       vertices: []
       indices: 
       edges: []
