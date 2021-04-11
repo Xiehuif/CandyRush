@@ -13,12 +13,11 @@ public class AppearanceManager : Singleton<AppearanceManager>
     {
         base.Awake();
         m_OriPos = Player.transform.localPosition;
-        box = Player.transform.Find("Box").gameObject;
         ChangeAppearance(OriAppearance);
         CurrentAppearance = OriAppearance;
     }
-    public int AppearanceCount 
-   {
+    public int AppearanceCount
+    {
         get
         {
             return appearance.Length;
@@ -30,7 +29,7 @@ public class AppearanceManager : Singleton<AppearanceManager>
     }
     public bool ChangeAppearance(int index)
     {
-        if(index > AppearanceCount || index < 0)
+        if (index > AppearanceCount || index < 0)
             return false;
         Player.GetComponent<SpriteRenderer>().sprite = appearance[index];
 
@@ -41,10 +40,10 @@ public class AppearanceManager : Singleton<AppearanceManager>
             Player.GetComponentInChildren<Animator>().enabled = true;
             box.SetActive(true);
         }
-        else if(index >= 4)
+        else if (index >= 4)
         {
             Player.GetComponentInChildren<Animator>().enabled = false;
-            Player.transform.localPosition = box.transform.localPosition - new Vector3(0,0.05f,0);
+            Player.transform.localPosition = box.transform.localPosition - new Vector3(0, 0.05f, 0);
             box.SetActive(false);
         }
         else
