@@ -45,6 +45,7 @@ public class Death : Singleton<Death>
     }
     public void IsDeath()
     {
+        Debug.Log("Death");
         m_deathing = true;
         AudioManager.Instance.PlaySoundByName("dead");
         AppearanceManager.Instance.ReturnToOri();

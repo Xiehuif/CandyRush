@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 3887061117001698975}
   m_Layer: 0
   m_Name: tmpRotateTrack
-  m_TagString: Untagged
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_link: {fileID: 3887061116297415963}
   m_detect: {fileID: 3887061116734452580}
   m_startAngle: 90
-  m_rotateAngle: -90
+  m_isClockWise: 1
   m_rotateSpeed: 20
 --- !u!1 &3887061117432244101
 GameObject:
