@@ -87,7 +87,6 @@ public class InputHandler : Singleton<InputHandler>
         eventData.position = new Vector2(screenPosition.x, screenPosition.y);
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
-        Debug.Log(results.Count);
         return !(results.Count > 0);
     }
 

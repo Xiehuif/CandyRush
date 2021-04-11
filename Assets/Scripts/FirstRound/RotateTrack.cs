@@ -1,19 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class RotateTrack : MonoBehaviour,IResetable
-{ 
+public class RotateTrack : MonoBehaviour, IResetable
+{
     [SerializeField]
     private Transform m_track;  //传送带部分
+
     [SerializeField]
     private Transform m_link;   //连接物部分
+
     [SerializeField]
     private Transform m_detect; //检测部分
+
     [SerializeField]
     private float m_startAngle; //初始旋转角
+
     [SerializeField]
-    private float m_rotateAngle;    //计划旋转角
+    private bool m_isClockWise = true;
+
     [SerializeField]
     private float m_rotateSpeed;    //旋转速度
 
@@ -29,7 +32,7 @@ public class RotateTrack : MonoBehaviour,IResetable
     {
         m_curAngle = m_startAngle;
         SetTrackState(true);
-        UpdatePosition();
+        InitPos();
     }
 
     private void Start()
@@ -43,7 +46,7 @@ public class RotateTrack : MonoBehaviour,IResetable
 
         m_curAngle = m_startAngle;
         SetTrackState(true);
-        UpdatePosition();
+        InitPos();
     }
 
     private void Update()
@@ -52,16 +55,11 @@ public class RotateTrack : MonoBehaviour,IResetable
         {
             if (Input.GetMouseButton(0))
             {
-                if(Mathf.Abs(m_curAngle-m_startAngle)<Mathf.Abs(m_rotateAngle))
-                {
-                    m_curAngle = Mathf.Clamp(m_curAngle + Mathf.Sign(m_rotateAngle) *
-                        m_rotateSpeed * Time.deltaTime, m_startAngle - Mathf.Abs(m_rotateAngle),
-                        m_startAngle + Mathf.Abs(m_rotateAngle));
-                    UpdatePosition();
-                    if (m_isTrackRunning)
-                        m_playerRig.velocity = Vector3.zero;
-                    SetTrackState(false);
-                }
+                m_curAngle = m_curAngle + (m_isClockWise ? -1 : 1) * m_rotateSpeed * Time.deltaTime;
+                UpdatePosition();
+                if (m_isTrackRunning)
+                    m_playerRig.velocity = Vector3.zero;
+                SetTrackState(false);
             }
             else
             {
@@ -79,18 +77,27 @@ public class RotateTrack : MonoBehaviour,IResetable
     }
 
     /// <summary>
-    /// 更新track与link与player的位置
+    /// 更新track与link的位置
     /// </summary>
     private void UpdatePosition()
     {
         Vector3 preDis = m_playerTrans.position - m_track.position;
 
-        float radian = Mathf.Deg2Rad*m_curAngle;
-        m_track.localPosition = new Vector3(m_disBtTrack * Mathf.Cos(radian), 
+        float radian = Mathf.Deg2Rad * m_curAngle;
+        m_track.localPosition = new Vector3(m_disBtTrack * Mathf.Cos(radian),
             m_disBtTrack * Mathf.Sin(radian));
 
         m_playerTrans.position = m_track.position + preDis;
 
+        m_link.localPosition = m_track.localPosition / 2;
+        m_link.localRotation = Quaternion.Euler(0, 0, m_curAngle);
+    }
+
+    private void InitPos()
+    {
+        float radian = Mathf.Deg2Rad * m_curAngle;
+        m_track.localPosition = new Vector3(m_disBtTrack * Mathf.Cos(radian),
+            m_disBtTrack * Mathf.Sin(radian));
         m_link.localPosition = m_track.localPosition / 2;
         m_link.localRotation = Quaternion.Euler(0, 0, m_curAngle);
     }
