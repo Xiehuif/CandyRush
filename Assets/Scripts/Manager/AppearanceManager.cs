@@ -11,8 +11,9 @@ public class AppearanceManager : Singleton<AppearanceManager>
     private Vector3 m_OriPos;
     override protected void Awake()
     {
-        m_OriPos = Player.transform.localPosition;
         base.Awake();
+        m_OriPos = Player.transform.localPosition;
+        box = Player.transform.Find("Box").gameObject;
         ChangeAppearance(OriAppearance);
         CurrentAppearance = OriAppearance;
     }
@@ -37,18 +38,18 @@ public class AppearanceManager : Singleton<AppearanceManager>
         if (index == 1)
         {
             Player.transform.localPosition = m_OriPos + new Vector3(0, 0.1f, 0);
-            Player.GetComponent<Animator>().enabled = true;
+            Player.GetComponentInChildren<Animator>().enabled = true;
             box.SetActive(true);
         }
         else if(index >= 4)
         {
-            Player.GetComponent<Animator>().enabled = false;
+            Player.GetComponentInChildren<Animator>().enabled = false;
             Player.transform.localPosition = box.transform.localPosition - new Vector3(0,0.05f,0);
             box.SetActive(false);
         }
         else
         {
-            Player.GetComponent<Animator>().enabled = false;
+            Player.GetComponentInChildren<Animator>().enabled = false;
             Player.transform.localPosition = m_OriPos;
             box.SetActive(true);
         }
