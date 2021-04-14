@@ -20,11 +20,13 @@ public class RotateTrack : MonoBehaviour, IResetable
     [SerializeField]
     private float m_rotateSpeed;    //旋转速度
 
+    public float ratio; //根据策划的要求，杆子需要伸缩，定义伸缩比
+
     private RotateTrackDetect m_rtk;    //由玩家是否在范围内来决定是否对玩家输入进行检测
     private SurfaceEffector2D m_trackEffector; //track的效应器
     private float m_curAngle;   //当前旋转角
     private bool m_isTrackRunning;  //track是否在运动
-    private const float m_disBtTrack = 4f;    //旋转中心与track中点的距离
+    private float m_disBtTrack = 4f;    //旋转中心与track中点的距离
     private Rigidbody2D m_playerRig;    //玩家的刚体
     private Transform m_playerTrans;    //玩家的位移
 
@@ -37,6 +39,7 @@ public class RotateTrack : MonoBehaviour, IResetable
 
     private void Start()
     {
+        m_disBtTrack = m_disBtTrack * ratio;
         m_trackEffector = m_track.GetComponent<SurfaceEffector2D>();
         m_rtk = m_detect.GetComponent<RotateTrackDetect>();
         m_playerTrans = GameObject.FindWithTag("Player").transform;
@@ -89,8 +92,7 @@ public class RotateTrack : MonoBehaviour, IResetable
 
         m_playerTrans.position = m_track.position + preDis;
 
-        m_link.localPosition = m_track.localPosition / 2;
-        m_link.localRotation = Quaternion.Euler(0, 0, m_curAngle);
+        m_link.localRotation = Quaternion.Euler(0, 0,90 + m_curAngle);
     }
 
     private void InitPos()
@@ -98,7 +100,6 @@ public class RotateTrack : MonoBehaviour, IResetable
         float radian = Mathf.Deg2Rad * m_curAngle;
         m_track.localPosition = new Vector3(m_disBtTrack * Mathf.Cos(radian),
             m_disBtTrack * Mathf.Sin(radian));
-        m_link.localPosition = m_track.localPosition / 2;
-        m_link.localRotation = Quaternion.Euler(0, 0, m_curAngle);
+        m_link.localRotation = Quaternion.Euler(0, 0, 90 + m_curAngle);
     }
 }

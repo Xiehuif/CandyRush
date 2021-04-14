@@ -34,6 +34,9 @@ public class BasePlayer : Singleton<BasePlayer>
             }
         }
     }
+
+
+
 #if UNITY_EDITOR
     protected void OnDrawGizmosSelected()
     {
