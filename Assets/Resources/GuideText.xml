@@ -1,0 +1,67 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<content>
+	<section name="onstart">
+		<single>
+			<sentence>你好！甜味技术员！欢迎来到MEMOPOP糖果工厂
+			</sentence>
+			<sentence>这里的制糖流水线似乎出现了一些问题。我们需要一位专业的技术员,来控制工厂中的制糖设备，帮助原料顺利通过流水线变成糖果
+			</sentence>
+			<sentence>希望你能够帮助我们
+			</sentence>
+		</single>
+		<single>
+			<sentence>合适的配料和对糖果的热爱，都能使糖果变得更加美味喔！请尽可能多的收集它们～
+			</sentence>
+		</single>
+		<single>
+			<sentence>在这里会显示关卡和道具收集的进度
+			</sentence>
+		</single>
+	</section>
+
+	<section name="basic">
+		<single>
+			<sentence>危险：设备漏电是非常危险的！一定要及时关闭电源，安全第一！
+			</sentence>
+		</single>
+	</section>
+
+	<section name="special">
+		<single name="tmper">
+			<sentence>欢迎来到温控设备，温度控制是制糖过程中的关键一步喔。通过加热/冷却改变原料状态，赋予其不同的物理特性
+			</sentence>
+			<sentence>现在，让我们长按/点击屏幕，把指针控制在152°C左右，把蔗糖熬成粘稠的糖浆，开始制作薄荷糖的第一步吧
+			</sentence>
+		</single>
+		<single name="mix">
+			<sentence>除去蔗糖外，糖浆中还会加入柠檬酸、蒸馏薄荷油等原料来丰富糖果的口感，所以我们需要通过搅拌来将它们均匀混合哟
+			</sentence>
+			<sentence>制糖工人已经准备就绪啦，【长按屏幕】搅动你的糖浆吧!
+			</sentence>
+		</single>
+		<single name="tmperCold">
+			<sentence>唔…眼熟的机器呢，但这次我们需要将糖浆冷却到80℃左右，让它微微凝固。看似简单，但为了使糖膏冷却均匀，需要不断翻折约73000次呢。
+			</sentence>
+			<sentence>上次的操作你应该还记得吧！一定要好好把控温度哟~
+			</sentence>
+		</single>
+		<single name="dye">
+			<sentence>在印象里薄荷糖总是看起来冰冰凉凉的呢，所以我们来变个魔法——利用可食用的天然色素和薄荷叶，将糖膏染成清凉的蓝绿色。
+			</sentence>
+			<sentence>通过点击控制圆点填满进度条，请尽可能均匀地染色哟～
+			</sentence>
+		</single>
+		<single name="pull">
+			<sentence>这是拉糖机器，充分拉升才能使小气泡均匀地分布在糖膏的每一部分喔。【长按屏幕】让机器转起来，为糖膏充入空气就能创造出蓬松口感的糖果哟。
+			</sentence>
+		</single>
+		<single name="cut">
+			<sentence>切糖机器可是个锋利的巨人，不要靠他太近喔！【快速点击屏幕】控制机械臂落下，将大糖块切割成方便入口的小糖果～
+			</sentence>
+		</single>
+		<single name="package">
+			<sentence>看到彩虹缎带了嘛！等糖果到达中心区域，及时点击屏幕启动包装机关。咔！好看又美味的薄荷糖就完成啦！
+			</sentence>
+		</single>
+	</section>
+</content>
