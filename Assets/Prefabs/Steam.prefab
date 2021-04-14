@@ -82,6 +82,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &108699309163689575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3589874020280796145}
+  m_Layer: 0
+  m_Name: Target(used only in fixed path mode)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3589874020280796145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108699309163689575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4776441783427334949}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1482802171423788352
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +307,7 @@ GameObject:
   - component: {fileID: 4776441783427335001}
   - component: {fileID: 4776441783427335000}
   - component: {fileID: 5289136451614153892}
+  - component: {fileID: 6772086086873090155}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -296,6 +327,7 @@ Transform:
   m_LocalScale: {x: 17.5625, y: 12.0625, z: 1}
   m_Children:
   - {fileID: 3187919079325441515}
+  - {fileID: 3589874020280796145}
   m_Father: {fileID: 4776441783617694598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,6 +389,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad6d2debd8fc28428663f4a69d47817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6772086086873090155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776441783427334950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7043d9e25064f499fff9a9a5260f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 4776441783617694599}
+  target: {fileID: 3589874020280796145}
+  player: {fileID: 0}
+  pathCoefficient: -0.1
+  cruiseTime: 1
 --- !u!1 &4776441783617694599
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,6 +457,7 @@ MonoBehaviour:
   wheel: {fileID: 82766247398686445}
   steamStandby: {fileID: 1884490566278823469}
   steam: {fileID: 4192380456166235195}
+  fixedPath: 0
 --- !u!1 &7266962546238658874
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class Steam : MonoBehaviour,IResetable
     private float rotatingSpeed;//滚轮转速
     private bool coroutineOpen = false;//协程状态
 
+    public bool fixedPath; //fixed path enabled
     public void Reset()
     {
         StopAllCoroutines();
@@ -48,7 +49,7 @@ public class Steam : MonoBehaviour,IResetable
         rotatingSpeed *= 4;//加速旋转
         yield return new WaitForSeconds(GetLengthByName(steam, "蒸汽开启"));
         rotatingSpeed /= 4;//归速
-        collisionBody.SetActive(false);
+        if(!fixedPath)collisionBody.SetActive(false);
         steamStandby.SetActive(true);
         coroutineOpen = false;//无协程进行
         yield break;
