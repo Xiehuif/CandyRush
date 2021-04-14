@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NewThirdRound.unity
     guid: 06197f1c220bc334cb9a7aef50a41c44
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GuideRound.unity
     guid: 966e9cd9e876c0541a9236aeae33c7c8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SecondRound.unity
     guid: 64e7aafadc2a86b4e88ef6ff8353da89
   m_configObjects: {}
