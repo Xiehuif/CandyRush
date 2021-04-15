@@ -6,7 +6,7 @@ public class LoadUIGenerator : MonoBehaviour
 {
     private GameObject m_targetUI;
     private bool HasUI = false;
-    private void OnLevelWasLoaded(int level)
+    private void Start()
     {
         var f = (GameObject)Resources.Load("LoadingCanvas");
         m_targetUI=Instantiate(f);

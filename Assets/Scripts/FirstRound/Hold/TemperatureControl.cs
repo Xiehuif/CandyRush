@@ -68,9 +68,15 @@ public class TemperatureControl : MonoBehaviour
         if (passCheck.pass)
         {
             if (evaluationTimer > 0.7f)
+            {
                 ScoreManager.Instance.AddScore("TC_Perfect");
+                GradeJugde.Instance.GenerateRank(2, smokeEffect.transform.position);
+            }
             else
+            {
                 ScoreManager.Instance.AddScore("TC_Normal");
+                GradeJugde.Instance.GenerateRank(0, smokeEffect.transform.position);
+            }
             prompt.SetActive(false);
             NextAppearance();
             AudioManager.Instance.PlaySoundByName("complete");
