@@ -6555,12 +6555,12 @@ PrefabInstance:
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.01
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.29
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
@@ -6848,9 +6848,9 @@ Transform:
   - {fileID: 1875649551}
   - {fileID: 1045207535}
   - {fileID: 780057444}
-  - {fileID: 152745328}
   - {fileID: 215050321}
   - {fileID: 847546725}
+  - {fileID: 152745328}
   - {fileID: 587552758}
   m_Father: {fileID: 822049405}
   m_RootOrder: 5
@@ -19813,27 +19813,27 @@ Transform:
   - {fileID: 1994440015}
   - {fileID: 1306971040}
   - {fileID: 1762831882}
+  - {fileID: 126099657}
   - {fileID: 1880185250}
   - {fileID: 218115416}
   - {fileID: 1307508458}
-  - {fileID: 1979245692}
-  - {fileID: 126099657}
   - {fileID: 468267635}
+  - {fileID: 1979245692}
   - {fileID: 856654077}
   - {fileID: 1436377452}
   - {fileID: 129291186}
   - {fileID: 1327730820}
   - {fileID: 684077078}
+  - {fileID: 191336299}
   - {fileID: 734610401}
   - {fileID: 1729001006}
   - {fileID: 1692500758}
   - {fileID: 1608918315}
-  - {fileID: 191336299}
+  - {fileID: 593105930}
   - {fileID: 476713448}
   - {fileID: 1938727351}
   - {fileID: 1393724168}
   - {fileID: 1602926051}
-  - {fileID: 593105930}
   m_Father: {fileID: 99646804}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,73 +1,73 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
+/// <summary>
+/// 关卡选择控制器
+/// </summary>
 public class StageChooseCtl : MonoBehaviour
 {
+    /// <summary>
+    /// 当前选择的关卡
+    /// </summary>
+    private int curChooseStage=0;
+
+    /// <summary>
+    /// 数字图片渲染器
+    /// </summary>
     [SerializeField]
-    private int curChooseStage;
+    private Image number;
 
+    /// <summary>
+    /// 数字图片集
+    /// </summary>
     [SerializeField]
-    private GameObject BG;
+    private List<Sprite> numberSprites;
 
-    //[SerializeField]
-    //private List<Sprite> BGSprites;
-
+    /// <summary>
+    /// 场景总数量
+    /// </summary>
     private int m_sceneCount;
-
-    //private SpriteRenderer m_BGSpriteRenderer;
 
     private void Start()
     {
-        //m_BGSpriteRenderer = BG.GetComponent<SpriteRenderer>();
-#if UNITY_EDITOR
-        m_sceneCount = 3;
-#else
-        m_sceneCount = SceneManager.sceneCount;
-#endif
-        if (curChooseStage <= 0 || curChooseStage >= m_sceneCount)
-            Debug.LogError("Invalid initialized curChooseStage!");
+        m_sceneCount = SceneManager.sceneCountInBuildSettings;
     }
 
+    /// <summary>
+    /// 开始游戏按钮回调
+    /// </summary>
     public void Begin()
     {
-#if UNITY_EDITOR
-        switch(curChooseStage)
-        {
-            case 1:
-                SceneManager.LoadScene("NewFirstRound");
-                break;
-            case 2:
-                SceneManager.LoadScene("NewSecondRound");
-                break;
-            case 3:
-                SceneManager.LoadScene("NewThirdRound");
-                break;
-            default:
-                Debug.LogError("Stage not exist!");
-                break;
-        }
-#else
-        SceneManager.LoadScene(curChooseStage);
-#endif
+        SceneManager.LoadScene(curChooseStage+1);
     }
 
+    /// <summary>
+    /// 向左选关按钮回调
+    /// </summary>
     public void LeftStage()
     {
-        //if (curChooseStage > 0)
-        //    curChooseStage--;
-        //OnStageChanged();
+        if (curChooseStage > 0)
+            curChooseStage--;
+        OnStageChanged();
     }
 
+    /// <summary>
+    /// 向右选关按钮回调
+    /// </summary>
     public void RightStage()
     {
-        //if (curChooseStage < m_sceneCount - 1)
-        //    curChooseStage++;
-        //OnStageChanged();
+        if (curChooseStage < m_sceneCount - 2)
+            curChooseStage++;
+        OnStageChanged();
     }
 
+    /// <summary>
+    /// 选择关卡改变回调
+    /// </summary>
     private void OnStageChanged()
     {
-        //m_BGSpriteRenderer.sprite = BGSprites[curChooseStage - 1];
+        number.sprite = numberSprites[curChooseStage];
     }
 }
