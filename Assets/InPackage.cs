@@ -15,7 +15,8 @@ public class InPackage : MonoBehaviour,IResetable
     private Vector3 m_OriPos;
     public void Reset()
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;   
+        this.transform.position = m_OriPos;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;   
         locked = false;
         inActive = false;
         box.SetActive(true);
@@ -23,6 +24,8 @@ public class InPackage : MonoBehaviour,IResetable
     }
     void Start()
     {
+        this.transform.position = m_OriPos;
+        Player = GameObject.FindGameObjectWithTag("Player");
         locked = false;
         inActive = false;
         InputHandler.Instance.StartListener(this.gameObject, check);
