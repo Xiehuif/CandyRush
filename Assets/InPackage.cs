@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InPackage : MonoBehaviour,IResetable
+public class InPackage : MonoBehaviour,IResetable,IScoreGiver
 {
+    public float GetScore() { return 60; }
+    public string GetTag() { return "Package"; }
     public bool locked;
     public bool inActive;
     public PackageArea.Quality checkQuality;

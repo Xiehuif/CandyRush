@@ -9,6 +9,7 @@ public class CandyCutterKnifeController : MonoBehaviour
     private void Start()
     {
         ori = this.transform.position;
+        
     }
     private void Update()
     {

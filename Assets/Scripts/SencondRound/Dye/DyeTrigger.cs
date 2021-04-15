@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DyeTrigger : MonoBehaviour
+public class DyeTrigger : MonoBehaviour,IScoreGiver
 {
+    public float GetScore() { return 70; }
+    public string GetTag() { return "Dye"; }
     public GameObject Dye;
     private GameObject m_player;
     private bool HasEnter = false;

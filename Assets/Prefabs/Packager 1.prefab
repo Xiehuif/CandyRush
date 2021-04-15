@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4253363466098825080}
   m_Layer: 0
   m_Name: GiftBox
-  m_TagString: Untagged
+  m_TagString: ScoreGiver
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,9 +131,9 @@ MonoBehaviour:
   locked: 0
   inActive: 0
   checkQuality: 0
-  length: 0.07
   speed: 1
   box: {fileID: 4253363467805694494}
+  Player: {fileID: 0}
 --- !u!1 &4253363466225279518
 GameObject:
   m_ObjectHideFlags: 0
