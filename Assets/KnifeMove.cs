@@ -43,7 +43,7 @@ public class KnifeMove : MonoBehaviour
         }
         this.gameObject.GetComponent<Animator>().speed = 0;
         inTrans = false;
-        Debug.Log("End Up  " + gameObject.name);
+        //Debug.Log("End Up  " + gameObject.name);
         yield break;
     }
     public void PutDown()
@@ -54,7 +54,7 @@ public class KnifeMove : MonoBehaviour
         lightOfKnife.SetActive(true);
         inTrans = true;
         StartCoroutine("Down");
-        Debug.Log(gameObject.name + "  PutDown");
+        //Debug.Log(gameObject.name + "  PutDown");
     }
 
     public void GetUp()

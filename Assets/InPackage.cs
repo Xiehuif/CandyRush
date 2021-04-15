@@ -12,19 +12,18 @@ public class InPackage : MonoBehaviour,IResetable
 
     public GameObject Player;
 
-    private Vector3 m_OriPos;
+    private Vector3 m_OriPos = Vector3.zero;
     public void Reset()
     {
+        if (m_OriPos == Vector3.zero) return;
         this.transform.position = m_OriPos;
         gameObject.GetComponent<SpriteRenderer>().enabled = true;   
         locked = false;
         inActive = false;
         box.SetActive(true);
-        Debug.Log("OK");
     }
     void Start()
     {
-        this.transform.position = m_OriPos;
         Player = GameObject.FindGameObjectWithTag("Player");
         locked = false;
         inActive = false;

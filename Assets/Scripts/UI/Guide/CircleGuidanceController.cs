@@ -44,7 +44,7 @@ public class CircleGuidanceController : Singleton<CircleGuidanceController>
     /// <summary>
     /// 高亮区域缩放的动画时间
     /// </summary>
-    private float _shrinkTime = 2f;
+    private float _shrinkTime = 2.5f;
     private float _curTime = 0f;
     /// <summary>
     /// 世界坐标向画布坐标转换
@@ -101,17 +101,23 @@ public class CircleGuidanceController : Singleton<CircleGuidanceController>
     {
         if (IsWorking)
         {
+            if (_curTime > _shrinkTime)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    _curTime = 0f;
+                    IsWorking = false;
+                    TimeManager.Instance.Continue();
+                    this.GetComponent<Image>().enabled = false;
+                }
+                else return;
+            }
             _curTime += Time.unscaledDeltaTime * _shrinkVelocity;
             //从当前半径到目标半径差值显示收缩动画
             float ratio = _curTime / _shrinkTime;
             _currentRadius = _radius * ratio + (1 - ratio) * _wholeRadius;
             _material.SetFloat("_Slider", _currentRadius);
-            if(_curTime > _shrinkTime){
-                _curTime = 0f;
-                IsWorking = false;
-                TimeManager.Instance.Continue();
-                this.GetComponent<Image>().enabled = false;
-            }
+            
         }
     }
 }
