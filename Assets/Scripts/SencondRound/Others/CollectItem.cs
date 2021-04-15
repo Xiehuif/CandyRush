@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectItem : MonoBehaviour
+public class CollectItem : MonoBehaviour,IScoreGiver
 {
+    public float GetScore(){ return 10; }
+    public string GetTag() { return ""; }
     private void Start()
     {
         Death.Instance.Add(this.gameObject);

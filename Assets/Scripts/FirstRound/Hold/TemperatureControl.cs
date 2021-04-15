@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TemperatureControl : MonoBehaviour
+public class TemperatureControl : MonoBehaviour,IScoreGiver
 {
+    public string GetTag() { return "Temperature"; }
+    public float GetScore() { return 25; }
     public float speed = 0.4f;//变温速度
     public bool coolDown = true;//加热or冷却
     public float safeUpperLimit = 0.4f;//安全加热进度上限
@@ -130,7 +132,7 @@ public class TemperatureControl : MonoBehaviour
     {
         if (other.tag == "Player")//检测碰撞物体是否为主角
         {
-            this.tag = "Untagged";//tag置空
+            this.tag = "ScoreGiver";//tag置空
             temperatureBar.SetActive(false);
             status = false;//关卡关闭
             CameraFollow cameraFollow = Camera.main.GetComponent<CameraFollow>();

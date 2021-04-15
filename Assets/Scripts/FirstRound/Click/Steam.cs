@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Steam : MonoBehaviour,IResetable
+public class Steam : MonoBehaviour,IResetable,IScoreGiver
 {
+    public float GetScore() { return 5; }
+    public string GetTag() { return ""; }
     public GameObject collisionBody;//碰撞体
     public GameObject wheel;//滚轮
     public GameObject steamStandby;//待机蒸汽

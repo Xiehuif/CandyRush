@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeMove : MonoBehaviour
+public class KnifeMove : MonoBehaviour,IScoreGiver,IResetable
 {
+    public void Reset()
+    {
+        cur_times = 0;
+    }
+    public float GetScore()
+    {
+        return whole_times * 5;
+    }
+    public string GetTag() { return "Knife"; }
     public enum KnifeStatus
     {
         Up,
         Down,
     };
+    private int whole_times = 20, cur_times = 0;
     public KnifeStatus thisStatus;
     public CandyCutterCheck check;
     public Sprite upFrame;
@@ -43,7 +53,7 @@ public class KnifeMove : MonoBehaviour
         }
         this.gameObject.GetComponent<Animator>().speed = 0;
         inTrans = false;
-        Debug.Log("End Up  " + gameObject.name);
+        //Debug.Log("End Up  " + gameObject.name);
         yield break;
     }
     public void PutDown()
@@ -54,7 +64,7 @@ public class KnifeMove : MonoBehaviour
         lightOfKnife.SetActive(true);
         inTrans = true;
         StartCoroutine("Down");
-        Debug.Log(gameObject.name + "  PutDown");
+        //Debug.Log(gameObject.name + "  PutDown");
     }
 
     public void GetUp()
@@ -106,19 +116,21 @@ public class KnifeMove : MonoBehaviour
     {
         if (check.inCutting)
         {
-            if (tie && DetectLeft() && thisStatus == KnifeStatus.Up && !inTrans)
+            if (tie && DetectLeft() && thisStatus == KnifeStatus.Up && !inTrans && cur_times < whole_times)
             {
                 PutDown();
                 another.GetUp();
                 emitScript.emitCreate();
                 ScoreManager.Instance.AddScore("CandyCut");
+                cur_times++;
             }
-            if (!tie && DetectRight() && thisStatus == KnifeStatus.Up && !inTrans)
+            if (!tie && DetectRight() && thisStatus == KnifeStatus.Up && !inTrans && cur_times < whole_times)
             {
                 PutDown();
                 another.GetUp();
                 emitScript.emitCreate();
                 ScoreManager.Instance.AddScore("CandyCut");
+                cur_times++;
             }
         }
     }

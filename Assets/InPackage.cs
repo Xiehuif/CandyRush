@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InPackage : MonoBehaviour,IResetable
+public class InPackage : MonoBehaviour,IResetable,IScoreGiver
 {
+    public float GetScore() { return 60; }
+    public string GetTag() { return "Package"; }
     public bool locked;
     public bool inActive;
     public PackageArea.Quality checkQuality;
@@ -12,17 +14,19 @@ public class InPackage : MonoBehaviour,IResetable
 
     public GameObject Player;
 
-    private Vector3 m_OriPos;
+    private Vector3 m_OriPos = Vector3.zero;
     public void Reset()
     {
-        gameObject.GetComponent<SpriteRenderer>().enabled = false;   
+        if (m_OriPos == Vector3.zero) return;
+        this.transform.position = m_OriPos;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;   
         locked = false;
         inActive = false;
         box.SetActive(true);
-        Debug.Log("OK");
     }
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         locked = false;
         inActive = false;
         InputHandler.Instance.StartListener(this.gameObject, check);
