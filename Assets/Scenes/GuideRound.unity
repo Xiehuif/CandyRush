@@ -6090,7 +6090,7 @@ PrefabInstance:
     - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: ItemsToReset.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3146121848116308220, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
@@ -6116,7 +6116,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ItemsToReset.Array.data[4]
       value: 
-      objectReference: {fileID: 2052597532}
+      objectReference: {fileID: 1569693625}
     m_RemovedComponents:
     - {fileID: 3146121846447582407, guid: 6cc13edda8e27e34ea3556e0770d5592, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6cc13edda8e27e34ea3556e0770d5592, type: 3}
@@ -18705,6 +18705,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9ceb99e9ef87544d984b1ef812e18d6, type: 3}
+--- !u!1 &1569693625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4253363466098825086, guid: 267dfb0f53aa9504d989a85f87041992,
+    type: 3}
+  m_PrefabInstance: {fileID: 318965999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1569989775
 PrefabInstance:
   m_ObjectHideFlags: 0
