@@ -22,7 +22,7 @@ public class GameEndCtrl : MonoBehaviour
     public void NextStage()
     {
         int index = SceneTranlater.GetCurrentBuildIndex();
-        if (index < 3)
+        if (index < 4)
             SceneManager.LoadScene(index + 1);
     }
 }
