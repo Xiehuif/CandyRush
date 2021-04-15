@@ -52,4 +52,14 @@ public class ScoreManager : Singleton<ScoreManager>
     }
     public int GetScore() { return m_score; }
     public void SetScore(Death die) { SetScore(die.GetLastScore()); }
+
+    /// <summary>
+    /// 得到关卡总结评级
+    /// </summary>
+    /// <returns>0是S(或SS+),1是A+(或S),2是A,3是B,4是C,5是F</returns>
+    public int GetRank()
+    {
+        //TODO
+        return 0;
+    }
 }

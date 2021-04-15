@@ -66,9 +66,21 @@ public class DyeCreator : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (m_score > CreateInterVal * 0.7f) ScoreManager.Instance.AddScore("Dye_Perfect");  
-        else if (m_score > CreateInterVal * 0.5f) ScoreManager.Instance.AddScore("Dye_Nice");
-        else ScoreManager.Instance.AddScore("Dye_Normal");
+        if (m_score > CreateInterVal * 0.7f)
+        {
+            ScoreManager.Instance.AddScore("Dye_Perfect");
+            GradeJugde.Instance.GenerateRank(2);
+        }
+        else if (m_score > CreateInterVal * 0.5f)
+        {
+            ScoreManager.Instance.AddScore("Dye_Nice");
+            GradeJugde.Instance.GenerateRank(1);
+        }
+        else
+        {
+            ScoreManager.Instance.AddScore("Dye_Normal");
+            GradeJugde.Instance.GenerateRank(0);
+        }
     }
     public void Add(float delta)
     {
