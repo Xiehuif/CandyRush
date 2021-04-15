@@ -18,7 +18,7 @@ public class SpriteChange : MonoBehaviour
         int index = SceneTranlater.GetCurrentBuildIndex();
 
 
-        objs[index-1].SetActive(true);
+        objs[Mathf.Clamp(index-2,0,objs.Count-1)].SetActive(true);
 
         if (index == (int)SceneIndex.THIRD)
             StartCoroutine(BecomeLarger());  //第三关UI变大
