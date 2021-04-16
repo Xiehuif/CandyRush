@@ -20,7 +20,10 @@ public class TimeManager : Singleton<TimeManager>
     }
     public void Continue()
     {
-        InputHandler.Instance.CanClick = true;
+        DelayDo(() =>
+        {
+            InputHandler.Instance.CanClick = true;
+        }, 0.02f);
         Time.timeScale = 1;
     }
     protected IEnumerator DelayDoTimeCoroutine(UnityAction action, float time)

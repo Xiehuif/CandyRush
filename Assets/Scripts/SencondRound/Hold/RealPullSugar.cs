@@ -13,7 +13,7 @@ public class RealPullSugar : MonoBehaviour
 
     private bool coroutineOpen;
     public Animator pullSugar;
-
+    public GameObject RealObj;
     private bool end;
 
     public Sprite startFrame;
@@ -27,7 +27,7 @@ public class RealPullSugar : MonoBehaviour
         coroutineOpen = false;
         end = false;
         pullSugar.speed = 0;
-        gameObject.GetComponent<SpriteRenderer>().sprite = startFrame;
+        RealObj.GetComponent<SpriteRenderer>().sprite = startFrame;
     }
     void Update()
    {
@@ -41,7 +41,8 @@ public class RealPullSugar : MonoBehaviour
     {
         coroutineOpen = false;
         end = false;
-        gameObject.GetComponent<SpriteRenderer>().sprite = startFrame;
+        pullSugar.speed = 0;
+        RealObj.GetComponent<SpriteRenderer>().sprite = startFrame;
     }
     private void OnTriggerEnter2D(Collider2D other)
    {
@@ -54,6 +55,7 @@ public class RealPullSugar : MonoBehaviour
             m_player.transform.position = this.transform.position;
             m_player.transform.rotation = Quaternion.Euler(0, 0, 0);
             coroutineOpen = true;
+            RealObj.GetComponent<Animator>().enabled = true;
             StartCoroutine("StartPulling");
             Debug.Log("Enter");
         }
@@ -71,9 +73,13 @@ public class RealPullSugar : MonoBehaviour
                 if (name == "拉糖机关后段 (44)")
                 {
                     endCheck();
+                    yield return 0;
                 }
-                pullSugar.speed = 1;
-                yield return 0;
+                else
+                {
+                    pullSugar.speed = 1;
+                    yield return 0;
+                }
             }
             else
             {
@@ -85,6 +91,8 @@ public class RealPullSugar : MonoBehaviour
 
     void endCheck()
     {
+        RealObj.GetComponent<Animator>().enabled = false;
+        RealObj.GetComponent<SpriteRenderer>().sprite = startFrame;
         end = true;
         player.transform.position = outPosition.position;
         player.SetActive(true);
