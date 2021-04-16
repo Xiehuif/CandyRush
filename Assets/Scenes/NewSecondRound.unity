@@ -15110,6 +15110,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TemperatureControl
       objectReference: {fileID: 0}
+    - target: {fileID: 7221239793779962958, guid: e403d089dab7cf74cbd9ed681152798e,
+        type: 3}
+      propertyPath: targetAppearance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7221239793779962959, guid: e403d089dab7cf74cbd9ed681152798e,
         type: 3}
       propertyPath: m_RootOrder
