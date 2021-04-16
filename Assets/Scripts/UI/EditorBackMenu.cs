@@ -14,7 +14,7 @@ public class EditorBackMenu : MonoBehaviour
     //        backButton.GetComponent<Button>().onClick.AddListener(() => { SceneTranlater.LoadSceneByCount(0); });
     //#endif
     //    }
-#if UNITY_EDITOR
+#if UNITY_EDITOR||UNITY_STANDALONE_WIN
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
