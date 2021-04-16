@@ -46,7 +46,17 @@ public class InputHandler : Singleton<InputHandler>
         }
         if (CanClick)
         {
-            if (Input.GetMouseButton(0) && IsPointUI(Input.mousePosition))
+            Vector2 ScreenPos = Vector2.zero;
+#if UNITY_IOS
+            if (Input.touchCount > 0)
+                ScreenPos = Input.GetTouch(0).position;
+#elif UNITY_ANDROID
+            if (Input.touchCount > 0)
+                ScreenPos = Input.GetTouch(0).position;
+#elif UNITY_STANDALONE_WIN
+            ScreenPos = Input.mousePosition;
+#endif
+            if (Input.GetMouseButton(0) && IsPointUI(ScreenPos))
             {
                 m_HoldTime += Time.unscaledDeltaTime;
                 if (m_HoldTime > 0.6f)
@@ -63,7 +73,7 @@ public class InputHandler : Singleton<InputHandler>
                 }
             }
             else m_HoldTime = 0;
-            if (Input.GetMouseButtonDown(0) && IsPointUI(Input.mousePosition))//未点击到UI上
+            if (Input.GetMouseButtonDown(0) && IsPointUI(ScreenPos))//未点击到UI上
             {
 
                 OnClick();

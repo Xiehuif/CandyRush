@@ -30,7 +30,7 @@ public class TextShower : Singleton<TextShower>
     IEnumerator AutoText()
     {
         text.text = "";
-        for (int i = 0; i < content.Length; i++)
+        for (int i = 0; i <= content.Length; i++)
         {
             text.text = content.Substring(0, i);
             yield return new WaitForSecondsRealtime(interval);
