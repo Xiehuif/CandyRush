@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BasePlayer : Singleton<BasePlayer>
 {
-    public bool OnGround = false;
+    public bool OnGround = false,flag = false;
     public GameObject SmokeEffect;
     public float DectDistance;
+    private Rigidbody2D rig;
+    private List<Collider2D> colliders = new List<Collider2D>();
     void Start()
     {
         if (DectDistance <= 0)
@@ -14,6 +16,7 @@ public class BasePlayer : Singleton<BasePlayer>
             Debug.LogError("The DectDistance Is Invaild!");
             return;
         }
+        rig = GetComponent<Rigidbody2D>();
     }
     public void GenerateSmoke()
     {
@@ -23,24 +26,49 @@ public class BasePlayer : Singleton<BasePlayer>
     }
     void Update()
     {
-        OnGround = false;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), DectDistance);
-        if(hit)
+        flag = false;
+        if (OnGround)
         {
-            GameObject road = hit.collider.gameObject;
-            if(road.CompareTag("Track"))
+            rig.freezeRotation = false;
+            return;
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2((i - 1) * 0.7f, -1f), DectDistance);
+            if (hit)
             {
-                OnGround = true;
+                GameObject road = hit.collider.gameObject;
+                if (road.CompareTag("Track"))
+                    flag = true;
             }
         }
+        if (!flag) rig.freezeRotation = true;
+        else rig.freezeRotation = false;
     }
+    private void FixedUpdate()
+    {
+        OnGround = false;
+        rig.GetContacts(colliders);
+        foreach(Collider2D collider in colliders)
+        {
+            if(collider.CompareTag("Track"))
+            {
+                OnGround = true;
+                break;
+            }
+        }
 
+    }
 
 
 #if UNITY_EDITOR
     protected void OnDrawGizmosSelected()
     {
-        UnityEditor.Handles.DrawLine(transform.position, transform.position + new Vector3(0, -DectDistance, 0));
+        for (int i = 0; i < 3; i++)
+        {
+            UnityEditor.Handles.DrawLine(transform.position + new Vector3((i - 1) * 0.7f, 0, 0),
+            transform.position + new Vector3((i - 1) * 0.7f, -DectDistance, 0));
+        }
     }
 #endif
 }

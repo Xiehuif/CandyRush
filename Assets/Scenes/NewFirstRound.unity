@@ -6630,10 +6630,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2445638014995682685, guid: 6cc13edda8e27e34ea3556e0770d5592,
+        type: 3}
+      propertyPath: OnGround
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2445638014995682685, guid: 6cc13edda8e27e34ea3556e0770d5592,
+        type: 3}
+      propertyPath: DectDistance
+      value: 0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582405, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
       propertyPath: m_AngularDrag
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3146121846447582405, guid: 6cc13edda8e27e34ea3556e0770d5592,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3146121846447582406, guid: 6cc13edda8e27e34ea3556e0770d5592,
         type: 3}
