@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Track
   - ScoreGiver
+  - Lab
   layers:
   - Default
   - TransparentFX
