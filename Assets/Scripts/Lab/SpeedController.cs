@@ -9,14 +9,14 @@ public class SpeedController : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            collision.collider.GetComponent<LabMov>().ChangeSpeed(Speed);
+            collision.collider.GetComponent<LabMov>().ChangeSpeed(Speed, gameObject.GetInstanceID());
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
         {
-            collision.collider.GetComponent<LabMov>().Recover();
+            collision.collider.GetComponent<LabMov>().Recover(gameObject.GetInstanceID());
         }
 
     }
