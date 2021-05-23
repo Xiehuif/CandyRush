@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e8332b3972e286541802008cbb49d7de
+guid: a68b30f39a205794e94a8b3115e4e9ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5215517662990519065
-    second: star_2_0
+      213: -3721904027121452392
+    second: "\u5F97\u5206\u540E\uFF08\u77ED\u65F6\u95F4\uFF09_0"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -46,10 +46,10 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.8344925, y: 0.4967334}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 1617, y: 331, z: 160, w: 334}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -64,7 +64,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -76,19 +76,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 1024
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,7 +88,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -114,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: star_2_0
+      name: "\u5F97\u5206\u540E\uFF08\u77ED\u65F6\u95F4\uFF09_0"
       rect:
         serializedVersion: 2
-        x: 1701
-        y: 388
-        width: 340
-        height: 346
+        x: 1687
+        y: 381
+        width: 403
+        height: 362
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +116,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91b43567ead316840800000000000000
-      internalID: 5215517662990519065
+      spriteID: 89a745fb104295cc0800000000000000
+      internalID: -3721904027121452392
       vertices: []
       indices: 
       edges: []
