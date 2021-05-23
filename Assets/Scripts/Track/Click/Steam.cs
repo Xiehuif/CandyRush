@@ -51,7 +51,7 @@ public class Steam : MonoBehaviour,IResetable,IScoreGiver
         rotatingSpeed *= 4;//加速旋转
         yield return new WaitForSeconds(GetLengthByName(steam, "蒸汽开启"));
         rotatingSpeed /= 4;//归速
-        if(!fixedPath)collisionBody.SetActive(false);
+        if(fixedPath)collisionBody.SetActive(false);
         steamStandby.SetActive(true);
         coroutineOpen = false;//无协程进行
         yield break;

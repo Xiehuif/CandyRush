@@ -9,7 +9,7 @@ public class FixedPath : MonoBehaviour
     private Vector3 origin;
     public Transform target; //固定路径时的起始位置与末端位置
 
-    public GameObject player; //玩家
+    private GameObject player; //玩家
 
 
 
@@ -18,6 +18,7 @@ public class FixedPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         if (!controller.GetComponent<Steam>().fixedPath)
         {
             Destroy(this); //正常模式
