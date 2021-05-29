@@ -8,7 +8,8 @@ public class CandyCutterCheck : MonoBehaviour
     private Transform player;
     private Vector3 ori;
     public int score;
-    public SurfaceEffector2D trackEffector;
+    //public SurfaceEffector2D trackEffector; 旧版
+    public LabMov trackEffector;
     private float oriEffectorSpeed;
     private Emit emitScript;
     public int targetAppearance = 5;//目标状态
@@ -20,7 +21,8 @@ public class CandyCutterCheck : MonoBehaviour
     }
     private void Start()
     {
-        oriEffectorSpeed = trackEffector.speed;
+        trackEffector = GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>();
+        
         inCutting = false;
         emitScript = FindObjectOfType<Emit>();
     }
@@ -29,7 +31,8 @@ public class CandyCutterCheck : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             emitScript.emitInit();
-            trackEffector.speed = 1;
+            oriEffectorSpeed = trackEffector.GetRecentSpeed();
+            trackEffector.TempChangeSpeedByMachine(1f);
             player = collision.gameObject.transform;
             ori = player.position;
             inCutting = true;
@@ -41,7 +44,7 @@ public class CandyCutterCheck : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             emitScript.clearEmits();
-            trackEffector.speed = oriEffectorSpeed;
+            trackEffector.TempChangeSpeedByMachine(oriEffectorSpeed);
             inCutting = false;
             NextAppearance();
             Debug.Log("outCutting");

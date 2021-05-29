@@ -44,9 +44,9 @@ public class InPackage : MonoBehaviour,IResetable,IScoreGiver
             box.SetActive(false);
             StartCoroutine("To");
             locked = true;
-            Player.GetComponent<Rigidbody2D>().isKinematic = true;
-            Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-            
+            //Player.GetComponent<Rigidbody2D>().isKinematic = true;
+            //Player.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0); 旧版
+            Player.GetComponent<LabMov>().TempChangeSpeedByMachine(0f);            
         }
     }
 

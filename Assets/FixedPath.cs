@@ -11,13 +11,14 @@ public class FixedPath : MonoBehaviour
 
     private GameObject player; //玩家
 
-
+    private bool playerIn;
 
     public float pathCoefficient; //轨迹系数，控制轨迹
     public float cruiseTime; //飞行时间
     // Start is called before the first frame update
     void Start()
     {
+        playerIn = false;
         player = GameObject.FindGameObjectWithTag("Player");
         if (!controller.GetComponent<Steam>().fixedPath)
         {
@@ -76,8 +77,15 @@ public class FixedPath : MonoBehaviour
         
     }
 
+    public bool isPlayerIn()
+    {
+        return playerIn;
+    }
+
     IEnumerator StartMove()
     {
+        player.GetComponent<LabMov>().enabled = false;
+        playerIn = true;
         for (float schedule = 0; schedule <= cruiseTime; schedule = schedule + Time.deltaTime)
         {
             player.transform.position = new Vector3(origin.x + (target.position.x - origin.x) * schedule / cruiseTime, GetY(origin.x + (target.position.x - origin.x) * schedule / cruiseTime));
@@ -86,6 +94,8 @@ public class FixedPath : MonoBehaviour
         player.transform.position = target.position;
         player.GetComponent<Rigidbody2D>().velocity = new Vector3((target.transform.position.x - origin.x) / cruiseTime, GetDY(player.transform.position.x) * (target.transform.position.x - origin.x) / cruiseTime);
         player.GetComponent<Rigidbody2D>().isKinematic = false;
+        playerIn = false;
+        player.GetComponent<LabMov>().enabled = true;
         this.gameObject.SetActive(false);
         yield break;
     }

@@ -18,7 +18,9 @@ public class DyeTrigger : MonoBehaviour,IScoreGiver
     {
         HasEnter = false;
         Dye.SetActive(true);
-        TimeManager.Instance.ChangeRate(0.2f);
+        //TimeManager.Instance.ChangeRate(0.2f); 旧版的速度控制方式
+        Dye.GetComponent<DyeCreator>().playerOriginalSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().GetRecentSpeed();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(0.5f);
     }
     
     private void OnTriggerEnter2D(Collider2D other)

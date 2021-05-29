@@ -6,8 +6,8 @@ public class LabMov : MonoBehaviour
 {
     public float distance = 4f;
     public Vector2 offset = Vector2.zero;
-
-    public float Speed;
+    [SerializeField]
+    private float Speed;
     [Header("碰撞体宽度")]
     public float Width;
 
@@ -19,11 +19,25 @@ public class LabMov : MonoBehaviour
     private float LeaveTime;
     private int ChangeID;
     private List<Collider2D> colliders = new List<Collider2D>();
+
+    
+
+    public float GetRecentSpeed()
+    {
+        return m_RealSpeed;
+    }
+    //用于地图上机器（如加热器）临时的速度变化
+    public void TempChangeSpeedByMachine(float speed)
+    {
+        ChangeSpeed(speed, ChangeID);
+    }
+
+
     //记录改变ID
     public void ChangeSpeed(float speed,int ID)
     {
         if (speed < 0 || speed > 1e5) return;
-        m_RealSpeed = Speed;
+        m_RealSpeed = speed;
         ChangeID = ID;
     }
     //判断控制权是否已经转移
@@ -34,6 +48,7 @@ public class LabMov : MonoBehaviour
     }
     private void Start()
     {
+
         rigidbody2D = GetComponent<Rigidbody2D>();
         Recover(0);
     }
@@ -47,6 +62,7 @@ public class LabMov : MonoBehaviour
     }
     void FixedUpdate()
     {
+        
         float angleOffset = Mathf.Abs(Mathf.Sin(transform.rotation.z)) * Width;
         RaycastHit2D[] hits = new RaycastHit2D[3];
         hits[0] =  Physics2D.Raycast((Vector2)transform.position + offset, -1 * Vector3.up,distance + angleOffset);

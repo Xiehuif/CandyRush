@@ -14,6 +14,9 @@ public class DyeCreator : MonoBehaviour
     public float BaseWidth;
     private float m_time;
     private float m_score,m_wholeTimes;
+
+    public float playerOriginalSpeed; //适配新Track
+
     void Start()
     {
         if (Player == null) Debug.LogError("Player Transform IsMising!");
@@ -46,7 +49,8 @@ public class DyeCreator : MonoBehaviour
                 TimeManager.Instance.DelayDo(
                 () =>
                 {
-                    TimeManager.Instance.Continue();
+                    //TimeManager.Instance.Continue(); 适配新Track
+                    GameObject.FindWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(playerOriginalSpeed);
                     BasePlayer.Instance.GenerateSmoke();
                     AppearanceManager.Instance.ChangeAppearance(3);
                     AudioManager.Instance.PlaySoundByName("complete");

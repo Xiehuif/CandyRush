@@ -20,6 +20,7 @@ public class TemperatureControl : MonoBehaviour,IScoreGiver
 
     public PassCheck passCheck;
 
+    private float playerSpeed;
 
     public Transform cursor;//游标
     public Transform cursorUpperLimit;//游标上限
@@ -157,7 +158,10 @@ public class TemperatureControl : MonoBehaviour,IScoreGiver
         }
         TimeManager.Instance.ChangeRate(timeZoomEnd);
         //Time.timeScale = timeZoomEnd;//修改时间流速
+        playerSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().GetRecentSpeed();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(2f);
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
         yield break;
     }
 
@@ -169,6 +173,8 @@ public class TemperatureControl : MonoBehaviour,IScoreGiver
             Camera.main.orthographicSize = cameraZoomEndPoint + (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().SetSpeed(playerSpeed);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(playerSpeed);
         yield break;
     }
 
