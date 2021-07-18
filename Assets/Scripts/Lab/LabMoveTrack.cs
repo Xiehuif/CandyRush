@@ -99,22 +99,24 @@ public class LabMoveTrack : MonoBehaviour
         }
         yield break;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             m_PlayerTransform = collision.transform;
-            collision.collider.GetComponent<LabMov>().ChangeSpeed(PlayerSpeed, gameObject.GetInstanceID());
+            collision.GetComponent<LabMov>().ChangeSpeed(PlayerSpeed, gameObject.GetInstanceID());
         }
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             m_PlayerTransform = null;
-            collision.collider.GetComponent<LabMov>().Recover(gameObject.GetInstanceID());
+            collision.GetComponent<LabMov>().Recover(gameObject.GetInstanceID());
         }
-
     }
 #if UNITY_EDITOR
     protected void OnDrawGizmosSelected()
