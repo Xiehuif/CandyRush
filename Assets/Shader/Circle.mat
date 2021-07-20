@@ -68,7 +68,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Slider: 598.6702
+    - _Slider: 596.91003
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -81,6 +81,6 @@ Material:
     - _UseUIAlphaClip: 0
     - _ZWrite: 1
     m_Colors:
-    - _Center: {r: 552.51904, g: -239.6502, b: 0, a: 0}
+    - _Center: {r: 734.89886, g: -105.31079, b: 0, a: 0}
     - _Color: {r: 1, g: 0.9764151, b: 0.9764151, a: 0.44705883}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
