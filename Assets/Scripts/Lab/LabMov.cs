@@ -20,7 +20,7 @@ public class LabMov : MonoBehaviour
     private int ChangeID;
     private List<Collider2D> colliders = new List<Collider2D>();
 
-    
+
 
     public float GetRecentSpeed()
     {
@@ -34,7 +34,7 @@ public class LabMov : MonoBehaviour
 
 
     //记录改变ID
-    public void ChangeSpeed(float speed,int ID)
+    public void ChangeSpeed(float speed, int ID)
     {
         if (speed < 0 || speed > 1e5) return;
         m_RealSpeed = speed;
@@ -43,7 +43,7 @@ public class LabMov : MonoBehaviour
     //判断控制权是否已经转移
     public void Recover(int ID)
     {
-        if(ID == ChangeID)
+        if (ID == ChangeID)
             m_RealSpeed = Speed;
     }
     private void Start()
@@ -62,14 +62,14 @@ public class LabMov : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
+
         float angleOffset = Mathf.Abs(Mathf.Sin(transform.rotation.z)) * Width;
         RaycastHit2D[] hits = new RaycastHit2D[3];
-        hits[0] =  Physics2D.Raycast((Vector2)transform.position + offset, -1 * Vector3.up,distance + angleOffset);
+        hits[0] = Physics2D.Raycast((Vector2)transform.position + offset, -1 * Vector3.up, distance + angleOffset);
         hits[2] = Physics2D.Raycast((Vector2)transform.position - offset, -1 * Vector3.up, distance + angleOffset);
         hits[1] = Physics2D.Raycast((Vector2)transform.position, -1 * Vector3.up, distance + angleOffset);
         bool r1 = (hits[0].collider != null) && (hits[0].collider.CompareTag("Lab")),
-            r2 = (hits[1].collider != null )&& (hits[1].collider.CompareTag("Lab")),
+            r2 = (hits[1].collider != null) && (hits[1].collider.CompareTag("Lab")),
             r3 = (hits[2].collider != null) && hits[2].collider.CompareTag("Lab");
         if (!r1 && !r2 && !r3)
         {
@@ -95,20 +95,20 @@ public class LabMov : MonoBehaviour
         if (r1) AverageNormal += (Vector3)hits[0].normal;
         if (r2) AverageNormal += (Vector3)hits[1].normal * 2;
         if (r3) AverageNormal += (Vector3)hits[2].normal;
-        rigidbody2D.velocity = Vector3.Cross(AverageNormal.normalized, Vector3.back * -1f) * m_RealSpeed + 
+        rigidbody2D.velocity = Vector3.Cross(AverageNormal.normalized, Vector3.back * -1f) * m_RealSpeed +
                                 (OnGround ? Vector3.zero : AverageNormal.normalized * -1f);
-        
+
         float LerpConstant = 0.2f;
-        if(HasLeave && LeaveTime >= 0.2f)
+        if (HasLeave && LeaveTime >= 0.2f)
         {
-            Debug.Log(transform.right);
+            // Debug.Log(transform.right);
             LerpConstant = 0.05f;
             HasLeave = false;
             LeaveTime = 0;
         }
         //转向
         transform.right = Vector3.Lerp(transform.right, Vector3.Cross(AverageNormal, Vector3.back * -1f), LerpConstant);
-    
+
     }
 
 #if UNITY_EDITOR
@@ -118,7 +118,7 @@ public class LabMov : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             UnityEditor.Handles.DrawLine(transform.position + new Vector3((i - 1) * offset.x, 0, 0),
-            transform.position + new Vector3((i - 1) * offset.x, -(distance +angleOffset), 0));
+            transform.position + new Vector3((i - 1) * offset.x, -(distance + angleOffset), 0));
         }
     }
 #endif

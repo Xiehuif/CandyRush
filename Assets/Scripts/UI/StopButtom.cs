@@ -15,17 +15,17 @@ public class StopButtom : MonoBehaviour
 
     public void BeingClick()
     {
-        Debug.Log("CLICK");
+        // Debug.Log("CLICK");
         if (inGameStop)
         {
-            Debug.Log("GAME RESTART FROM STOP");
+            // Debug.Log("GAME RESTART FROM STOP");
             TimeManager.Instance.Continue();
             Time.timeScale = previousTimeScale;//流速恢复
             inGameStop = false;
         }
         else
         {
-            Debug.Log("GAME STOP");
+            // Debug.Log("GAME STOP");
             previousTimeScale = Time.timeScale;
             TimeManager.Instance.Pause();
             inGameStop = true;
