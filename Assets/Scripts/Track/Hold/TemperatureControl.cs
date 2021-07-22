@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TemperatureControl : MonoBehaviour,IScoreGiver
+public class TemperatureControl : MonoBehaviour, IScoreGiver
 {
     public string GetTag() { return "Temperature"; }
     public float GetScore() { return 25; }
@@ -15,7 +15,7 @@ public class TemperatureControl : MonoBehaviour,IScoreGiver
     private float timer = 0;//关卡计时器
     private float evaluationTimer = 0;//评价计时器
     private float cameraZoomEndPoint = 4.0f;//摄像机放大终点
-    private float timeZoomEnd = 0.3f;//时间流速变缓终点
+    private float timeZoomEnd = 0.5f;//时间流速变缓终点
     public int targetAppearance = 0;//目标状态
 
     public PassCheck passCheck;
@@ -150,16 +150,17 @@ public class TemperatureControl : MonoBehaviour,IScoreGiver
 
     private IEnumerator ToBegin()
     {
+        TimeManager.Instance.ChangeRate(timeZoomEnd);
+        playerSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().GetRecentSpeed();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(5f);
         //摄像机拉近
         for (float schedule = 0; schedule <= 1; schedule += 3 * Time.deltaTime)
         {
             Camera.main.orthographicSize = 5f - (5f - cameraZoomEndPoint) * schedule;
             yield return 0;
         }
-        TimeManager.Instance.ChangeRate(timeZoomEnd);
         //Time.timeScale = timeZoomEnd;//修改时间流速
-        playerSpeed = GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().GetRecentSpeed();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<LabMov>().TempChangeSpeedByMachine(2f);
+
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
 
         yield break;
