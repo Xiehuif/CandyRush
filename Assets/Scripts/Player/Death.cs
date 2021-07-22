@@ -31,14 +31,14 @@ public class Death : Singleton<Death>
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Track" && !m_deathing)
+        if (((other.tag == "Track") || (other.tag == "Lab")) && !m_deathing)
         {
             IsDeath();
         }
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Track" && !m_deathing)
+        if (((other.tag == "Track") || (other.tag == "Lab")) && !m_deathing)
         {
             IsDeath();
         }
