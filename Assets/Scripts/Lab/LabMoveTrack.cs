@@ -101,7 +101,7 @@ public class LabMoveTrack : MonoBehaviour
     }
     
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void Enter(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -110,7 +110,7 @@ public class LabMoveTrack : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void Exit(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
